@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      <div>Philip sutter dick</div>
+      <div>Front page of deathbets</div>
     </>
   );
 }

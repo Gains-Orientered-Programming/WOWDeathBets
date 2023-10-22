@@ -40,14 +40,14 @@ export interface ActiveSpec {
 
 export interface CharacterClass {
   key: Appearance;
-  name: null;
+  name: string;
   id: number;
   slug?: string;
 }
 
 export interface Faction {
   type: string;
-  name: null;
+  name: string;
 }
 
 export interface Guild {

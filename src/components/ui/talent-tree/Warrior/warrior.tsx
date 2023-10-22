@@ -1,50 +1,29 @@
-import Image from "next/image";
-import Arrow from "../util/arrow";
-import Icon from "../util/icon";
 import { data } from "./data";
+import { SpecializationGroup } from "src/types/blizzard/characterSpecializations.t";
+import TalentTree from "../util/TalentTree";
 
-const Warrior_TalentTree = () => {
+export const Warrior = ({
+  specializationGroup,
+}: {
+  specializationGroup: SpecializationGroup;
+}) => {
+  const arms = specializationGroup.specializations.find(
+    (spec) => spec.specialization_name === "Arms"
+  );
+  const fury = specializationGroup.specializations.find(
+    (spec) => spec.specialization_name === "Fury"
+  );
+  const protection = specializationGroup.specializations.find(
+    (spec) => spec.specialization_name === "Protection"
+  );
+
   return (
-    <div>
+    <>
       <div className="flex flex-row">
-        <div className="flex flex-col bg-white max-w-[328px] w-[300px]">
-          <div className="bg-gray-200 h-10 w-full flex items-center font-lg gap-[10px] px-2">
-            <Image
-              src={data.Arms.icon}
-              alt="Arms icon"
-              className="h-[30px] w-[30px] rounded-full"
-              width={100}
-              height={100}
-            />
-            <b>Arms</b>
-            <span className="flex-1 text-right">31 / 51</span>
-          </div>
-          <div
-            className="w-full"
-            style={{
-              backgroundImage: `url("${data.Arms.backgorund}")`,
-              backgroundSize: "100% 100%",
-            }}
-          >
-            <div className="h-[420px] w-[240px] my-0 mx-auto  relative">
-              {data.Arms.talents.map((talent) => (
-                <Icon
-                  key={talent.name}
-                  image={talent.icon}
-                  maxLevel={talent.maxRank}
-                  level={talent.reqPoints}
-                  posX={talent.left}
-                  posY={talent.top}
-                />
-              ))}
-              <Arrow posX="142.5px" posY="49px" />
-              <Arrow posX="82.5px" posY="289px" />
-            </div>
-          </div>
-        </div>
+        <TalentTree specialization={arms} data={data} name="Arms" />
+        <TalentTree specialization={fury} data={data} name="Fury" />
+        <TalentTree specialization={protection} data={data} name="Protection" />
       </div>
-    </div>
+    </>
   );
 };
-
-export default Warrior_TalentTree;

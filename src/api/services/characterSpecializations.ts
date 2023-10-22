@@ -1,7 +1,7 @@
 import { getDataFromApi } from "src/services/oAuth";
-import { CharacterProfileSummary } from "src/types/blizzard/characterProfileSummary.t";
+import { CharacterSpecializations } from "src/types/blizzard/characterSpecializations.t";
 
-export const getCharacterProfile = async ({
+export const getCharacterSpecializations = async ({
   region,
   realm,
   characterName,
@@ -15,9 +15,9 @@ export const getCharacterProfile = async ({
     "locale": "en_GB",
   };
 
-  const data = await getDataFromApi<CharacterProfileSummary>(
+  const data = await getDataFromApi<CharacterSpecializations>(
     region,
-    `/profile/wow/character/${realm}/${characterName}`,
+    `/profile/wow/character/${realm}/${characterName}/specializations`,
     params
   );
 

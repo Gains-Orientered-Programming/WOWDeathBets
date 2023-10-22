@@ -65,7 +65,7 @@ export async function getDataFromApi<T>(
 ): Promise<T> {
   params["access_token"] = await createAccessToken();
   const url = `https://${region}.api.blizzard.com${path}`;
-
+  console.log(url, { params });
   try {
     const response = await axios.get(url, { params });
     const data: T = response.data;

@@ -3,13 +3,13 @@ import {
   CharacterEquipment,
   EquippedItem,
 } from "src/types/blizzard/characterEquipment.t";
-import { charaterPanel } from "./data";
+import { charaterPanel, colorQuality } from "./data";
 import { type ISlot } from "./types";
 
 export const ItemPanel = ({ items }: { items: CharacterEquipment }) => {
   return (
     <>
-      <div className="p-[24px] bg-slate-500 w-full rounded-sm h-auto">
+      <div className="p-[24px] bg-neutral-800 w-[900px] rounded-sm h-auto">
         <div className="flex gap-[16px] flex-row flex-wrap justify-between">
           <div className="flex flex-col gap-[4px] w-[calc(50%-8px)]">
             {charaterPanel.left.map((slot) => (
@@ -35,6 +35,21 @@ export const ItemPanel = ({ items }: { items: CharacterEquipment }) => {
             ))}
           </div>
         </div>
+        <div className="mt-[15px]">
+          <div className={"flex flew-row gap-2 w-full"}>
+            {charaterPanel.weapons.map((slot) => (
+              <div key={slot.name} className="w-full flex flex-col gap-1">
+                <div className="text-xs text-slate-300">Weapon: Main Hand</div>
+                <ItemRow
+                  item={items.equipped_items.find(
+                    (item) => item.slot.type === slot.name
+                  )}
+                  slot={slot}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );
@@ -53,23 +68,29 @@ const ItemRow = ({
     <>
       <div
         className={
-          "items-center bg-slate-700 rounded-sm flex justify-between overflow-hidden py-[8px] px-[12px] " +
+          "items-center bg-zinc-900 rounded-sm flex justify-between overflow-hidden py-[8px] px-[12px] " +
           (reverse ? "flex-row-reverse" : "")
         }
       >
         <div
           className={
-            "items-center flex w-[calc(100%-120px)] " +
-            (reverse ? "flex-row-reverse" : "")
+            "items-center flex w-full " + (reverse ? "flex-row-reverse" : "")
           }
         >
-          <div className="outline outline-2 outline-purple-400 w-[36px] h-[36px]">
+          <div
+            style={{
+              outlineColor: item
+                ? colorQuality.get(item.quality.type)
+                : colorQuality.get("POOR"),
+            }}
+            className="outline outline-2 w-[36px] h-[36px]"
+          >
             <Image
               className="w-full h-full"
               src={
-                item != undefined
+                item
                   ? `https://static.bigbrain.gg/wow/item/assets/${item.item.id}.webp`
-                  : `/slots/empty-slot-${slot.name.toLowerCase()}.webp`
+                  : slot.empty_image
               }
               alt="item image"
               width={36}
@@ -77,7 +98,14 @@ const ItemRow = ({
             />
           </div>
           <div className="flex flex-col my-0 mx-[8px] overflow-hidden">
-            <div className="text-purple-400 text-sm font-medium text-ellipsis whitespace-nowrap">
+            <div
+              style={{
+                color: item
+                  ? colorQuality.get(item.quality.type)
+                  : colorQuality.get("POOR"),
+              }}
+              className="text-sm font-medium text-ellipsis whitespace-nowrap"
+            >
               {item?.name}
             </div>
             {item?.enchantments?.map((ench) =>
@@ -97,7 +125,7 @@ const ItemRow = ({
                       height={16}
                     />
                   </div>
-                  <div className="text-rose-100 text-xs ml-[5px] overflow-hidden text-ellipsis whitespace-nowrap">
+                  <div className="text-slate-300 text-xs ml-[5px] overflow-hidden text-ellipsis whitespace-nowrap">
                     {ench.display_string}
                   </div>
                 </div>

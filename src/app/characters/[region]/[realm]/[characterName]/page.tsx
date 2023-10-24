@@ -5,6 +5,9 @@ import { getCharacterSpecializations } from "src/api/services/characterSpecializ
 import { Talents } from "src/components/ui/talent-tree/Talents";
 import { CharacterProfileSummary } from "src/types/blizzard/characterProfileSummary.t";
 import ItemPanel from "./(ItemPanel)";
+import TabElement from "./(tab)";
+import { TabData } from "./(tab)/type";
+import { wowClassColors } from "src/utils/wowClassColors";
 
 const CharacterPage = async ({
   params,
@@ -14,6 +17,23 @@ const CharacterPage = async ({
   const characterProfile = await getCharacterProfile(params);
   const characterSpec = await getCharacterSpecializations(params);
   const characterEquipment = await getCharacterEquipment(params);
+  const categories: TabData[] = [
+    {
+      name: "Character Panel",
+      content: <ItemPanel items={characterEquipment} />,
+      param: "character-panel",
+    },
+    {
+      name: "Talents",
+      content: (
+        <Talents
+          specializationGroup={characterSpec.specialization_groups[0]}
+          wowClass={characterProfile.character_class.name}
+        />
+      ),
+      param: "talents",
+    },
+  ];
 
   return (
     <>
@@ -23,7 +43,7 @@ const CharacterPage = async ({
             <Header characterProfile={characterProfile} />
           </div>
           <div>
-            <ItemPanel items={characterEquipment} />
+            <TabElement params={params} categories={categories} />
           </div>
           <div className="flex flex-col gap-5">
             <div>Name: {characterProfile.name}</div>
@@ -32,13 +52,6 @@ const CharacterPage = async ({
             <div>Class: {characterProfile.character_class.name}</div>
             <div>Race: {characterProfile.race.name}</div>
             <div>Level: {characterProfile.level}</div>
-          </div>
-          <div className="mt-10">
-            <h1>Talents</h1>
-            <Talents
-              specializationGroup={characterSpec.specialization_groups[0]}
-              wowClass={characterProfile.character_class.name}
-            />
           </div>
         </div>
       </div>
@@ -54,11 +67,20 @@ const Header = ({
   return (
     <>
       <div className="w-full flex">
-        <div className="max-w-[1016px] pt-[48px] px-0 pb-[100px]">
+        <div className="max-w-[1016px] pt-[48px] px-0 ">
           <div className="flex flex-col relative max-w-[1016px]">
             <div className="mb-[36px] flex flex-col">
               <div className="flex flex-row flex-nowrap gap-5">
-                <div className="bg-yellow-400 w-[100px] h-[100px] flex flex-row flex-nowrap rounded-sm outline outline-2 outline-yellow-400">
+                <div
+                  style={{
+                    outlineColor: wowClassColors(
+                      characterProfile.character_class.name
+                    ),
+                  }}
+                  className={
+                    "w-[100px] h-[100px] flex flex-row flex-nowrap rounded-sm outline outline-2"
+                  }
+                >
                   <div className="bg-blue-700 flex flex-row flex-nowrap">
                     <Image
                       src={`https://wow.zamimg.com/images/wow/icons/large/race_${characterProfile.race.name.toLowerCase()}_${characterProfile.gender.type.toLowerCase()}.jpg`}
@@ -78,6 +100,13 @@ const Header = ({
                       <span>Arms Warrior</span>
                     </div>
                   </div>
+                  {characterProfile.is_ghost && (
+                    <div className="ml-5">
+                      <div className="bg-red-200 text-red-700 rounded-sm px-4 py-1">
+                        Dead
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

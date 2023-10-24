@@ -20,7 +20,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body>
+      <body className="bg-neutral-900 text-white">
         <Navbar />
         {children}
         <Footer />

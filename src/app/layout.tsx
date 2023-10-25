@@ -20,9 +20,11 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="bg-neutral-900 text-white">
-        <Navbar />
-        {children}
+      <body className="bg-zinc-900 text-white">
+        <div className="min-h-screen flex flex-col">
+          <Navbar />
+          <div className="relative flex flex-grow">{children}</div>
+        </div>
         <Footer />
       </body>
     </html>

@@ -9,7 +9,7 @@ import { type ISlot } from "./types";
 export const ItemPanel = ({ items }: { items: CharacterEquipment }) => {
   return (
     <>
-      <div className="p-[24px] bg-neutral-800 w-[900px] rounded-sm h-auto">
+      <div className="p-[24px] bg-zinc-800 w-[900px] rounded-sm h-auto">
         <div className="flex gap-[16px] flex-row flex-wrap justify-between">
           <div className="flex flex-col gap-[4px] w-[calc(50%-8px)]">
             {charaterPanel.left.map((slot) => (

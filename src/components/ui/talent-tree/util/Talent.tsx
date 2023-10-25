@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { type Talent } from "./types";
-import { getPosition } from "./positions";
+import { getIconPosition } from "./positions";
 import Arrow from "./Arrow";
 
 const Talent = ({
@@ -14,8 +14,8 @@ const Talent = ({
     <>
       <div
         style={{
-          top: getPosition(talent.position)?.top,
-          left: getPosition(talent.position)?.left,
+          top: getIconPosition(talent.position)?.top,
+          left: getIconPosition(talent.position)?.left,
         }}
         className={`z-5 filter-none absolute block outline-none`}
       >

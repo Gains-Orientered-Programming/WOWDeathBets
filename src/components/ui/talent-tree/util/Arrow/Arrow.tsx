@@ -5,7 +5,11 @@ import arrowDownGold from "@/public/talents/arrows/down--gold.png";
 import arrowRightDown from "@/public/talents/arrows/right-down.png";
 import arrowRightDownGold from "@/public/talents/arrows/right-down--gold.png";
 import { ArrowDir, Position } from "../types";
-import { calculateHeight, getArrowPosition } from "../positions";
+import {
+  calculateHeight,
+  getArrowPosition,
+  getArrowSettings,
+} from "../positions";
 
 const imageMap = {
   right: arrowRight,
@@ -28,14 +32,15 @@ type Props = {
 export const Arrow = ({ dir, from, to, active }: Props) => {
   const arrowType = `${dir}${active ? "--gold" : ""}`;
   console.log(imageMap[arrowType as keyof typeof imageMap]);
+  const arrowSettings = getArrowSettings(from, to, dir);
   return (
     <>
       <div
         className={`absolute w-[15px] z-5 block bg-[bottom_center]`}
         style={{
-          top: getArrowPosition(from)?.top,
-          left: getArrowPosition(to)?.left,
-          height: calculateHeight(from, to),
+          top: arrowSettings.top,
+          left: arrowSettings.left,
+          height: arrowSettings.height,
           backgroundImage: `url("https://wow.zamimg.com/images/TalentCalc/arrows/down2.png")`,
         }}
       ></div>

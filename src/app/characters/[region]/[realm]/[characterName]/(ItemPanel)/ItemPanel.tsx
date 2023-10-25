@@ -39,7 +39,10 @@ export const ItemPanel = ({ items }: { items: CharacterEquipment }) => {
           <div className={"flex flew-row gap-2 w-full"}>
             {charaterPanel.weapons.map((slot) => (
               <div key={slot.name} className="w-full flex flex-col gap-1">
-                <div className="text-xs text-slate-300">Weapon: Main Hand</div>
+                <div className="text-xs text-slate-300">
+                  {slot.name.charAt(0) +
+                    slot.name.replace("_", " ").slice(1).toLowerCase()}
+                </div>
                 <ItemRow
                   item={items.equipped_items.find(
                     (item) => item.slot.type === slot.name

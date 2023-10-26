@@ -5,11 +5,7 @@ import arrowDownGold from "@/public/talents/arrows/down--gold.png";
 import arrowRightDown from "@/public/talents/arrows/right-down.png";
 import arrowRightDownGold from "@/public/talents/arrows/right-down--gold.png";
 import { ArrowDir, Position } from "../types";
-import {
-  calculateHeight,
-  getArrowPosition,
-  getArrowSettings,
-} from "../positions";
+import { getArrowSettings } from "../positions";
 
 const imageMap = {
   right: arrowRight,
@@ -36,12 +32,24 @@ export const Arrow = ({ dir, from, to, active }: Props) => {
   return (
     <>
       <div
-        className={`absolute w-[15px] z-5 block bg-[bottom_center]`}
+        className={
+          `absolute w-[15px] z-5 block ` +
+          (dir === "down"
+            ? "bg-[bottom_center]"
+            : dir === "right"
+            ? "bg-[right_center]"
+            : dir === "right-down"
+            ? "bg-[right_bottom]"
+            : dir === "right-down-down"
+            ? "bg-[right_bottom]"
+            : "")
+        }
         style={{
           top: arrowSettings.top,
           left: arrowSettings.left,
           height: arrowSettings.height,
-          backgroundImage: `url("https://wow.zamimg.com/images/TalentCalc/arrows/down2.png")`,
+          width: arrowSettings.width,
+          backgroundImage: `url("/talents/arrows/${arrowType}.png")`,
         }}
       ></div>
     </>

@@ -95,7 +95,11 @@ const Header = ({
                 >
                   <div className="bg-blue-700 flex flex-row">
                     <Image
-                      src={`https://wow.zamimg.com/images/wow/icons/large/race_${characterProfile.race.name.toLowerCase()}_${characterProfile.gender.type.toLowerCase()}.jpg`}
+                      src={`https://wow.zamimg.com/images/wow/icons/large/race_${
+                        characterProfile.race.name === "Undead"
+                          ? "scourge"
+                          : characterProfile.race.name.toLowerCase()
+                      }_${characterProfile.gender.type.toLowerCase()}.jpg`}
                       alt="race image"
                       className={"z-20 w-full h-full"}
                       height={100}

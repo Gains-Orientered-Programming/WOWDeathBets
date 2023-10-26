@@ -2,6 +2,7 @@ import Link from "next/link";
 import { type Talent } from "./types";
 import { getIconPosition } from "./positions";
 import Arrow from "./Arrow";
+import { useTooltipPos } from "src/hooks/useTooltipPos";
 
 const Talent = ({
   talent,

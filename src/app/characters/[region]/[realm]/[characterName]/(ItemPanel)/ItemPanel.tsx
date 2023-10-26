@@ -5,6 +5,7 @@ import {
 } from "src/types/blizzard/characterEquipment.t";
 import { charaterPanel, colorQuality } from "./data";
 import { type ISlot } from "./types";
+import Link from "next/link";
 
 export const ItemPanel = ({ items }: { items: CharacterEquipment }) => {
   return (
@@ -75,67 +76,74 @@ const ItemRow = ({
           (reverse ? "flex-row-reverse" : "")
         }
       >
-        <div
-          className={
-            "items-center flex w-full " + (reverse ? "flex-row-reverse" : "")
-          }
+        <Link
+          target="_blank"
+          href={`https://www.wowhead.com/classic/item=${
+            item?.item.id
+          }/${item?.name.replace(" ", "-")}`}
         >
           <div
-            style={{
-              outlineColor: item
-                ? colorQuality.get(item.quality.type)
-                : colorQuality.get("POOR"),
-            }}
-            className="outline outline-2 w-[36px] h-[36px]"
+            className={
+              "items-center flex w-full " + (reverse ? "flex-row-reverse" : "")
+            }
           >
-            <Image
-              className="w-full h-full"
-              src={
-                item
-                  ? `https://static.bigbrain.gg/wow/item/assets/${item.item.id}.webp`
-                  : slot.empty_image
-              }
-              alt="item image"
-              width={36}
-              height={36}
-            />
-          </div>
-          <div className="flex flex-col my-0 mx-[8px] overflow-hidden">
             <div
               style={{
-                color: item
+                outlineColor: item
                   ? colorQuality.get(item.quality.type)
                   : colorQuality.get("POOR"),
               }}
-              className="text-sm font-medium text-ellipsis whitespace-nowrap"
+              className="outline outline-2 w-[36px] h-[36px]"
             >
-              {item?.name}
+              <Image
+                className="w-full h-full"
+                src={
+                  item
+                    ? `https://static.bigbrain.gg/wow/item/assets/${item.item.id}.webp`
+                    : slot.empty_image
+                }
+                alt="item image"
+                width={36}
+                height={36}
+              />
             </div>
-            {item?.enchantments?.map((ench) =>
-              ench.enchantment_slot.id === slot.slot ? (
-                <div
-                  key={ench.enchantment_id}
-                  className={
-                    "flex items-center " + (reverse ? "justify-end" : "")
-                  }
-                >
-                  <div className="w-[14px] h-[14px] min-w-[16px] max-w-[16px] outline outline-slate-500 outline-2 rounded-sm overflow-hidden inline-flex">
-                    <Image
-                      className="w-full h-full"
-                      src="https://static.bigbrain.gg/wow/item/assets/200054.webp"
-                      alt="enchant image"
-                      width={16}
-                      height={16}
-                    />
+            <div className="flex flex-col my-0 mx-[8px] overflow-hidden">
+              <div
+                style={{
+                  color: item
+                    ? colorQuality.get(item.quality.type)
+                    : colorQuality.get("POOR"),
+                }}
+                className="text-sm font-medium text-ellipsis whitespace-nowrap"
+              >
+                {item?.name}
+              </div>
+              {item?.enchantments?.map((ench) =>
+                ench.enchantment_slot.id === slot.slot ? (
+                  <div
+                    key={ench.enchantment_id}
+                    className={
+                      "flex items-center " + (reverse ? "justify-end" : "")
+                    }
+                  >
+                    <div className="w-[14px] h-[14px] min-w-[16px] max-w-[16px] outline outline-slate-500 outline-2 rounded-sm overflow-hidden inline-flex">
+                      <Image
+                        className="w-full h-full"
+                        src="https://static.bigbrain.gg/wow/item/assets/200054.webp"
+                        alt="enchant image"
+                        width={16}
+                        height={16}
+                      />
+                    </div>
+                    <div className="text-slate-300 text-xs ml-[5px] overflow-hidden text-ellipsis whitespace-nowrap">
+                      {ench.display_string}
+                    </div>
                   </div>
-                  <div className="text-slate-300 text-xs ml-[5px] overflow-hidden text-ellipsis whitespace-nowrap">
-                    {ench.display_string}
-                  </div>
-                </div>
-              ) : null
-            )}
+                ) : null
+              )}
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     </>
   );

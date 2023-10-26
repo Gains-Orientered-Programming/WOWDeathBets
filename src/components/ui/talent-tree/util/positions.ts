@@ -35,6 +35,17 @@ export const getIconPosition = (pos: string) => {
   return position.get(pos as Position);
 };
 
+export const getRightArrowSettings = (from: string, to: string) => {
+  const position = new Map([
+    ["a2", { left: "109px", top: "22.5px" }],
+    ["e2", { left: "109px", top: "262.5px" }],
+    ["e3", { left: "169px", top: "262.5px" }],
+  ]);
+  const pos = position.get(from as Position);
+
+  return { ...pos, height: "15px", width: "26.5px" };
+};
+
 export const getDownArrowSettings = (from: string, to: string) => {
   const position = new Map([
     ["a1", { left: "22.5px", top: "49px" }],
@@ -70,10 +81,10 @@ export const getDownArrowSettings = (from: string, to: string) => {
   const pos = position.get(from as Position);
   const height = calculateHeight(from, to);
 
-  return { ...pos, height };
+  return { ...pos, height: height, width: undefined };
 };
 
-export const calculateHeight = (from: string, to: string) => {
+const calculateHeight = (from: string, to: string) => {
   const letterTo = to.charAt(0);
   const letterFrom = from.charAt(0);
   const position = new Map([
@@ -111,11 +122,12 @@ export const getArrowSettings = (
   from: string,
   to: string,
   direction: string
-): { top?: string; left?: string; height?: string } => {
+): { top?: string; left?: string; height?: string; width?: string } => {
   if (from && to && direction) {
     if (direction === "right-down") {
     } else if (direction === "right-down-down") {
     } else if (direction === "right") {
+      return getRightArrowSettings(from, to);
     } else if (direction === "down") {
       return getDownArrowSettings(from, to);
     }

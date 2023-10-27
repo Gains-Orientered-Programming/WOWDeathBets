@@ -43,6 +43,14 @@ const TalentTree = ({
               <>
                 {Object.values(treeData.talents).map((talent) => (
                   <Talent
+                    id={
+                      specialization
+                        ? specialization.talents.find(
+                            (item) =>
+                              item.spell_tooltip.spell.name === talent.name
+                          )?.spell_tooltip.spell.id
+                        : undefined
+                    }
                     key={talent.name}
                     talent={talent}
                     rank={

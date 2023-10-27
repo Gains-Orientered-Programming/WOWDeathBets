@@ -7,6 +7,7 @@ export const data: TalentData = {
     icon: "/talents/icons/mage/spell_holy_magicalsentry.jpg",
     talents: {
       "Arcane Subtlety": {
+        id: 11210,
         name: "Arcane Subtlety",
         position: "a1",
         icon: "/talents/icons/mage/spell_holy_dispelmagic.jpg",
@@ -14,6 +15,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       "Arcane Focus": {
+        id: 11222,
         name: "Arcane Focus",
         position: "a2",
         icon: "/talents/icons/mage/spell_holy_devotion.jpg",
@@ -21,6 +23,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       "Improved Arcane Missiles": {
+        id: 11237,
         name: "Improved Arcane Missiles",
         position: "a3",
         icon: "/talents/icons/mage/spell_nature_starfall.jpg",
@@ -28,6 +31,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       "Wand Specialization": {
+        id: 6057,
         name: "Wand Specialization",
         position: "b1",
         icon: "/talents/icons/mage/inv_wand_01.jpg",
@@ -35,6 +39,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       "Magic Absorption": {
+        id: 29441,
         name: "Magic Absorption",
         position: "b2",
         icon: "/talents/icons/mage/spell_nature_astralrecalgroup.jpg",
@@ -42,6 +47,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       "Arcane Concentration": {
+        id: 11213,
         name: "Arcane Concentration",
         position: "b3",
         icon: "/talents/icons/mage/spell_shadow_manaburn.jpg",
@@ -49,6 +55,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       "Magic Attunement": {
+        id: 11247,
         name: "Magic Attunement",
         position: "c1",
         icon: "/talents/icons/mage/spell_nature_abolishmagic.jpg",
@@ -56,6 +63,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Improved Arcane Explosion": {
+        id: 11242,
         name: "Improved Arcane Explosion",
         position: "c2",
         icon: "/talents/icons/mage/spell_nature_wispsplode.jpg",
@@ -63,6 +71,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Arcane Resilience": {
+        id: 28574,
         name: "Arcane Resilience",
         position: "c3",
         icon: "/talents/icons/mage/spell_arcane_arcaneresilience.jpg",
@@ -70,6 +79,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Improved Mana Shield": {
+        id: 11252,
         name: "Improved Mana Shield",
         position: "d1",
         icon: "/talents/icons/mage/spell_shadow_detectlesserinvisibility.jpg",
@@ -77,6 +87,7 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       "Improved Counterspell": {
+        id: 11255,
         name: "Improved Counterspell",
         position: "d2",
         icon: "/talents/icons/mage/spell_frost_iceshock.jpg",
@@ -84,6 +95,7 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       "Arcane Meditation": {
+        id: 18462,
         name: "Arcane Meditation",
         position: "d4",
         icon: "/talents/icons/mage/spell_shadow_siphonmana.jpg",
@@ -91,6 +103,7 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       "Presence of Mind": {
+        id: 12043,
         name: "Presence of Mind",
         position: "e2",
         icon: "/talents/icons/mage/spell_nature_enchantarmor.jpg",
@@ -98,6 +111,7 @@ export const data: TalentData = {
         reqPoints: 20,
       },
       "Arcane Mind": {
+        id: 11232,
         name: "Arcane Mind",
         position: "e3",
         icon: "/talents/icons/mage/spell_shadow_charm.jpg",
@@ -106,6 +120,7 @@ export const data: TalentData = {
         arrows: [{ dir: "down", from: "c3", to: "e3" }],
       },
       "Arcane Instability": {
+        id: 15058,
         name: "Arcane Instability",
         position: "f2",
         icon: "/talents/icons/mage/spell_shadow_teleport.jpg",
@@ -114,6 +129,7 @@ export const data: TalentData = {
         arrows: [{ dir: "down", from: "e2", to: "f2" }],
       },
       "Arcane Power": {
+        id: 12042,
         name: "Arcane Power",
         position: "g2",
         icon: "/talents/icons/mage/spell_nature_lightning.jpg",
@@ -129,6 +145,7 @@ export const data: TalentData = {
     icon: "/talents/icons/mage/spell_fire_firebolt02.jpg",
     talents: {
       "Improved Fireball": {
+        id: 11069,
         name: "Improved Fireball",
         position: "a2",
         icon: "/talents/icons/mage/spell_fire_firebolt02.jpg",
@@ -136,6 +153,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       Impact: {
+        id: 11103,
         name: "Impact",
         position: "a3",
         icon: "/talents/icons/mage/spell_fire_meteorstorm.jpg",
@@ -143,6 +161,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       Ignite: {
+        id: 11119,
         name: "Ignite",
         position: "b1",
         icon: "/talents/icons/mage/spell_fire_incinerate.jpg",
@@ -150,6 +169,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       "Flame Throwing": {
+        id: 11100,
         name: "Flame Throwing",
         position: "b2",
         icon: "/talents/icons/mage/spell_fire_flare.jpg",
@@ -157,6 +177,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       "Improved Fire Blast": {
+        id: 11078,
         name: "Improved Fire Blast",
         position: "b3",
         icon: "/talents/icons/mage/spell_fire_fireball.jpg",
@@ -164,6 +185,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       Incinerate: {
+        id: 18459,
         name: "Incinerate",
         position: "c1",
         icon: "/talents/icons/mage/spell_fire_flameshock.jpg",
@@ -171,6 +193,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Improved Flamestrike": {
+        id: 11108,
         name: "Improved Flamestrike",
         position: "c2",
         icon: "/talents/icons/mage/spell_fire_selfdestruct.jpg",
@@ -178,6 +201,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       Pyroblast: {
+        id: 11366,
         name: "Pyroblast",
         position: "c3",
         icon: "/talents/icons/mage/spell_fire_fireball02.jpg",
@@ -185,6 +209,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Burning Soul": {
+        id: 11083,
         name: "Burning Soul",
         position: "c4",
         icon: "/talents/icons/mage/spell_fire_fire.jpg",
@@ -192,6 +217,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Improved Scorch": {
+        id: 11095,
         name: "Improved Scorch",
         position: "d1",
         icon: "/talents/icons/mage/spell_fire_soulburn.jpg",
@@ -199,6 +225,7 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       "Improved Fire Ward": {
+        id: 11094,
         name: "Improved Fire Ward",
         position: "d2",
         icon: "/talents/icons/mage/spell_fire_firearmor.jpg",
@@ -206,6 +233,7 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       "Master of Elements": {
+        id: 29074,
         name: "Master of Elements",
         position: "d4",
         icon: "/talents/icons/mage/spell_fire_masterofelements.jpg",
@@ -213,6 +241,7 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       "Critical Mass": {
+        id: 11115,
         name: "Critical Mass",
         position: "e2",
         icon: "/talents/icons/mage/spell_nature_wispheal.jpg",
@@ -220,6 +249,7 @@ export const data: TalentData = {
         reqPoints: 20,
       },
       "Blast Wave": {
+        id: 11113,
         name: "Blast Wave",
         position: "e3",
         icon: "/talents/icons/mage/spell_holy_excorcism_02.jpg",
@@ -228,6 +258,7 @@ export const data: TalentData = {
         arrows: [{ dir: "down", from: "c3", to: "e3" }],
       },
       "Fire Power": {
+        id: 11124,
         name: "Fire Power",
         position: "f3",
         icon: "/talents/icons/mage/spell_fire_immolation.jpg",
@@ -235,6 +266,7 @@ export const data: TalentData = {
         reqPoints: 25,
       },
       Combustion: {
+        id: 11129,
         name: "Combustion",
         position: "g2",
         icon: "/talents/icons/mage/spell_fire_sealoffire.jpg",
@@ -250,6 +282,7 @@ export const data: TalentData = {
     icon: "/talents/icons/mage/spell_frost_frostbolt02.jpg",
     talents: {
       "Frost Warding": {
+        id: 11189,
         name: "Frost Warding",
         position: "a1",
         icon: "/talents/icons/mage/spell_frost_frostward.jpg",
@@ -257,6 +290,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       "Improved Frostbolt": {
+        id: 11070,
         name: "Improved Frostbolt",
         position: "a2",
         icon: "/talents/icons/mage/spell_frost_frostbolt02.jpg",
@@ -264,6 +298,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       "Elemental Precision": {
+        id: 29438,
         name: "Elemental Precision",
         position: "a3",
         icon: "/talents/icons/mage/spell_ice_magicdamage.jpg",
@@ -271,6 +306,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       "Ice Shards": {
+        id: 11207,
         name: "Ice Shards",
         position: "b1",
         icon: "/talents/icons/mage/spell_frost_iceshard.jpg",
@@ -278,6 +314,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       Frostbite: {
+        id: 11071,
         name: "Frostbite",
         position: "b2",
         icon: "/talents/icons/mage/spell_frost_frostarmor.jpg",
@@ -285,6 +322,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       "Improved Frost Nova": {
+        id: 11165,
         name: "Improved Frost Nova",
         position: "b3",
         icon: "/talents/icons/mage/spell_frost_freezingbreath.jpg",
@@ -292,6 +330,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       Permafrost: {
+        id: 11175,
         name: "Permafrost",
         position: "b4",
         icon: "/talents/icons/mage/spell_frost_wisp.jpg",
@@ -299,6 +338,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       "Piercing Ice": {
+        id: 11151,
         name: "Piercing Ice",
         position: "c1",
         icon: "/talents/icons/mage/spell_frost_frostbolt.jpg",
@@ -306,6 +346,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Cold Snap": {
+        id: 12472,
         name: "Cold Snap",
         position: "c2",
         icon: "/talents/icons/mage/spell_frost_wizardmark.jpg",
@@ -313,6 +354,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Improved Blizzard": {
+        id: 11185,
         name: "Improved Blizzard",
         position: "c4",
         icon: "/talents/icons/mage/spell_frost_icestorm.jpg",
@@ -320,6 +362,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Arctic Reach": {
+        id: 16757,
         name: "Arctic Reach",
         position: "d1",
         icon: "/talents/icons/mage/spell_shadow_darkritual.jpg",
@@ -327,6 +370,7 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       "Frost Channeling": {
+        id: 11160,
         name: "Frost Channeling",
         position: "d2",
         icon: "/talents/icons/mage/spell_frost_stun.jpg",
@@ -334,14 +378,16 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       Shatter: {
+        id: 11170,
         name: "Shatter",
         position: "d3",
         icon: "/talents/icons/mage/spell_frost_frostshock.jpg",
-        maxRank: 1,
+        maxRank: 5,
         reqPoints: 15,
         arrows: [{ dir: "down", from: "b3", to: "d3" }],
       },
       "Ice Block": {
+        id: 11958,
         name: "Ice Block",
         position: "e2",
         icon: "/talents/icons/mage/spell_frost_frost.jpg",
@@ -349,6 +395,7 @@ export const data: TalentData = {
         reqPoints: 20,
       },
       "Improved Cone of Cold": {
+        id: 11190,
         name: "Improved Cone of Cold",
         position: "e3",
         icon: "/talents/icons/mage/spell_frost_glacier.jpg",
@@ -356,6 +403,7 @@ export const data: TalentData = {
         reqPoints: 20,
       },
       "Winter's Chill": {
+        id: 11180,
         name: "Winter's Chill",
         position: "f3",
         icon: "/talents/icons/mage/spell_frost_chillingblast.jpg",
@@ -363,6 +411,7 @@ export const data: TalentData = {
         reqPoints: 25,
       },
       "Ice Barrier": {
+        id: 11426,
         name: "Ice Barrier",
         position: "g2",
         icon: "/talents/icons/mage/spell_ice_lament.jpg",

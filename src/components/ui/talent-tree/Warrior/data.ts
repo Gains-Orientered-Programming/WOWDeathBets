@@ -8,6 +8,7 @@ export const data: TalentData = {
     talents: {
       "Improved Heroic Strike": {
         name: "Improved Heroic Strike",
+        id: 12282,
         position: "a1",
         icon: "/talents/icons/warrior/ability_rogue_ambush.jpg",
         maxRank: 3,
@@ -15,6 +16,7 @@ export const data: TalentData = {
       },
       "Deflection": {
         name: "Deflection",
+        id: 16462,
         position: "a2",
         icon: "/talents/icons/warrior/ability_parry.jpg",
         maxRank: 5,
@@ -22,6 +24,7 @@ export const data: TalentData = {
       },
       "Improved Rend": {
         name: "Improved Rend",
+        id: 12286,
         position: "a3",
         icon: "/talents/icons/warrior/ability_gouge.jpg",
         maxRank: 3,
@@ -29,6 +32,7 @@ export const data: TalentData = {
       },
       "Improved Charge": {
         name: "Improved Charge",
+        id: 12285,
         position: "b1",
         icon: "/talents/icons/warrior/ability_warrior_charge.jpg",
         maxRank: 2,
@@ -36,6 +40,7 @@ export const data: TalentData = {
       },
       "Tactical Mastery": {
         name: "Tactical Mastery",
+        id: 12295,
         position: "b2",
         icon: "/talents/icons/warrior/spell_nature_enchantarmor.jpg",
         maxRank: 5,
@@ -43,6 +48,7 @@ export const data: TalentData = {
       },
       "Improved Thunder Clap": {
         name: "Improved Thunder Clap",
+        id: 12287,
         position: "b4",
         icon: "/talents/icons/warrior/ability_thunderclap.jpg",
         maxRank: 3,
@@ -50,6 +56,7 @@ export const data: TalentData = {
       },
       "Improved Overpower": {
         name: "Improved Overpower",
+        id: 12290,
         position: "c1",
         icon: "/talents/icons/warrior/inv_sword_05.jpg",
         maxRank: 2,
@@ -57,6 +64,7 @@ export const data: TalentData = {
       },
       "Anger Management": {
         name: "Anger Management",
+        id: 12296,
         position: "c2",
         icon: "/talents/icons/warrior/spell_holy_blessingofstamina.jpg",
         maxRank: 1,
@@ -65,6 +73,7 @@ export const data: TalentData = {
       },
       "Deep Wounds": {
         name: "Deep Wounds",
+        id: 12834,
         position: "c3",
         icon: "/talents/icons/warrior/ability_backstab.jpg",
         maxRank: 3,
@@ -73,6 +82,7 @@ export const data: TalentData = {
       },
       "Two-Handed Weapon Specialization": {
         name: "Two-Handed Weapon Specialization",
+        id: 12163,
         position: "d2",
         icon: "/talents/icons/warrior/inv_axe_09.jpg",
         maxRank: 5,
@@ -80,6 +90,7 @@ export const data: TalentData = {
       },
       "Impale": {
         name: "Impale",
+        id: 16493,
         position: "d3",
         icon: "/talents/icons/warrior/ability_searingarrow.jpg",
         maxRank: 2,
@@ -88,6 +99,7 @@ export const data: TalentData = {
       },
       "Axe Specialization": {
         name: "Axe Specialization",
+        id: 12700,
         position: "e1",
         icon: "/talents/icons/warrior/inv_axe_06.jpg",
         maxRank: 5,
@@ -95,6 +107,7 @@ export const data: TalentData = {
       },
       "Sweeping Strikes": {
         name: "Sweeping Strikes",
+        id: 12292,
         position: "e2",
         icon: "/talents/icons/warrior/ability_rogue_slicedice.jpg",
         maxRank: 1,
@@ -102,6 +115,7 @@ export const data: TalentData = {
       },
       "Mace Specialization": {
         name: "Mace Specialization",
+        id: 12284,
         position: "e3",
         icon: "/talents/icons/warrior/inv_mace_01.jpg",
         maxRank: 5,
@@ -109,6 +123,7 @@ export const data: TalentData = {
       },
       "Sword Specialization": {
         name: "Sword Specialization",
+        id: 12281,
         position: "e4",
         icon: "/talents/icons/warrior/inv_sword_27.jpg",
         maxRank: 5,
@@ -116,6 +131,7 @@ export const data: TalentData = {
       },
       "Polearm Specialization": {
         name: "Polearm Specialization",
+        id: 12165,
         position: "f1",
         icon: "/talents/icons/warrior/inv_weapon_halbard_01.jpg",
         maxRank: 1,
@@ -123,6 +139,7 @@ export const data: TalentData = {
       },
       "Improved Hamstring": {
         name: "Improved Hamstring",
+        id: 12289,
         position: "f3",
         icon: "/talents/icons/warrior/ability_shockwave.jpg",
         maxRank: 3,
@@ -130,6 +147,7 @@ export const data: TalentData = {
       },
       "Mortal Strike": {
         name: "Mortal Strike",
+        id: 12294,
         position: "g2",
         icon: "/talents/icons/warrior/ability_warrior_savageblow.jpg",
         maxRank: 1,
@@ -145,13 +163,15 @@ export const data: TalentData = {
     talents: {
       "Booming Voice": {
         name: "Booming Voice",
+        id: 12321,
         position: "a2",
         icon: "/talents/icons/warrior/spell_nature_purge.jpg",
         maxRank: 5,
         reqPoints: 0,
       },
-      Cruelty: {
+      "Cruelty": {
         name: "Cruelty",
+        id: 12852,
         position: "a3",
         icon: "/talents/icons/warrior/ability_rogue_eviscerate.jpg",
         maxRank: 5,
@@ -159,6 +179,7 @@ export const data: TalentData = {
       },
       "Improved Demoralizing Shout": {
         name: "Improved Demoralizing Shout",
+        id: 12324,
         position: "b2",
         icon: "/talents/icons/warrior/ability_warrior_warcry.jpg",
         maxRank: 5,
@@ -166,6 +187,7 @@ export const data: TalentData = {
       },
       "Unbridled Wrath": {
         name: "Unbridled Wrath",
+        id: 12322,
         position: "b3",
         icon: "/talents/icons/warrior/spell_nature_stoneclawtotem.jpg",
         maxRank: 5,
@@ -173,6 +195,7 @@ export const data: TalentData = {
       },
       "Improved Cleave": {
         name: "Improved Cleave",
+        id: 12329,
         position: "c1",
         icon: "/talents/icons/warrior/ability_warrior_cleave.jpg",
         maxRank: 3,
@@ -180,6 +203,7 @@ export const data: TalentData = {
       },
       "Piercing Howl": {
         name: "Piercing Howl",
+        id: 12323,
         position: "c2",
         icon: "/talents/icons/warrior/spell_shadow_deathscream.jpg",
         maxRank: 1,
@@ -187,6 +211,7 @@ export const data: TalentData = {
       },
       "Blood Craze": {
         name: "Blood Craze",
+        id: 16487,
         position: "c3",
         icon: "/talents/icons/warrior/spell_shadow_summonimp.jpg",
         maxRank: 3,
@@ -194,6 +219,7 @@ export const data: TalentData = {
       },
       "Improved Battle Shout": {
         name: "Improved Battle Shout",
+        id: 12318,
         position: "c4",
         icon: "/talents/icons/warrior/ability_warrior_battleshout.jpg",
         maxRank: 5,
@@ -201,6 +227,7 @@ export const data: TalentData = {
       },
       "Dual Wield Specialization": {
         name: "Dual Wield Specialization",
+        id: 23584,
         position: "d1",
         icon: "/talents/icons/warrior/ability_dualwield.jpg",
         maxRank: 5,
@@ -208,13 +235,15 @@ export const data: TalentData = {
       },
       "Improved Execute": {
         name: "Improved Execute",
+        id: 20502,
         position: "d2",
         icon: "/talents/icons/warrior/inv_sword_48.jpg",
         maxRank: 2,
         reqPoints: 0,
       },
-      Enrage: {
+      "Enrage": {
         name: "Enrage",
+        id: 12317,
         position: "d3",
         icon: "/talents/icons/warrior/spell_shadow_unholyfrenzy.jpg",
         maxRank: 5,
@@ -222,6 +251,7 @@ export const data: TalentData = {
       },
       "Improved Slam": {
         name: "Improved Slam",
+        id: 12862,
         position: "e1",
         icon: "/talents/icons/warrior/ability_warrior_decisivestrike.jpg",
         maxRank: 5,
@@ -229,6 +259,7 @@ export const data: TalentData = {
       },
       "Death Wish": {
         name: "Death Wish",
+        id: 12328,
         position: "e2",
         icon: "/talents/icons/warrior/spell_shadow_deathpact.jpg",
         maxRank: 1,
@@ -236,6 +267,7 @@ export const data: TalentData = {
       },
       "Improved Intercept": {
         name: "Improved Intercept",
+        id: 20504,
         position: "e4",
         icon: "/talents/icons/warrior/ability_rogue_sprint.jpg",
         maxRank: 2,
@@ -243,21 +275,24 @@ export const data: TalentData = {
       },
       "Improved Berserker Rage": {
         name: "Improved Berserker Rage",
+        id: 20500,
         position: "f1",
         icon: "/talents/icons/warrior/spell_nature_ancestralguardian.jpg",
         maxRank: 2,
         reqPoints: 25,
       },
-      Flurry: {
+      "Flurry": {
         name: "Flurry",
+        id: 12319,
         position: "f3",
         icon: "/talents/icons/warrior/ability_ghoulfrenzy.jpg",
         maxRank: 5,
         reqPoints: 25,
         arrows: [{ dir: "down", from: "d3", to: "f3" }],
       },
-      Bloodthirst: {
+      "Bloodthirst": {
         name: "Bloodthirst",
+        id: 23881,
         position: "g2",
         icon: "/talents/icons/warrior/spell_nature_bloodlust.jpg",
         maxRank: 1,
@@ -273,13 +308,15 @@ export const data: TalentData = {
     talents: {
       "Shield Specialization": {
         name: "Shield Specialization",
+        id: 12298,
         position: "a2",
         icon: "/talents/icons/warrior/inv_shield_06.jpg",
         maxRank: 5,
         reqPoints: 0,
       },
-      Anticipation: {
+      "Anticipation": {
         name: "Anticipation",
+        id: 12297,
         position: "a3",
         icon: "/talents/icons/warrior/spell_nature_mirrorimage.jpg",
         maxRank: 5,
@@ -288,13 +325,15 @@ export const data: TalentData = {
       "Improved Bloodrage": {
         name: "Improved Bloodrage",
         position: "b1",
+        id: 12301, // Rank 1 ID
         icon: "/talents/icons/warrior/ability_racial_bloodrage.jpg",
         maxRank: 2,
         reqPoints: 5,
       },
-      Toughness: {
+      "Toughness": {
         name: "Toughness",
         position: "b3",
+        id: 12299, // Rank 1 ID
         icon: "/talents/icons/warrior/spell_holy_devotion.jpg",
         maxRank: 5,
         reqPoints: 5,
@@ -302,6 +341,7 @@ export const data: TalentData = {
       "Iron Will": {
         name: "Iron Will",
         position: "b4",
+        id: 12300, // Rank 1 ID
         icon: "/talents/icons/warrior/spell_magic_magearmor.jpg",
         maxRank: 5,
         reqPoints: 5,
@@ -309,6 +349,7 @@ export const data: TalentData = {
       "Last Stand": {
         name: "Last Stand",
         position: "c1",
+        id: 12975, // Rank 1 ID
         icon: "/talents/icons/warrior/spell_holy_ashestoashes.jpg",
         maxRank: 1,
         reqPoints: 10,
@@ -317,6 +358,7 @@ export const data: TalentData = {
       "Improved Shield Block": {
         name: "Improved Shield Block",
         position: "c2",
+        id: 12945, // Rank 1 ID
         icon: "/talents/icons/warrior/ability_defend.jpg",
         maxRank: 3,
         reqPoints: 10,
@@ -325,13 +367,15 @@ export const data: TalentData = {
       "Improved Revenge": {
         name: "Improved Revenge",
         position: "c3",
+        id: 12797, // Rank 1 ID
         icon: "/talents/icons/warrior/ability_warrior_revenge.jpg",
         maxRank: 3,
         reqPoints: 10,
       },
-      Defiance: {
+      "Defiance": {
         name: "Defiance",
         position: "c4",
+        id: 12303, // Rank 1 ID
         icon: "/talents/icons/warrior/ability_warrior_innerrage.jpg",
         maxRank: 5,
         reqPoints: 10,
@@ -339,6 +383,7 @@ export const data: TalentData = {
       "Improved Sunder Armor": {
         name: "Improved Sunder Armor",
         position: "d1",
+        id: 12308, // Rank 1 ID
         icon: "/talents/icons/warrior/ability_warrior_sunder.jpg",
         maxRank: 3,
         reqPoints: 15,
@@ -346,6 +391,7 @@ export const data: TalentData = {
       "Improved Disarm": {
         name: "Improved Disarm",
         position: "d2",
+        id: 12313, // Rank 1 ID
         icon: "/talents/icons/warrior/ability_warrior_disarm.jpg",
         maxRank: 3,
         reqPoints: 15,
@@ -353,6 +399,7 @@ export const data: TalentData = {
       "Improved Taunt": {
         name: "Improved Taunt",
         position: "d3",
+        id: 12302, // Rank 1 ID
         icon: "/talents/icons/warrior/spell_nature_reincarnation.jpg",
         maxRank: 2,
         reqPoints: 15,
@@ -360,6 +407,7 @@ export const data: TalentData = {
       "Improved Shield Wall": {
         name: "Improved Shield Wall",
         position: "e1",
+        id: 12312, // Rank 1 ID
         icon: "/talents/icons/warrior/ability_warrior_shieldwall.jpg",
         maxRank: 2,
         reqPoints: 20,
@@ -368,12 +416,14 @@ export const data: TalentData = {
         name: "Concussion Blow",
         position: "e2",
         maxRank: 1,
+        id: 12809, // Rank 1 ID
         icon: "/talents/icons/warrior/ability_thunderbolt.jpg",
         reqPoints: 20,
       },
       "Improved Shield Bash": {
         name: "Improved Shield Bash",
         position: "e3",
+        id: 12311, // Rank 1 ID
         icon: "/talents/icons/warrior/ability_warrior_shieldbash.jpg",
         maxRank: 2,
         reqPoints: 20,
@@ -381,6 +431,7 @@ export const data: TalentData = {
       "One-Handed Specialization": {
         name: "One-Handed Specialization",
         position: "f3",
+        id: 16538, // Rank 1 ID
         icon: "/talents/icons/warrior/inv_sword_20.jpg",
         maxRank: 5,
         reqPoints: 25,
@@ -388,6 +439,7 @@ export const data: TalentData = {
       "Shield Slam": {
         name: "Shield Slam",
         position: "g2",
+        id: 23922, // Rank 1 ID
         icon: "/talents/icons/warrior/inv_shield_05.jpg",
         maxRank: 1,
         reqPoints: 30,

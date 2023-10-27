@@ -9,6 +9,7 @@ import TabElement from "./(tab)";
 import { TabData } from "./(tab)/type";
 import { wowClassColors } from "src/utils/wowClassColors";
 import { CharacterSpecializations } from "src/types/blizzard/characterSpecializations.t";
+import { levelColors } from "./Colors";
 
 const CharacterPage = async ({
   params,
@@ -114,19 +115,34 @@ const Header = ({
                     </div>
                     <div>
                       <span>
-                        {getMainSpec() +
+                        {characterProfile.race.name +
+                          " " +
+                          getMainSpec() +
                           " " +
                           characterProfile.character_class.name}
                       </span>
                     </div>
                   </div>
-                  {characterProfile.is_ghost && (
-                    <div className="ml-5">
+                  <div className="ml-10 flex flex-row gap-5">
+                    <div
+                      style={{
+                        backgroundColor: levelColors(characterProfile.level)
+                          ?.backgroundColor,
+                        color: levelColors(characterProfile.level)?.color,
+                      }}
+                      className={"rounded-sm px-4 py-1"}
+                    >
+                      Level {characterProfile.level}
+                    </div>
+                    <div className="bg-green-200 text-green-700 rounded-sm px-4 py-1">
+                      ILevel {characterProfile.equipped_item_level}
+                    </div>
+                    {characterProfile.is_ghost && (
                       <div className="bg-red-200 text-red-700 rounded-sm px-4 py-1">
                         Dead
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

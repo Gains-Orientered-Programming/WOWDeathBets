@@ -32,6 +32,7 @@ export type ArrowDir = "right" | "down" | "right-down" | "right-down-down";
 
 export interface Talent {
   name: string;
+  id: number;
   position: Position;
   icon: string;
   maxRank: number;

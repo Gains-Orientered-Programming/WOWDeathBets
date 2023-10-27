@@ -2,14 +2,15 @@ import Link from "next/link";
 import { type Talent } from "./types";
 import { getIconPosition } from "./positions";
 import Arrow from "./Arrow";
-import { useTooltipPos } from "src/hooks/useTooltipPos";
 
 const Talent = ({
   talent,
   rank,
+  id,
 }: {
   talent: Talent;
   rank: number | undefined;
+  id: number | undefined;
 }) => {
   return (
     <>
@@ -35,11 +36,14 @@ const Talent = ({
             style={{ backgroundImage: `url("/default.png")` }}
           ></del>
           <Link
+            target="_blank"
             className={
               "border border-amber-200 h-[36px] w-[36px] rounded-md block left-[3px] absolute top-[3px] z-20 " +
               (rank ? "grayscale-0" : "grayscale")
             }
-            href={"https://www.wowhead.com/classic/spell=12867/deep-wounds"}
+            href={`https://www.wowhead.com/classic/spell=${
+              id ? id : talent.id
+            }/${talent.name.replace(" ", "-")}`}
           ></Link>
         </div>
         <span className="pointer-none bg-black border-yellow rounded bottom-[-5px] right-[-5px] text-xs absolute ">

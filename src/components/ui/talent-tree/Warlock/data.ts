@@ -7,6 +7,7 @@ export const data: TalentData = {
     icon: "/talents/icons/warlock/spell_shadow_deathcoil.jpg",
     talents: {
       Suppression: {
+        id: 18174,
         name: "Suppression",
         position: "a2",
         icon: "/talents/icons/warlock/spell_shadow_unsummonbuilding.jpg",
@@ -14,6 +15,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       "Improved Corruption": {
+        id: 17810,
         name: "Improved Corruption",
         position: "a3",
         icon: "/talents/icons/warlock/spell_shadow_abominationexplosion.jpg",
@@ -21,6 +23,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       "Improved Curse of Weakness": {
+        id: 18179,
         name: "Improved Curse of Weakness",
         position: "b1",
         icon: "/talents/icons/warlock/spell_shadow_curseofmannoroth.jpg",
@@ -28,6 +31,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       "Improved Drain Soul": {
+        id: 18213,
         name: "Improved Drain Soul",
         position: "b2",
         icon: "/talents/icons/warlock/spell_shadow_haunting.jpg",
@@ -35,6 +39,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       "Improved Life Tap": {
+        id: 18182,
         name: "Improved Life Tap",
         position: "b3",
         icon: "/talents/icons/warlock/spell_shadow_burningspirit.jpg",
@@ -42,6 +47,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       "Improved Drain Life": {
+        id: 17804,
         name: "Improved Drain Life",
         position: "b4",
         icon: "/talents/icons/warlock/spell_shadow_lifedrain02.jpg",
@@ -49,6 +55,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       "Improved Curse of Agony": {
+        id: 18827,
         name: "Improved Curse of Agony",
         position: "c1",
         icon: "/talents/icons/warlock/spell_shadow_curseofsargeras.jpg",
@@ -56,6 +63,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Fel Concentration": {
+        id: 17783,
         name: "Fel Concentration",
         position: "c2",
         icon: "/talents/icons/warlock/spell_shadow_fingerofdeath.jpg",
@@ -63,6 +71,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Amplify Curse": {
+        id: 18288,
         name: "Amplify Curse",
         position: "c3",
         icon: "/talents/icons/warlock/spell_shadow_contagion.jpg",
@@ -70,6 +79,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Grim Reach": {
+        id: 18218,
         name: "Grim Reach",
         position: "d1",
         icon: "/talents/icons/warlock/spell_shadow_callofbone.jpg",
@@ -77,6 +87,7 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       Nightfall: {
+        id: 18094,
         name: "Nightfall",
         position: "d2",
         icon: "/talents/icons/warlock/spell_shadow_twilight.jpg",
@@ -84,6 +95,7 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       "Improved Drain Mana": {
+        id: 17864,
         name: "Improved Drain Mana",
         position: "d4",
         icon: "/talents/icons/warlock/spell_shadow_siphonmana.jpg",
@@ -91,6 +103,7 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       "Siphon Life": {
+        id: 18265,
         name: "Siphon Life",
         position: "e2",
         icon: "/talents/icons/warlock/spell_shadow_requiem.jpg",
@@ -98,6 +111,7 @@ export const data: TalentData = {
         reqPoints: 20,
       },
       "Curse of Exhaustion": {
+        id: 18223,
         name: "Curse of Exhaustion",
         position: "e3",
         icon: "/talents/icons/warlock/spell_shadow_grimward.jpg",
@@ -106,6 +120,7 @@ export const data: TalentData = {
         arrows: [{ dir: "down", from: "c3", to: "e3" }],
       },
       "Improved Curse of Exhaustion": {
+        id: 18310,
         name: "Improved Curse of Exhaustion",
         position: "e4",
         icon: "/talents/icons/warlock/spell_shadow_grimward.jpg",
@@ -114,6 +129,7 @@ export const data: TalentData = {
         arrows: [{ dir: "right", from: "e3", to: "e4" }],
       },
       "Shadow Mastery": {
+        id: 18271,
         name: "Shadow Mastery",
         position: "f2",
         icon: "/talents/icons/warlock/spell_shadow_shadetruesight.jpg",
@@ -122,6 +138,7 @@ export const data: TalentData = {
         arrows: [{ dir: "down", from: "e2", to: "f2" }],
       },
       "Dark Pact": {
+        id: 18220,
         name: "Dark Pact",
         position: "g2",
         icon: "/talents/icons/warlock/spell_shadow_darkritual.jpg",
@@ -136,6 +153,7 @@ export const data: TalentData = {
     icon: "/talents/icons/warlock/spell_shadow_metamorphosis.jpg",
     talents: {
       "Improved Healthstone": {
+        id: 18692,
         name: "Improved Healthstone",
         position: "a1",
         icon: "/talents/icons/warlock/inv_stone_04.jpg",
@@ -143,6 +161,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       "Improved Imp": {
+        id: 18694,
         name: "Improved Imp",
         position: "a2",
         icon: "/talents/icons/warlock/spell_shadow_summonimp.jpg",
@@ -150,6 +169,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       "Demonic Embrace": {
+        id: 18697,
         name: "Demonic Embrace",
         position: "a3",
         icon: "/talents/icons/warlock/spell_shadow_metamorphosis.jpg",
@@ -157,6 +177,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       "Improved Health Funnel": {
+        id: 18703,
         name: "Improved Health Funnel",
         position: "b1",
         icon: "/talents/icons/warlock/spell_shadow_lifedrain.jpg",
@@ -164,6 +185,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       "Improved Voidwalker": {
+        id: 18705,
         name: "Improved Voidwalker",
         position: "b2",
         icon: "/talents/icons/warlock/spell_shadow_summonvoidwalker.jpg",
@@ -171,20 +193,23 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       "Fel Intellect": {
+        id: 18731,
         name: "Fel Intellect",
         position: "b3",
         icon: "/talents/icons/warlock/spell_holy_magicalsentry.jpg",
         maxRank: 5,
         reqPoints: 5,
       },
-      "Improved Succubus": {
-        name: "Improved Succubus",
+      "Improved Sayaad": {
+        id: 18754,
+        name: "Improved Sayaad",
         position: "c1",
         icon: "/talents/icons/warlock/spell_shadow_summonsuccubus.jpg",
         maxRank: 3,
         reqPoints: 10,
       },
       "Fel Domination": {
+        id: 18708,
         name: "Fel Domination",
         position: "c2",
         icon: "/talents/icons/warlock/spell_nature_removecurse.jpg",
@@ -192,6 +217,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Fel Stamina": {
+        id: 18748,
         name: "Fel Stamina",
         position: "c3",
         icon: "/talents/icons/warlock/spell_shadow_antishadow.jpg",
@@ -199,6 +225,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Master Summoner": {
+        id: 18709,
         name: "Master Summoner",
         position: "d2",
         icon: "/talents/icons/warlock/spell_shadow_impphaseshift.jpg",
@@ -207,6 +234,7 @@ export const data: TalentData = {
         arrows: [{ dir: "down", from: "c2", to: "d2" }],
       },
       "Unholy Power": {
+        id: 18769,
         name: "Unholy Power",
         position: "d3",
         icon: "/talents/icons/warlock/spell_shadow_shadowworddominate.jpg",
@@ -214,6 +242,7 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       "Improved Enslave Demon": {
+        id: 18821,
         name: "Improved Enslave Demon",
         position: "e1",
         icon: "/talents/icons/warlock/spell_shadow_enslavedemon.jpg",
@@ -221,6 +250,7 @@ export const data: TalentData = {
         reqPoints: 20,
       },
       "Demonic Sacrifice": {
+        id: 18788,
         name: "Demonic Sacrifice",
         position: "e2",
         icon: "/talents/icons/warlock/spell_shadow_psychicscream.jpg",
@@ -228,6 +258,7 @@ export const data: TalentData = {
         reqPoints: 20,
       },
       "Improved Firestone": {
+        id: 18767,
         name: "Improved Firestone",
         position: "e4",
         icon: "/talents/icons/warlock/inv_ammo_firetar.jpg",
@@ -235,6 +266,7 @@ export const data: TalentData = {
         reqPoints: 20,
       },
       "Master Demonologist": {
+        id: 23785,
         name: "Master Demonologist",
         position: "f3",
         icon: "/talents/icons/warlock/spell_shadow_shadowpact.jpg",
@@ -243,6 +275,7 @@ export const data: TalentData = {
         arrows: [{ dir: "down", from: "d3", to: "f3" }],
       },
       "Soul Link": {
+        id: 19028,
         name: "Soul Link",
         position: "g2",
         icon: "/talents/icons/warlock/spell_shadow_gathershadows.jpg",
@@ -251,6 +284,7 @@ export const data: TalentData = {
         arrows: [{ dir: "down", from: "e2", to: "g2" }],
       },
       "Improved Spellstone": {
+        id: 18774,
         name: "Improved Spellstone",
         position: "g3",
         icon: "/talents/icons/warlock/inv_misc_gem_sapphire_01.jpg",
@@ -265,6 +299,7 @@ export const data: TalentData = {
     icon: "/talents/icons/warlock/spell_shadow_rainoffire.jpg",
     talents: {
       "Improved Shadow Bolt": {
+        id: 17793,
         name: "Improved Shadow Bolt",
         position: "a2",
         icon: "/talents/icons/warlock/spell_shadow_shadowbolt.jpg",
@@ -272,6 +307,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       Cataclysm: {
+        id: 17778,
         name: "Cataclysm",
         position: "a3",
         icon: "/talents/icons/warlock/spell_fire_windsofwoe.jpg",
@@ -279,6 +315,7 @@ export const data: TalentData = {
         reqPoints: 0,
       },
       Bane: {
+        id: 17788,
         name: "Bane",
         position: "b2",
         icon: "/talents/icons/warlock/spell_shadow_deathpact.jpg",
@@ -286,6 +323,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       Aftermath: {
+        id: 18119,
         name: "Aftermath",
         position: "b3",
         icon: "/talents/icons/warlock/spell_fire_fire.jpg",
@@ -293,6 +331,7 @@ export const data: TalentData = {
         reqPoints: 5,
       },
       "Improved Firebolt": {
+        id: 18126,
         name: "Improved Firebolt",
         position: "c1",
         icon: "/talents/icons/warlock/spell_fire_firebolt.jpg",
@@ -300,6 +339,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       "Improved Lash of Pain": {
+        id: 18128,
         name: "Improved Lash of Pain",
         position: "c2",
         icon: "/talents/icons/warlock/spell_shadow_curse.jpg",
@@ -307,6 +347,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       Devastation: {
+        id: 18130,
         name: "Devastation",
         position: "c3",
         icon: "/talents/icons/warlock/spell_fire_flameshock.jpg",
@@ -314,6 +355,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       Shadowburn: {
+        id: 17877,
         name: "Shadowburn",
         position: "c4",
         icon: "/talents/icons/warlock/spell_shadow_scourgebuild.jpg",
@@ -321,6 +363,7 @@ export const data: TalentData = {
         reqPoints: 10,
       },
       Intensity: {
+        id: 18135,
         name: "Intensity",
         position: "d1",
         icon: "/talents/icons/warlock/spell_fire_lavaspawn.jpg",
@@ -328,6 +371,7 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       "Destructive Reach": {
+        id: 17917,
         name: "Destructive Reach",
         position: "d2",
         icon: "/talents/icons/warlock/spell_shadow_corpseexplode.jpg",
@@ -335,6 +379,7 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       "Improved Searing Pain": {
+        id: 17927,
         name: "Improved Searing Pain",
         position: "d4",
         icon: "/talents/icons/warlock/spell_fire_soulburn.jpg",
@@ -342,6 +387,7 @@ export const data: TalentData = {
         reqPoints: 15,
       },
       Pyroclasm: {
+        id: 18096,
         name: "Pyroclasm",
         position: "e1",
         icon: "/talents/icons/warlock/spell_fire_volcano.jpg",
@@ -350,6 +396,7 @@ export const data: TalentData = {
         arrows: [{ dir: "down", from: "d1", to: "e1" }],
       },
       "Improved Immolate": {
+        id: 17815,
         name: "Improved Immolate",
         position: "e2",
         icon: "/talents/icons/warlock/spell_fire_immolation.jpg",
@@ -357,6 +404,7 @@ export const data: TalentData = {
         reqPoints: 20,
       },
       Ruin: {
+        id: 17959,
         name: "Ruin",
         position: "e3",
         icon: "/talents/icons/warlock/spell_shadow_shadowwordpain.jpg",
@@ -365,6 +413,7 @@ export const data: TalentData = {
         arrows: [{ dir: "down", from: "c3", to: "e3" }],
       },
       Emberstorm: {
+        id: 17954,
         name: "Emberstorm",
         position: "f3",
         icon: "/talents/icons/warlock/spell_fire_selfdestruct.jpg",
@@ -372,6 +421,7 @@ export const data: TalentData = {
         reqPoints: 25,
       },
       Conflagrate: {
+        id: 17962,
         name: "Conflagrate",
         position: "g2",
         icon: "/talents/icons/warlock/spell_fire_fireball.jpg",

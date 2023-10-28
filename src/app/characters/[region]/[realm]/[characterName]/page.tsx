@@ -5,6 +5,11 @@ import { getCharacterSpecializations } from "src/api/services/characterSpecializ
 import { Talents } from "src/components/ui/talent-tree/Talents";
 import { CharacterProfileSummary } from "src/types/blizzard/characterProfileSummary.t";
 import ItemPanel from "./(ItemPanel)";
+import TabElement from "./(tab)";
+import { TabData } from "./(tab)/type";
+import { wowClassColors } from "src/utils/wowClassColors";
+import { CharacterSpecializations } from "src/types/blizzard/characterSpecializations.t";
+import { levelColors } from "./Colors";
 
 const CharacterPage = async ({
   params,
@@ -12,33 +17,38 @@ const CharacterPage = async ({
   params: { region: string; realm: string; characterName: string };
 }) => {
   const characterProfile = await getCharacterProfile(params);
-  const characterSpec = await getCharacterSpecializations(params);
+  const characterSpecs = await getCharacterSpecializations(params);
   const characterEquipment = await getCharacterEquipment(params);
+  const categories: TabData[] = [
+    {
+      name: "Character Panel",
+      content: <ItemPanel items={characterEquipment} />,
+      param: "character-panel",
+    },
+    {
+      name: "Talents",
+      content: (
+        <Talents
+          specializationGroup={characterSpecs.specialization_groups[0]}
+          wowClass={characterProfile.character_class.name}
+        />
+      ),
+      param: "talents",
+    },
+  ];
 
   return (
     <>
-      <div className="w-[1080px] block my-0 mx-auto">
+      <div className="w-[1080px] my-0 mx-auto">
         <div className="flex-1 mx-0 my-auto">
           <div>
-            <Header characterProfile={characterProfile} />
+            <Header
+              characterProfile={characterProfile}
+              characterSpecs={characterSpecs}
+            />
           </div>
           <div>
-            <ItemPanel items={characterEquipment} />
-          </div>
-          <div className="flex flex-col gap-5">
-            <div>Name: {characterProfile.name}</div>
-            <div>Gender: {characterProfile.gender.type}</div>
-            <div>Faction: {characterProfile.faction.type}</div>
-            <div>Class: {characterProfile.character_class.name}</div>
-            <div>Race: {characterProfile.race.name}</div>
-            <div>Level: {characterProfile.level}</div>
-          </div>
-          <div className="mt-10">
-            <h1>Talents</h1>
-            <Talents
-              specializationGroup={characterSpec.specialization_groups[0]}
-              wowClass={characterProfile.character_class.name}
-            />
+            <TabElement params={params} categories={categories} />
           </div>
         </div>
       </div>
@@ -48,22 +58,51 @@ const CharacterPage = async ({
 
 const Header = ({
   characterProfile,
+  characterSpecs,
 }: {
   characterProfile: CharacterProfileSummary;
+  characterSpecs: CharacterSpecializations;
 }) => {
+  const getMainSpec = () => {
+    const mainSpec =
+      characterSpecs.specialization_groups[0].specializations.reduce(function (
+        prev,
+        current
+      ) {
+        return prev && prev.spent_points > current.spent_points
+          ? prev
+          : current;
+      });
+
+    return mainSpec?.specialization_name;
+  };
+
   return (
     <>
       <div className="w-full flex">
-        <div className="max-w-[1016px] pt-[48px] px-0 pb-[100px]">
+        <div className="max-w-[1016px] pt-[48px] px-0 ">
           <div className="flex flex-col relative max-w-[1016px]">
             <div className="mb-[36px] flex flex-col">
               <div className="flex flex-row flex-nowrap gap-5">
-                <div className="bg-yellow-400 w-[100px] h-[100px] flex flex-row flex-nowrap rounded-sm outline outline-2 outline-yellow-400">
-                  <div className="bg-blue-700 flex flex-row flex-nowrap">
+                <div
+                  style={{
+                    outlineColor: wowClassColors(
+                      characterProfile.character_class.name
+                    ),
+                  }}
+                  className={
+                    "w-[100px] h-[100px] flex flex-row flex-nowrap rounded-sm outline outline-2"
+                  }
+                >
+                  <div className="bg-blue-700 flex flex-row">
                     <Image
-                      src={`https://wow.zamimg.com/images/wow/icons/large/race_${characterProfile.race.name.toLowerCase()}_${characterProfile.gender.type.toLowerCase()}.jpg`}
+                      src={`https://wow.zamimg.com/images/wow/icons/large/race_${
+                        characterProfile.race.name === "Undead"
+                          ? "scourge"
+                          : characterProfile.race.name.toLowerCase()
+                      }_${characterProfile.gender.type.toLowerCase()}.jpg`}
                       alt="race image"
-                      className={"z-50 w-full h-full"}
+                      className={"z-20 w-full h-full"}
                       height={100}
                       width={100}
                     />
@@ -75,8 +114,34 @@ const Header = ({
                       {characterProfile.name}
                     </div>
                     <div>
-                      <span>Arms Warrior</span>
+                      <span>
+                        {characterProfile.race.name +
+                          " " +
+                          getMainSpec() +
+                          " " +
+                          characterProfile.character_class.name}
+                      </span>
                     </div>
+                  </div>
+                  <div className="ml-10 flex flex-row gap-5">
+                    <div
+                      style={{
+                        backgroundColor: levelColors(characterProfile.level)
+                          ?.backgroundColor,
+                        color: levelColors(characterProfile.level)?.color,
+                      }}
+                      className={"rounded-sm px-4 py-1"}
+                    >
+                      Level {characterProfile.level}
+                    </div>
+                    <div className="bg-green-200 text-green-700 rounded-sm px-4 py-1">
+                      ILevel {characterProfile.equipped_item_level}
+                    </div>
+                    {characterProfile.is_ghost && (
+                      <div className="bg-red-200 text-red-700 rounded-sm px-4 py-1">
+                        Dead
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

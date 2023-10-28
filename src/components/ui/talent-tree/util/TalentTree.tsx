@@ -19,7 +19,7 @@ const TalentTree = ({
     <div>
       <div className="flex flex-row">
         <div className="flex flex-col bg-white max-w-[328px] w-[300px]">
-          <div className="bg-gray-200 h-10 w-full flex items-center font-lg gap-[10px] px-2">
+          <div className="bg-neutral-800 h-10 w-full flex items-center font-lg gap-[10px] px-2">
             <Image
               src={treeData.icon}
               alt="Arms icon"
@@ -43,6 +43,14 @@ const TalentTree = ({
               <>
                 {Object.values(treeData.talents).map((talent) => (
                   <Talent
+                    id={
+                      specialization
+                        ? specialization.talents.find(
+                            (item) =>
+                              item.spell_tooltip.spell.name === talent.name
+                          )?.spell_tooltip.spell.id
+                        : undefined
+                    }
                     key={talent.name}
                     talent={talent}
                     rank={

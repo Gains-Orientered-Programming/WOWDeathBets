@@ -1,6 +1,6 @@
 import { Position } from "./types";
 
-export const getPosition = (pos: string) => {
+export const getIconPosition = (pos: string) => {
   const position = new Map([
     ["a1", { left: "8px", top: "8px" }],
     ["a2", { left: "68px", top: "8px" }],
@@ -35,7 +35,18 @@ export const getPosition = (pos: string) => {
   return position.get(pos as Position);
 };
 
-export const getArrowPosition = (pos: string) => {
+export const getRightArrowSettings = (from: string, to: string) => {
+  const position = new Map([
+    ["a2", { left: "109px", top: "22.5px" }],
+    ["e2", { left: "109px", top: "262.5px" }],
+    ["e3", { left: "169px", top: "262.5px" }],
+  ]);
+  const pos = position.get(from as Position);
+
+  return { ...pos, height: "15px", width: "26.5px" };
+};
+
+export const getDownArrowSettings = (from: string, to: string) => {
   const position = new Map([
     ["a1", { left: "22.5px", top: "49px" }],
     ["a2", { left: "82.5px", top: "49px" }],
@@ -67,10 +78,13 @@ export const getArrowPosition = (pos: string) => {
     ["g4", { left: "202.5px", top: "409px" }],
   ]);
 
-  return position.get(pos as Position);
+  const pos = position.get(from as Position);
+  const height = calculateHeight(from, to);
+
+  return { ...pos, height: height, width: undefined };
 };
 
-export const calculateHeight = (from: string, to: string) => {
+const calculateHeight = (from: string, to: string) => {
   const letterTo = to.charAt(0);
   const letterFrom = from.charAt(0);
   const position = new Map([
@@ -85,6 +99,39 @@ export const calculateHeight = (from: string, to: string) => {
   const height = new Map([
     [1, "26.5px"],
     [2, "86.5px"],
+    [3, "146.5px"],
   ]);
   return height.get(position.get(letterTo)! - position.get(letterFrom)!);
+};
+
+// Olis sindssyge algoritme:
+// Til højre - Hvis: key1 === key2 && value1 - value2 = 1
+// Ned højre - Hvis: key1 !== key2 && value1 - value2 = 1
+// Ned - Hvis: key1 !== key2 && value1 - value2 = 0
+const test = new Map([
+  ["a", [1, 2, 3, 4]],
+  ["b", [1, 2, 3, 4]],
+  ["c", [1, 2, 3, 4]],
+  ["d", [1, 2, 3, 4]],
+  ["e", [1, 2, 3, 4]],
+  ["f", [1, 2, 3, 4]],
+  ["g", [1, 2, 3, 4]],
+]);
+
+export const getArrowSettings = (
+  from: string,
+  to: string,
+  direction: string
+): { top?: string; left?: string; height?: string; width?: string } => {
+  if (from && to && direction) {
+    if (direction === "right-down") {
+    } else if (direction === "right-down-down") {
+    } else if (direction === "right") {
+      return getRightArrowSettings(from, to);
+    } else if (direction === "down") {
+      return getDownArrowSettings(from, to);
+    }
+  }
+
+  return {};
 };

@@ -8,10 +8,20 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      backgroundImage: {},
+      colors: {
+        "Druid": "#FF7C0A",
+        "Hunter": "#AAD372",
+        "Mage": "#3FC7EB",
+        "Paladin": "#F48CBA",
+        "Priest": "#FFFFFF",
+        "Rogue": "#FFF468",
+        "Shaman": "#0070DD",
+        "Warlock": "#8788EE",
+        "Warrior": "#C69B6D",
+        "custom1": "#111113",
+        "custom2": "#17181a",
+        "custom3": "#18191b",
       },
     },
   },

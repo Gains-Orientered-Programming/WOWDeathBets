@@ -10,6 +10,8 @@ import { TabData } from "./(tab)/type";
 import { wowClassColors } from "src/utils/wowClassColors";
 import { CharacterSpecializations } from "src/types/blizzard/characterSpecializations.t";
 import { levelColors } from "./Colors";
+import StatPanel from "./(StatPanel)";
+import { getCharacterStats } from "src/api/services/characterStats";
 
 const CharacterPage = async ({
   params,
@@ -19,6 +21,7 @@ const CharacterPage = async ({
   const characterProfile = await getCharacterProfile(params);
   const characterSpecs = await getCharacterSpecializations(params);
   const characterEquipment = await getCharacterEquipment(params);
+  const characterStats = await getCharacterStats(params);
   const categories: TabData[] = [
     {
       name: "Character Panel",
@@ -34,6 +37,11 @@ const CharacterPage = async ({
         />
       ),
       param: "talents",
+    },
+    {
+      name: "Statistics",
+      content: <StatPanel characterStats={characterStats} />,
+      param: "statistics",
     },
   ];
 

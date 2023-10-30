@@ -2,6 +2,7 @@ import { SpecializationGroup } from "src/types/blizzard/characterSpecializations
 import Warrior from "./Warrior";
 import Warlock from "./Warlock";
 import Mage from "./Mage";
+import Shaman from "./Shaman";
 
 export const Talents = ({
   wowClass,
@@ -17,6 +18,8 @@ export const Talents = ({
       return <Warlock specializationGroup={specializationGroup} />;
     case "Mage":
       return <Mage specializationGroup={specializationGroup} />;
+    case "Shaman":
+      return <Shaman specializationGroup={specializationGroup} />;
     default:
       return <></>;
   }

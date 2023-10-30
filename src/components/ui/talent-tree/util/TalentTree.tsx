@@ -22,7 +22,7 @@ const TalentTree = ({
           <div className="bg-neutral-800 h-10 w-full flex items-center font-lg gap-[10px] px-2">
             <Image
               src={treeData.icon}
-              alt="Arms icon"
+              alt="spec icon"
               className="h-[30px] w-[30px] rounded-full"
               width={100}
               height={100}

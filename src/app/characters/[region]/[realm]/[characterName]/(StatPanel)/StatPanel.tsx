@@ -7,7 +7,7 @@ export const StatPanel = ({
 }) => {
   return (
     <>
-      <div className="bg-zinc-800 h-auto w-auto overflow-y-scroll">
+      <div className="bg-zinc-800 h-auto w-auto max-w-[900px] overflow-y-scroll">
         <ul className="flex flex-wrap gap-10 p-2">
           <ListElement title="Primary Stats">
             <span>Strength: {characterStats.strength.base}</span>

@@ -9,7 +9,7 @@ import TabElement from "./(tab)";
 import { TabData } from "./(tab)/type";
 import { wowClassColors } from "src/utils/wowClassColors";
 import { CharacterSpecializations } from "src/types/blizzard/characterSpecializations.t";
-import { levelColors } from "./Colors";
+import { itemLevelColors, levelColors } from "./Colors";
 import StatPanel from "./(StatPanel)";
 import { getCharacterStats } from "src/api/services/characterStats";
 
@@ -143,7 +143,17 @@ const Header = ({
                     >
                       Level {characterProfile.level}
                     </div>
-                    <div className="bg-green-200 text-green-700 rounded-sm px-4 py-1">
+                    <div
+                      style={{
+                        backgroundColor: itemLevelColors(
+                          characterProfile.equipped_item_level
+                        )?.backgroundColor,
+                        color: itemLevelColors(
+                          characterProfile.equipped_item_level
+                        )?.color,
+                      }}
+                      className="bg-green-200 text-green-700 rounded-sm px-4 py-1"
+                    >
                       ILevel {characterProfile.equipped_item_level}
                     </div>
                     {characterProfile.is_ghost && (

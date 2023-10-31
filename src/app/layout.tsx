@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
-import Navbar from "src/components/main-nav";
+import Navbar from "src/components/ui/main-nav-tsx/main-nav";
 import Footer from "src/components/main-footer";
 import Script from "next/script";
 

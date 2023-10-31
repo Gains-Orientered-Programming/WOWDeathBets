@@ -93,7 +93,7 @@ const ItemRow = ({
               target="_blank"
               href={`https://www.wowhead.com/classic/item=${
                 item?.item.id
-              }/${item?.name.replace(" ", "-")}`}
+              }/${item?.name.replaceAll(" ", "-")}`}
             >
               <Image
                 className="w-full h-full"

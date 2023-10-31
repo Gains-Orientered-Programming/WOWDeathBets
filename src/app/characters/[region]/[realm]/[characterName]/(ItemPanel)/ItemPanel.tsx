@@ -95,19 +95,17 @@ const ItemRow = ({
                 item?.item.id
               }/${item?.name.replace(" ", "-")}`}
             >
-              <div>
-                <Image
-                  className="w-full h-full"
-                  src={
-                    item
-                      ? `https://static.bigbrain.gg/wow/item/assets/${item.item.id}.webp`
-                      : slot.empty_image
-                  }
-                  alt="item image"
-                  width={36}
-                  height={36}
-                />
-              </div>
+              <Image
+                className="w-full h-full"
+                src={
+                  item
+                    ? `https://static.bigbrain.gg/wow/item/assets/${item.item.id}.webp`
+                    : slot.empty_image
+                }
+                alt="item image"
+                width={36}
+                height={36}
+              />
             </Link>
           </div>
           <div className="flex flex-col my-0 mx-[8px] overflow-hidden">

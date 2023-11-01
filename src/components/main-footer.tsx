@@ -12,7 +12,7 @@ const Footer = () => {
                 <Link className="block no-underline outline-0 " href={"/"}>
                   <div className="inline-flex items-center">
                     <Image src={"/logo.png"} alt="logo" width={40} height={4} />
-                    Deathbet
+                    Deathbets
                   </div>
                 </Link>
                 <div>

@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import Dropdown from "../Dropdown";
-import { SelectGroup, SelectItem } from "../Dropdown/Dropdown";
 import { Realm } from "src/types/blizzard/server.t";
+import Dropdown from "../ui/Dropdown";
+import { SelectGroup, SelectItem } from "../ui/Dropdown/Dropdown";
 
 type Inputs = {
   characterName: string;
@@ -27,6 +27,11 @@ const NavbarInput = ({ realms }: { realms: Props }) => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
+    //const history = [];
+    //history.push(JSON.parse(localStorage.getItem("characters") ?? ""));
+    //history.push(data);
+    //localStorage.setItem("characters", JSON.stringify(history));
+
     router.push(`/characters/${data.region}/nekrosh/${data.characterName}`);
     reset();
   };

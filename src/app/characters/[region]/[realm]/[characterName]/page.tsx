@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getCharacterEquipment } from "src/api/services/characterEquipment";
 import { getCharacterProfile } from "src/api/services/characterProfile";
 import { getCharacterSpecializations } from "src/api/services/characterSpecializations";
-import { Talents } from "src/components/ui/talent-tree/Talents";
+import { Talents } from "./(talent-tree)/Talents";
 import { CharacterProfileSummary } from "src/types/blizzard/characterProfileSummary.t";
 import ItemPanel from "./(ItemPanel)";
 import TabElement from "./(tab)";

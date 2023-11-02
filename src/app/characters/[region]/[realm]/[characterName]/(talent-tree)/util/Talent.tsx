@@ -50,10 +50,12 @@ const Talent = ({
           {rank ? rank : 0}/{talent.maxRank}
         </span>
       </div>
-      {talent.arrows &&
-        talent.arrows.map((arrow, i) => (
-          <Arrow key={i} active={true} {...arrow} />
-        ))}
+      <div>
+        {talent.arrows &&
+          talent.arrows.map((arrow, i) => (
+            <Arrow key={i} active={true} {...arrow} />
+          ))}
+      </div>
     </>
   );
 };

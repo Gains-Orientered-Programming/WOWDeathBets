@@ -15,6 +15,7 @@ export default function Home() {
             ></video>
           </div>
         </section>
+        <section className="min-h-screen">hej</section>
       </div>
     </>
   );

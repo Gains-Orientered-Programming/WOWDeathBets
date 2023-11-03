@@ -13,5 +13,16 @@ export const getServers = async ({ region }: { region: string }) => {
     params
   );
 
-  return data;
+  const hardcoreRealmList = [
+    "nekrosh",
+    "stitches",
+    "defias-pillager",
+    "skull-rock",
+  ];
+
+  const hardcoreRealms = data.realms.filter((realm) =>
+    hardcoreRealmList.includes(realm.slug)
+  );
+
+  return hardcoreRealms;
 };

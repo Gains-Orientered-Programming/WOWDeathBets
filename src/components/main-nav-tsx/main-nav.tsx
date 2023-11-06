@@ -14,7 +14,7 @@ const Navbar = async () => {
   };
 
   return (
-    <div className="sticky top-0 h-12 bg-zinc-950 shadow-[0_1px_rgba(211,237,248,0.11)] z-50 text-zinc-400">
+    <div className="sticky top-0 h-14 bg-zinc-950 shadow-[0_1px_rgba(211,237,248,0.11)] z-50 text-zinc-400">
       <div className="flex justify-between px-4 items-center h-full">
         <Link href={"/"}>
           <div className="flex flex-row items-center">

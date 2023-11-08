@@ -116,8 +116,16 @@ const Header = ({
               </div>
               <div className="flex items-center">
                 <div className="flex flex-col">
-                  <div className="font-bold text-2xl">
+                  <div className="font-bold text-2xl flex flex-row items-center gap-2">
                     {characterProfile.name}
+                    <div className="rounded">
+                      <Image
+                        src={`/talents/icons/class_${characterProfile.character_class.name}.jpg`}
+                        width={30}
+                        height={30}
+                        alt="hej"
+                      />
+                    </div>
                   </div>
                   <div>
                     <span>
@@ -153,9 +161,13 @@ const Header = ({
                   >
                     ILevel {characterProfile.equipped_item_level}
                   </div>
-                  {characterProfile.is_ghost && (
+                  {characterProfile.is_ghost ? (
                     <div className="bg-red-200 text-red-700 rounded-sm px-4 py-1">
                       Dead
+                    </div>
+                  ) : (
+                    <div className="bg-green-200 text-green-700 rounded-sm px-4 py-1">
+                      Alive
                     </div>
                   )}
                 </div>

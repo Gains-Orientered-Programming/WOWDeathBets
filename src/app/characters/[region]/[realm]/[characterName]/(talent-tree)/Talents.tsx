@@ -6,6 +6,7 @@ import Shaman from "./Shaman";
 import Hunter from "./Hunter";
 import Paladin from "./Paladin";
 import Druid from "./Druid";
+import Rogue from "./Rouge";
 
 export const Talents = ({
   wowClass,
@@ -29,6 +30,8 @@ export const Talents = ({
       return <Paladin specializationGroup={specializationGroup} />;
     case "Druid":
       return <Druid specializationGroup={specializationGroup} />;
+    case "Rogue":
+      return <Rogue specializationGroup={specializationGroup} />;
     default:
       return <></>;
   }

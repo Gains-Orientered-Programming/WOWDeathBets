@@ -3,6 +3,9 @@ import "../styles/globals.css";
 import Footer from "src/components/main-footer";
 import Script from "next/script";
 import Navbar from "src/components/main-nav-tsx/main-nav";
+import { Raleway } from "next/font/google";
+
+const raleway = Raleway({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "DeathBets",
@@ -28,11 +31,13 @@ export default function RootLayout({
         ></Script>
       </head>
       <body className="bg-zinc-900 text-white">
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <div className="relative flex flex-grow">{children}</div>
-        </div>
-        <Footer />
+        <main className={raleway.className}>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <div className="relative flex flex-grow">{children}</div>
+          </div>
+          <Footer />
+        </main>
       </body>
     </html>
   );

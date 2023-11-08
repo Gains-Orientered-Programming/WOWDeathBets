@@ -47,14 +47,20 @@ export const getRightArrowSettings = (from: string, to: string) => {
 };
 
 export const getRightDownSettings = (from: string, to: string) => {
-  const position = new Map([["c3", { left: "169px", top: "142.5px" }]]);
+  const position = new Map([
+    ["c3", { left: "169px", top: "142.5px" }],
+    ["d3", { left: "169px", top: "203.5px" }],
+  ]);
   const pos = position.get(from as Position);
 
   return { ...pos, height: "15px", width: "48.5px" };
 };
 
 export const getRightDownDownSettings = (from: string, to: string) => {
-  const postition = new Map([["c4", { left: "202.5px", top: "156.5px" }]]);
+  const postition = new Map([
+    ["c4", { left: "202.5px", top: "156.5px" }],
+    ["d4", { left: "202.5px", top: "215.5px" }],
+  ]);
 
   const pos = postition.get(from as Position);
 

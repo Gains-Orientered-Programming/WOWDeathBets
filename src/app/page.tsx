@@ -4,8 +4,13 @@ import React from "react";
 export default function Home() {
   return (
     <div className="w-full">
-      <section className="relative min-h-[31.25rem] p-[3.75rem] block">
-        <div className="overflow-hidden h-[60vh] absolute left-0 top-0 bottom-0 w-full ">
+      <section
+        style={{
+          backgroundImage: "url('/lort.png')",
+        }}
+        className="relative min-h-[31.25rem] p-[3.75rem] block"
+      >
+        <div className="overflow-hidden h-[500px] absolute left-0 top-0 bottom-0 w-full ">
           <div className="w-full h-full relative block">
             <video
               className="object-cover object-center relative w-full h-full blur-md overflow-clip"
@@ -40,7 +45,14 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section>hej</section>
+      <section className="w-full h-screen relative">
+        <div
+          style={{ backgroundImage: "url('/lort.png')" }}
+          className="w-full h-[460px] left-0 top-0 absolute"
+        >
+          d
+        </div>
+      </section>
     </div>
   );
 }

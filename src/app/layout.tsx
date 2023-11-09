@@ -30,7 +30,7 @@ export default function RootLayout({
           src="https://wow.zamimg.com/js/tooltips.js"
         ></Script>
       </head>
-      <body className="bg-zinc-900 text-white">
+      <body className=" bg-backgrond text-white">
         <main className={raleway.className}>
           <div className="min-h-screen flex flex-col">
             <Navbar />

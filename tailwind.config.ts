@@ -22,6 +22,7 @@ const config: Config = {
         "custom1": "#111113",
         "custom2": "#17181a",
         "custom3": "#18191b",
+        "backgrond": "#1b1b1b",
       },
     },
   },

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -9,7 +10,10 @@ const Footer = () => {
             <footer className="grid grid-cols-4 pb-[calc(64px * 1)] gap-y-[calc(12px * 1)] gap-x-[calc(40px * 1)] auto-cols-auto">
               <div className="text-zinc-400">
                 <Link className="block no-underline outline-0 " href={"/"}>
-                  Deathbet
+                  <div className="inline-flex items-center">
+                    <Image src={"/logo.png"} alt="logo" width={40} height={4} />
+                    Deathbets
+                  </div>
                 </Link>
                 <div>
                   <h6>

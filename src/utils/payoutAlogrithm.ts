@@ -1,43 +1,18 @@
-// payoutCalculator.ts
-interface LevelInterval {
-  start: number;
-  end: number;
-}
+export function calculatePayout(characterLevel: number): number {
+  const maxLevel = 60;
+  const minPayout = 1; // Minimum payout multiplier
+  const maxPayout = 2.5; // Maximum payout multiplier
 
-export default function calculatePayout(
-  oddsInterval: LevelInterval
-): number | null {
-  // Validate character level
-  if (
-    oddsInterval.start < 1 ||
-    oddsInterval.start > 60 ||
-    oddsInterval.end < 1 ||
-    oddsInterval.end > 60 ||
-    oddsInterval.start > oddsInterval.end
-  ) {
-    console.log("Invalid character level");
-    return null;
+  // Ensure the character level is within the valid range
+  if (characterLevel < 1 || characterLevel > maxLevel) {
+    throw new Error("Character level should be between 1 and 60");
   }
 
-  // Adjust payout based on the chosen odds interval
-  const oddsIntervalSize: number = oddsInterval.end - oddsInterval.start + 1;
-  const maxPayoutMultiplier: number = 1.5; // You can adjust the maximum payout multiplier as needed
+  // Calculate the payout multiplier based on the character's level (inverse relationship)
+  const payoutMultiplier = characterLevel / maxLevel; // Inverse relationship
 
-  let payoutMultiplier: number;
+  // Calculate the actual payout based on the multiplier and the range of payout
+  const payout = minPayout + payoutMultiplier * (maxPayout - minPayout);
 
-  if (oddsInterval.start === 1 && oddsInterval.end === 60) {
-    payoutMultiplier = 0;
-  } else {
-    payoutMultiplier = maxPayoutMultiplier - oddsIntervalSize / 35; // Adjust multiplier based on the chosen odds interval
-  }
-
-  const adjustedPayout: number = 1 + payoutMultiplier;
-
-  return adjustedPayout;
+  return payout;
 }
-
-// Example usage:
-// import calculatePayout from './payoutCalculator';
-// const oddsInterval: LevelInterval = { start: 1, end: 60 };
-// const adjustedPayout: number | null = calculatePayout(oddsInterval);
-// ...

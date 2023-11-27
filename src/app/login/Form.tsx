@@ -15,7 +15,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="w-full flex justify-center mt-20">
+    <div className="w-full flex justify-center mt-32">
       <form
         className="flex flex-col gap-5 w-96"
         onSubmit={handleSubmit(onSubmit)}

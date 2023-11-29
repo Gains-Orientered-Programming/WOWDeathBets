@@ -25,7 +25,11 @@ const Navbar = async () => {
         <div className="h-full">
           <ul className="flex flex-row gap-7 h-full items-center">
             <div className="flex flex-row items-center gap-2">
-              <ListElement href={"/login"}>Login</ListElement>
+              {false ? (
+                <ListElement href={"/login"}>Login</ListElement>
+              ) : (
+                <ListElement href={"/profile"}>{"Username"}</ListElement>
+              )}
             </div>
             <NavbarInput realms={allServers} />
           </ul>
@@ -43,11 +47,9 @@ const ListElement = ({
   children: React.ReactNode;
 }) => {
   return (
-    <>
-      <li className="hover:bg-neutral-800 hover:text-white rounded-md py-1 px-2 text-sm duration-100 cursor-pointer">
-        <Link href={href}>{children}</Link>
-      </li>
-    </>
+    <li className="hover:bg-neutral-800 hover:text-white rounded-md py-2 px-4 text-sm duration-100 cursor-pointer">
+      <Link href={href}>{children}</Link>
+    </li>
   );
 };
 

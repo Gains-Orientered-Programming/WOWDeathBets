@@ -25,7 +25,6 @@ const Navbar = async () => {
         <div className="h-full">
           <ul className="flex flex-row gap-7 h-full items-center">
             <div className="flex flex-row items-center gap-2">
-              <ListElement href={"/bet"}>Make a bet</ListElement>
               <ListElement href={"/login"}>Login</ListElement>
             </div>
             <NavbarInput realms={allServers} />

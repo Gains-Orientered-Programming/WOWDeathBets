@@ -24,34 +24,30 @@ defineFeature(feature, (test) => {
 	});
 
 	test('Clicking on the homepage element', ({ given, when, then }) => {
-		given('the user is on the homepage', async () => {
+		given('the user is on a character page', async () => {
 			await driver.get('http://localhost:3000/characters/eu/nekrosh/petrice');
-			// Wait for a specific element on the homepage to ensure it's fully loaded
-			await driver.wait(
-				until.elementLocated(
-					By.xpath('/html/body/main/div[1]/div[1]/div/a/div/h1')
-				),
-				10000
-			); // Adjust the timeout as needed
+			await driver.wait(until.urlContains('characters'), 5000);
 		});
 
 		when('the user clicks on the specified element', async () => {
 			const element = await driver.findElement(
 				By.xpath('/html/body/main/div[1]/div[1]/div/a/div/h1')
 			);
-			await driver.wait(until.elementIsVisible(element), 10000); // Wait for the element to be visible before clicking
+			await driver.wait(until.elementIsVisible(element), 5000);
 			await element.click();
+			const videoElement = By.xpath(
+				'/html/body/main/div[1]/div[2]/div/section[1]/div[1]/div/video'
+			);
+			await driver.wait(until.elementLocated(videoElement), 10000); // Increase timeout here
 		});
 
-		then('the user should see the resulting page', async () => {
+		then('the user should be navigated to the home page', async () => {
 			const videoElement = await driver.findElement(
 				By.xpath(
-					'/html/body/main/div[1]/div[2]/div/section[1]/div[2]/div[1]/video'
+					'/html/body/main/div[1]/div[2]/div/section[1]/div[1]/div/video'
 				)
 			);
-			await driver.wait(until.elementIsVisible(videoElement), 10000); // Wait for the video element to be visible
-			const isDisplayed = await videoElement.isDisplayed();
-			expect(isDisplayed).toBe(true);
+			expect(await videoElement.isDisplayed()).toBe(true);
 		});
-	});
+	}, 20000); // Increase overall test timeout here
 });

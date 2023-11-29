@@ -64,11 +64,15 @@ export default function Home() {
       >
         <div className="w-full flex pt-[135px] px-[60px] justify-end">
           <div className="text-center">
-            <h1 className="text-6xl font-bold">READ ABOUT RULES</h1>
+            <h1 className="text-6xl font-bold">READ ABOUT DEATHBETS</h1>
             <div className="flex flex-row gap-3 mt-5">
-              <div className="w-[400px] h-[400px] bg-white">f</div>
-              <div className="w-[400px] h-[400px] bg-white">f</div>
-              <div className="w-[400px] h-[400px] bg-white">f</div>
+              <div className="w-[400px] h-[400px] bg-neutral-800">
+                <h1>Rules</h1>
+              </div>
+              <div className="w-[400px] h-[400px] bg-neutral-800">
+                <h1></h1>
+              </div>
+              <div className="w-[400px] h-[400px] bg-neutral-800">f</div>
             </div>
           </div>
         </div>
@@ -77,16 +81,48 @@ export default function Home() {
         <div className="w-full flex justify-center mt-10">
           <div className="flex flex-col gap-2 items-center">
             <h1 className="text-6xl font-bold">HOW TO USE DEATHBETS?</h1>
-            <div className="w-[700px] h-[500px] bg-neutral-800">
-              <div className="flex flex-row p-2">
+            <div className="w-[700px] h-[500px] bg-neutral-800 p-5 flex flex-col gap-5">
+              <div className="flex flex-row gap-5">
                 <div className="rounded-full bg-neutral-500 flex items-center justify-center h-10 w-10">
                   1
                 </div>
                 <div>
                   <h3 className="text-2xl">Create a Bounty</h3>
                   <span className="text-lg">
-                    Create a bounty on a character of your choice.
+                    Create a bounty on a character of your choice on the
+                    webside.
                   </span>
+                </div>
+              </div>
+              <div className="flex flex-row gap-5">
+                <div className="rounded-full bg-neutral-500 flex items-center justify-center w-10 h-10">
+                  2
+                </div>
+                <div>
+                  <h3 className="text-2xl">Send Gold</h3>
+                  <div className="flex flex-col">
+                    <span className="text-lg">
+                      Send the amount of gold requested to requested
+                      characterName.
+                    </span>
+                    {
+                      "(sending the wrong amount will result in gold sendback and bet reverded)"
+                    }
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-row gap-5">
+                <div className="rounded-full bg-neutral-500 flex items-center justify-center w-10 h-10">
+                  3
+                </div>
+                <div>
+                  <h3 className="text-2xl">Transaction</h3>
+                  <div className="flex flex-col">
+                    <span className="text-lg">
+                      When deathbets has received the gold, the bounty will be
+                      placed and you will be able to see it on the website.
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

@@ -25,14 +25,8 @@ const Navbar = async () => {
         <div className="h-full">
           <ul className="flex flex-row gap-7 h-full items-center">
             <div className="flex flex-row items-center gap-2">
-              <ListElement href={"/"}>Make a bet</ListElement>
-              <ListElement
-                href={
-                  "https://eu.battle.net/oauth/authorize?response_type=code&client_id=5f16fcf010554bd28b61f5614babd0d3&redirect_uri=http://127.0.0.1:3000/&scope=wow.profile"
-                }
-              >
-                Login
-              </ListElement>
+              <ListElement href={"/bet"}>Make a bet</ListElement>
+              <ListElement href={"/login"}>Login</ListElement>
             </div>
             <NavbarInput realms={allServers} />
           </ul>

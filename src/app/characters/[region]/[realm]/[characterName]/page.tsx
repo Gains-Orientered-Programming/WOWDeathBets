@@ -12,6 +12,7 @@ import { CharacterSpecializations } from "src/types/blizzard/characterSpecializa
 import { itemLevelColors, levelColors } from "./Colors";
 import StatPanel from "./(StatPanel)";
 import { getCharacterStats } from "src/api/services/characterStats";
+import { calculatePayout } from "src/utils/payoutAlogrithm";
 
 const CharacterPage = async ({
   params,
@@ -166,8 +167,13 @@ const Header = ({
                       Dead
                     </div>
                   ) : (
-                    <div className="bg-green-200 text-green-700 rounded-sm px-4 py-1">
-                      Alive
+                    <div className="flex flex-row gap-5">
+                      <div className="bg-green-200 text-green-700 rounded-sm px-4 py-1">
+                        Alive
+                      </div>
+                      <div className="bg-indigo-200 text-indigo-700 rounded-sm px-4 py-1">
+                        Payout {calculatePayout(characterProfile.level)}
+                      </div>
                     </div>
                   )}
                 </div>

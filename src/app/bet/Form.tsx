@@ -3,7 +3,8 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createBetting } from "src/api/betting-services";
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
+import { useUserStore } from "src/store/user.store";
 type Inputs = {
   characterName: string;
   region: string;
@@ -15,10 +16,12 @@ const Form = () => {
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
   const { register, handleSubmit } = useForm<Inputs>();
+  const user = useUserStore((state) => state.user);
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading(true);
     await createBetting({ userId: "1", ...data });
-    setLoading(false);  
+    setLoading(false);
     router.push("/");
   };
 

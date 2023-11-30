@@ -12,15 +12,27 @@ type Inputs = {
   amount: number;
 };
 
-const Form = () => {
+const Form = ({
+  characterData,
+  payout,
+}: {
+  characterData: { characterName: string; realm: string; region: string };
+  payout: number;
+}) => {
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
-  const { register, handleSubmit } = useForm<Inputs>();
+  const { register, handleSubmit, watch } = useForm<Inputs>({
+    defaultValues: {
+      characterName: characterData.characterName,
+      realm: characterData.realm,
+      region: characterData.region,
+    },
+  });
   const user = useUserStore((state) => state.user);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading(true);
-    await createBetting({ userId: "1", ...data });
+    await createBetting({ userId: user?.userId ?? "0", ...data });
     setLoading(false);
     router.push("/");
   };
@@ -35,30 +47,43 @@ const Form = () => {
         <div className="flex flex-col">
           <label>Character Name</label>
           <input
-            className="h-10 rounded text-black indent-2"
+            readOnly
+            className="h-10 rounded text-black indent-2 bg-neutral-200"
             {...register("characterName")}
           />
         </div>
         <div className="flex flex-col">
           <label>Region</label>
           <input
-            className="h-10 indent-2 rounded text-black"
+            readOnly
+            className="h-10 indent-2 rounded text-black bg-neutral-200"
             {...register("region")}
           />
         </div>
         <div className="flex flex-col">
           <label>Realm</label>
           <input
-            className="h-10 rounded text-black indent-2"
+            readOnly
+            className="h-10 rounded text-black indent-2 bg-neutral-200"
             {...register("realm")}
           />
         </div>
         <div className="flex flex-col">
           <label>Amount</label>
           <input
+            type="number"
             className="h-10 rounded text-black indent-2"
             {...register("amount")}
           />
+        </div>
+        <div>
+          <div>
+            <span className="font-medium">Payout</span>: {payout}
+          </div>
+          <div>
+            <span className="font-medium">Winning Amount</span>:{" "}
+            {(watch("amount") * payout).toFixed(2)}
+          </div>
         </div>
         <div>
           <button className="bg-neutral-600 p-2 w-full hover:bg-neutral-500 rounded text-white h-10">

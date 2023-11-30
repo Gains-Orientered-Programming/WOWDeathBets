@@ -67,7 +67,10 @@ export default function Home() {
             <h1 className="text-6xl font-bold">READ ABOUT DEATHBETS</h1>
             <div className="flex flex-row gap-3 mt-5">
               <div className="w-[400px] h-[400px] bg-neutral-800">
-                <h1>Rules</h1>
+                <div className="py-2 border-b">
+                  <h1 className="font-medium text-3xl">Betting Rules</h1>
+                </div>
+                <div></div>
               </div>
               <div className="w-[400px] h-[400px] bg-neutral-800">
                 <h1></h1>

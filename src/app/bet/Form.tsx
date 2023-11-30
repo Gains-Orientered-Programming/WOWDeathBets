@@ -1,7 +1,9 @@
 "use client";
 
+import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-
+import { createBetting } from "src/api/betting-services";
+import { useRouter } from "next/navigation"
 type Inputs = {
   characterName: string;
   region: string;
@@ -10,8 +12,15 @@ type Inputs = {
 };
 
 const Form = () => {
+  const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
   const { register, handleSubmit } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setLoading(true);
+    await createBetting({ userId: "1", ...data });
+    setLoading(false);  
+    router.push("/");
+  };
 
   return (
     <div className="w-full h-full flex justify-center mt-20">
@@ -50,7 +59,7 @@ const Form = () => {
         </div>
         <div>
           <button className="bg-neutral-600 p-2 w-full hover:bg-neutral-500 rounded text-white h-10">
-            Submit
+            {loading ? "Loading..." : "Create"}
           </button>
         </div>
       </form>

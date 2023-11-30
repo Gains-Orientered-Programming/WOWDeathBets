@@ -1,17 +1,19 @@
-import Link from 'next/link';
-import React from 'react';
-import Image from 'next/image';
-import { getServers } from 'src/api/blizzard-service/servers';
-import NavbarInput from './Input';
+import Link from "next/link";
+import React from "react";
+import Image from "next/image";
+import { getServers } from "src/api/blizzard-service/servers";
+import NavbarInput from "./Input";
+import { useUserStore } from "src/store/user.store";
+import NavbarButton from "./Button";
 
 const Navbar = async () => {
-	const euServers = await getServers({ region: 'eu' });
-	const usServers = await getServers({ region: 'us' });
+  const euServers = await getServers({ region: "eu" });
+  const usServers = await getServers({ region: "us" });
 
-	const allServers = {
-		eu: euServers,
-		us: usServers,
-	};
+  const allServers = {
+    eu: euServers,
+    us: usServers,
+  };
 
   return (
     <div className="sticky top-0 h-14 bg-zinc-950 shadow-[0_1px_rgba(211,237,248,0.11)] z-50 text-zinc-400">
@@ -23,32 +25,28 @@ const Navbar = async () => {
           </div>
         </Link>
         <div className="h-full">
-          <ul className="flex flex-row gap-7 h-full items-center">
-            <div className="flex flex-row items-center gap-2">
-              {false ? (
-                <ListElement href={"/login"}>Login</ListElement>
-              ) : (
-                <ListElement href={"/profile"}>{"Username"}</ListElement>
-              )}
-            </div>
+          <ul className="flex flex-row gap-5 h-full items-center">
+            <NavbarButton />
             <NavbarInput realms={allServers} />
           </ul>
         </div>
       </div>
     </div>
+  );
 };
 
 const ListElement = ({
-	href,
-	children,
+  href,
+  children,
 }: {
-	href: string;
-	children: React.ReactNode;
+  href: string;
+  children: React.ReactNode;
 }) => {
   return (
     <li className="hover:bg-neutral-800 hover:text-white rounded-md py-2 px-4 text-sm duration-100 cursor-pointer">
       <Link href={href}>{children}</Link>
     </li>
+  );
 };
 
 export default Navbar;

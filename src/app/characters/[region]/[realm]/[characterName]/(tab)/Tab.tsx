@@ -2,10 +2,11 @@
 
 import TabList from "src/components/ui/Tab/TabList";
 import Tab from "src/components/ui/Tab/Tab";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import TabTrigger from "src/components/ui/Tab/TabTrigger";
 import TabPanel from "src/components/ui/Tab/TabPanel";
 import { TabData } from "./type";
+import Link from "next/link";
 
 export const TabElement = ({
   params,
@@ -15,6 +16,7 @@ export const TabElement = ({
   categories: TabData[];
 }) => {
   const searchParams = useSearchParams();
+  const currentPath = usePathname();
   const router = useRouter();
   const currentTab = searchParams.get("tab");
 
@@ -47,7 +49,7 @@ export const TabElement = ({
             </div>
             <div className=" w-auto mb-2">
               <button className="bg-zinc-950 w-28 h-10 rounded-sm text-zinc-400 hover:text-white">
-                Make bet
+                <Link href={currentPath + "/bet"}>Make bet</Link>
               </button>
             </div>
           </div>

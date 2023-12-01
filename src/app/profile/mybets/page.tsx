@@ -1,18 +1,45 @@
 // src/app/profile/mybets/page.tsx
-import React from 'react';
+"use client"
+
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 interface Bet {
+  userId: string;
   characterName: string;
+  region: string;
+  realm: string;
   amount: number;
-  // Add any other properties based on your actual data structure
 }
 
 interface MyBetsProps {
-  allBets: Bet[];
+  allBets: Bet[] | undefined;
 }
 
-const MyBets: React.FC<MyBetsProps> = ({ allBets }) => {
+const MyBets: React.FC<MyBetsProps> = () => {
+  const [allBets, setAllBets] = useState<Bet[] | undefined>(undefined);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchBetData = async () => {
+      try {
+        const response = await fetch('https://api-gateway-nyxm4.ondigitalocean.app/betting-service/bettings');
+        if (!response.ok) {
+          throw new Error('Failed to fetch all bets');
+        }
+        const fetchedBets: Bet[] = await response.json();
+        setAllBets(fetchedBets);
+      } catch (error) {
+        setError('Failed to fetch all bets');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBetData();
+  }, []);
+
   return (
     <div className="w-full flex justify-center">
       <div className="flex flex-col gap-5 w-96">
@@ -29,47 +56,17 @@ const MyBets: React.FC<MyBetsProps> = ({ allBets }) => {
         <div className="flex flex-col w-full items-start">
           <h2>Bets</h2>
           <ul>
-            {allBets.map((bet, index) => (
-              <li key={index}>{bet.characterName} - {bet.amount}</li>
-            ))}
+            {loading && <li>Loading...</li>}
+            {error && <li>{error}</li>}
+            {allBets &&
+              allBets.map((bet, index) => (
+                <li key={index}>{bet.characterName} - {bet.amount}</li>
+              ))}
           </ul>
         </div>
-
-        {/* Add any additional profile sections as needed */}
-        {/* For example:
-          <div className="flex flex-col">
-            <h2>Additional Section</h2>
-            <p>Additional information...</p>
-          </div>
-        */}
       </div>
     </div>
   );
 };
 
 export default MyBets;
-
-export const getServerSideProps = async () => {
-  try {
-    const response = await fetch('http://your-api-server/api/all-bets');
-    if (!response.ok) {
-      throw new Error('Error fetching all bets');
-    }
-
-    const allBets: Bet[] = await response.json();
-
-    return {
-      props: {
-        allBets,
-      },
-    };
-  } catch (error) {
-    console.error('Error fetching data:');
-
-    return {
-      props: {
-        allBets: [],
-      },
-    };
-  }
-};

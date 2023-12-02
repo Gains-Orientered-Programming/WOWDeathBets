@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import MyBetsForm from './mybets/MyBetsForm';
 // import User from '../types/User';
 
 /* type ProfileFormProps = {
@@ -33,14 +34,7 @@ const ProfileForm: React.FC = ({ }) => {
 
         {/* Section for Bets */}
         <div className="flex flex-col w-full items-start">
-          <h2>Bets</h2>
-          <li>All in på Frostper</li>
-          <li>Fat c</li>
-       {/*    <ul>
-            {user.bets.map((bet, index) => (
-              <li key={index}>{bet}</li>
-            ))}
-          </ul> */}
+        <MyBetsForm/>
         </div>
 
         {/* Add any additional profile sections as needed */}

@@ -45,16 +45,7 @@ export default function Home() {
         style={{ backgroundImage: "url(/lort.png)" }}
         className="-mt-[128px] h-[700px] relative py-[200px] px-[0px] -z-10"
       >
-        <div className="w-full">
-          <div className="flex flex-col w-full items-center gap-5">
-            <h1 className="text-6xl font-bold">HIGHEST BOUNTIES</h1>
-            <div className="w-1/2 flex mt-5 flex-row justify-between">
-              <BountyPanel />
-              <BountyPanel />
-              <BountyPanel />
-            </div>
-          </div>
-        </div>
+        <DeathBetsBountySection />
       </section>
       <section
         style={{
@@ -62,79 +53,29 @@ export default function Home() {
         }}
         className="h-[850px] bg-cover bg-top bg-no-repeat w-full"
       >
-        <div className="w-full flex pt-[135px] px-[60px] justify-end">
-          <div className="text-center">
-            <h1 className="text-6xl font-bold">READ ABOUT DEATHBETS</h1>
-            <div className="flex flex-row gap-3 mt-5">
-              <div className="w-[400px] h-[400px] bg-neutral-800">
-                <div className="py-2 border-b">
-                  <h1 className="font-medium text-3xl">Betting Rules</h1>
-                </div>
-                <div></div>
-              </div>
-              <div className="w-[400px] h-[400px] bg-neutral-800">
-                <h1></h1>
-              </div>
-              <div className="w-[400px] h-[400px] bg-neutral-800">f</div>
-            </div>
-          </div>
-        </div>
+        <DeathBetesReadAboutSection />
       </section>
-      <section className="h-screen">
-        <div className="w-full flex justify-center mt-10">
-          <div className="flex flex-col gap-2 items-center">
-            <h1 className="text-6xl font-bold">HOW TO USE DEATHBETS?</h1>
-            <div className="w-[700px] h-[500px] bg-neutral-800 p-5 flex flex-col gap-5">
-              <div className="flex flex-row gap-5">
-                <div className="rounded-full bg-neutral-500 flex items-center justify-center h-10 w-10">
-                  1
-                </div>
-                <div>
-                  <h3 className="text-2xl">Create a Bounty</h3>
-                  <span className="text-lg">
-                    Create a bounty on a character of your choice on the
-                    webside.
-                  </span>
-                </div>
-              </div>
-              <div className="flex flex-row gap-5">
-                <div className="rounded-full bg-neutral-500 flex items-center justify-center w-10 h-10">
-                  2
-                </div>
-                <div>
-                  <h3 className="text-2xl">Send Gold</h3>
-                  <div className="flex flex-col">
-                    <span className="text-lg">
-                      Send the amount of gold requested to requested
-                      characterName.
-                    </span>
-                    {
-                      "(sending the wrong amount will result in gold sendback and bet reverded)"
-                    }
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-row gap-5">
-                <div className="rounded-full bg-neutral-500 flex items-center justify-center w-10 h-10">
-                  3
-                </div>
-                <div>
-                  <h3 className="text-2xl">Transaction</h3>
-                  <div className="flex flex-col">
-                    <span className="text-lg">
-                      When deathbets has received the gold, the bounty will be
-                      placed and you will be able to see it on the website.
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section className="h-screen mt-20">
+        <DeathBetsToturialSection />
       </section>
     </div>
   );
 }
+
+const DeathBetsBountySection = () => {
+  return (
+    <div className="w-full">
+      <div className="flex flex-col w-full items-center gap-5">
+        <h1 className="text-6xl font-bold">HIGHEST BOUNTIES</h1>
+        <div className="w-1/2 flex mt-5 flex-row justify-between">
+          <BountyPanel />
+          <BountyPanel />
+          <BountyPanel />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const BountyPanel = () => {
   return (
@@ -161,6 +102,113 @@ const BountyPanel = () => {
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  );
+};
+
+const DeathBetesReadAboutSection = () => {
+  return (
+    <div className="w-full flex pt-[135px] px-[60px] justify-end">
+      <div className="text-center">
+        <h1 className="text-6xl font-bold">READ ABOUT DEATHBETS</h1>
+        <div className="flex flex-row gap-3 mt-5">
+          <ReadAboutPanel title="Betting Rules">
+            Read here about the betting rules
+          </ReadAboutPanel>
+          <ReadAboutPanel title="How does it work">
+            Read here about using the website
+          </ReadAboutPanel>
+          <ReadAboutPanel title="Betting Cancellation">
+            Read here about cancellation of a betting
+          </ReadAboutPanel>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ReadAboutPanel = ({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) => {
+  return (
+    <div className="w-[400px] h-[400px] bg-neutral-800 rounded">
+      <div className="py-4 border-b-2">
+        <h1 className="font-medium text-3xl">{title}</h1>
+      </div>
+      <div>{children}</div>
+    </div>
+  );
+};
+
+const DeathBetsToturialSection = () => {
+  return (
+    <div className="w-full flex justify-center mt-10">
+      <div className="flex flex-col gap-2 items-center">
+        <h1 className="text-6xl font-bold">HOW TO USE DEATHBETS?</h1>
+        <div className="w-[700px] h-auto bg-neutral-800 p-5 flex flex-col gap-5">
+          <TutorialStep stepNumber={1}>
+            <span className="text-lg">
+              Create a bet by going to the make a bet page and fill out the
+              form.
+            </span>
+          </TutorialStep>
+          <TutorialStep stepNumber={2}>
+            <span className="text-lg">
+              Send the amount of gold requested to requested characterName.
+            </span>
+            <span className="text-sm">
+              (sending the wrong amount will result in gold sendback and bet
+              reverded)
+            </span>
+          </TutorialStep>
+          <TutorialStep stepNumber={3}>
+            <span className="text-lg">
+              When deathbets has received the gold, the bounty will be placed
+              and you will be able to see it on the website under your profile
+              as active.
+            </span>
+          </TutorialStep>
+          <TutorialStep stepNumber={4}>
+            <span className="text-lg">
+              Now that your bet is active, we will wish you good luck with your
+              bet. You can now follow the character you bet on and see if he
+              dies. If he dies, you will receive the gold
+            </span>
+          </TutorialStep>
+          <TutorialStep stepNumber={5}>
+            <span className="text-lg">
+              Do you ever wish to withdraw your gold, you can do so by going to
+              the widrawal page and request a withdrawal.
+            </span>
+          </TutorialStep>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TutorialStep = ({
+  stepNumber,
+  children,
+}: {
+  stepNumber: number;
+  children: React.ReactNode;
+}) => {
+  return (
+    <div className="flex flex-row gap-5">
+      <div>
+        <div className="rounded-full bg-neutral-500 flex items-center justify-center w-10 h-10">
+          {stepNumber}
+        </div>
+      </div>
+      <div>
+        <h3 className="text-2xl font-bold">Transaction</h3>
+        <div className="flex flex-col">{children}</div>
       </div>
     </div>
   );

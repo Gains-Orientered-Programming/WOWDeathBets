@@ -1,6 +1,8 @@
-"use client";
 import Image from "next/image";
 import React from "react";
+import { getAllBettings } from "src/api/betting-services";
+import { getCharacterProfile } from "src/api/blizzard-service/characterProfile";
+import { Betting } from "src/types/betting-service.t";
 
 export default function Home() {
   return (
@@ -62,27 +64,39 @@ export default function Home() {
   );
 }
 
-const DeathBetsBountySection = () => {
+const DeathBetsBountySection = async () => {
+  const bettings = await getAllBettings();
+
+  const sortedBettings = bettings
+    ? [...bettings].sort((a, b) => b.amount - a.amount)
+    : null;
+
   return (
     <div className="w-full">
       <div className="flex flex-col w-full items-center gap-5">
         <h1 className="text-6xl font-bold">HIGHEST BOUNTIES</h1>
         <div className="w-1/2 flex mt-5 flex-row justify-between">
-          <BountyPanel />
-          <BountyPanel />
-          <BountyPanel />
+          {sortedBettings?.slice(0, 3).map((betting) => (
+            <BountyPanel key={betting.userId} betting={betting} />
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-const BountyPanel = () => {
+const BountyPanel = async ({ betting }: { betting: Betting }) => {
+  const characterProfile = await getCharacterProfile({
+    characterName: betting.characterName,
+    realm: betting.realm,
+    region: betting.region,
+  });
+
   return (
     <div className="w-[220px] h-[220px] bg-neutral-800 border border-neutral-900 flex flex-col p-2 rounded-t">
       <div>
         <Image
-          src={"/races/race_human_female.jpeg"}
+          src={`/races/race_${characterProfile.race.name}_${characterProfile.gender.name}.jpeg`}
           className="rounded"
           alt="character image"
           width={50}
@@ -90,15 +104,25 @@ const BountyPanel = () => {
         />
         <hr className="mt-2" />
         <div className="flex flex-col">
-          <h3>Petrice</h3>
-          <span>Class: Warrior</span>
-          <span>Lvl: 42</span>
-          <span>Bounty: 10000</span>
+          <h3>{betting.characterName}</h3>
+          <span>Class: {characterProfile.character_class.name}</span>
+          <span>Lvl: {characterProfile.level}</span>
+          <span>Bounty: {betting.amount}</span>
           <span>Total Hunters: 20</span>
           <div className="flex flex-row items-center gap-1">
-            <span>Status: Alive</span>
-            <div className="rounded-full w-3 h-3 bg-green-400">
-              <div className="rounded-full w-3 h-3 bg-green-400 animate-ping"></div>
+            <span>Status: {characterProfile.is_ghost ? "Dead" : "Alive"}</span>
+            <div
+              className={
+                "rounded-full w-3 h-3 " +
+                (characterProfile.is_ghost ? "bg-red-400" : "bg-green-400")
+              }
+            >
+              <div
+                className={
+                  "rounded-full w-3 h-3 animate-ping " +
+                  (characterProfile.is_ghost ? "bg-red-400" : "bg-green-400")
+                }
+              ></div>
             </div>
           </div>
         </div>

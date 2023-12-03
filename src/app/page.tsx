@@ -170,13 +170,13 @@ const DeathBetsToturialSection = () => {
       <div className="flex flex-col gap-2 items-center">
         <h1 className="text-6xl font-bold">HOW TO USE DEATHBETS?</h1>
         <div className="w-[700px] h-auto bg-neutral-800 p-5 flex flex-col gap-5">
-          <TutorialStep stepNumber={1}>
+          <TutorialStep stepNumber={1} title="Create a bounty">
             <span className="text-lg">
               Create a bet by going to the make a bet page and fill out the
               form.
             </span>
           </TutorialStep>
-          <TutorialStep stepNumber={2}>
+          <TutorialStep stepNumber={2} title="Send gold">
             <span className="text-lg">
               Send the amount of gold requested to requested characterName.
             </span>
@@ -185,21 +185,21 @@ const DeathBetsToturialSection = () => {
               reverded)
             </span>
           </TutorialStep>
-          <TutorialStep stepNumber={3}>
+          <TutorialStep stepNumber={3} title="Transaction">
             <span className="text-lg">
               When deathbets has received the gold, the bounty will be placed
               and you will be able to see it on the website under your profile
               as active.
             </span>
           </TutorialStep>
-          <TutorialStep stepNumber={4}>
+          <TutorialStep stepNumber={4} title="Waiting game">
             <span className="text-lg">
               Now that your bet is active, we will wish you good luck with your
               bet. You can now follow the character you bet on and see if he
               dies. If he dies, you will receive the gold
             </span>
           </TutorialStep>
-          <TutorialStep stepNumber={5}>
+          <TutorialStep stepNumber={5} title="Withdrawal">
             <span className="text-lg">
               Do you ever wish to withdraw your gold, you can do so by going to
               the widrawal page and request a withdrawal.
@@ -213,9 +213,11 @@ const DeathBetsToturialSection = () => {
 
 const TutorialStep = ({
   stepNumber,
+  title,
   children,
 }: {
   stepNumber: number;
+  title?: string;
   children: React.ReactNode;
 }) => {
   return (
@@ -226,7 +228,7 @@ const TutorialStep = ({
         </div>
       </div>
       <div>
-        <h3 className="text-2xl font-bold">Transaction</h3>
+        <h3 className="text-2xl font-bold">{title}</h3>
         <div className="flex flex-col">{children}</div>
       </div>
     </div>

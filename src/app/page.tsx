@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { getAllBettings } from "src/api/betting-services";
+import { getAllBettings, getHighestBettings } from "src/api/betting-services";
 import { getCharacterProfile } from "src/api/blizzard-service/characterProfile";
 import { Betting } from "src/types/betting-service.t";
 
@@ -65,18 +65,14 @@ export default function Home() {
 }
 
 const DeathBetsBountySection = async () => {
-  const bettings = await getAllBettings();
-
-  const sortedBettings = bettings
-    ? [...bettings].sort((a, b) => b.amount - a.amount)
-    : null;
+  const bettings = await getHighestBettings();
 
   return (
     <div className="w-full">
       <div className="flex flex-col w-full items-center gap-5">
         <h1 className="text-6xl font-bold">HIGHEST BOUNTIES</h1>
         <div className="w-1/2 flex mt-5 flex-row justify-between">
-          {sortedBettings?.slice(0, 3).map((betting) => (
+          {bettings.map((betting) => (
             <BountyPanel key={betting.userId} betting={betting} />
           ))}
         </div>
@@ -107,8 +103,7 @@ const BountyPanel = async ({ betting }: { betting: Betting }) => {
           <h3>{betting.characterName}</h3>
           <span>Class: {characterProfile.character_class.name}</span>
           <span>Lvl: {characterProfile.level}</span>
-          <span>Bounty: {betting.amount}</span>
-          <span>Total Hunters: 20</span>
+          <span>Total Bounty: {betting.amount}</span>
           <div className="flex flex-row items-center gap-1">
             <span>Status: {characterProfile.is_ghost ? "Dead" : "Alive"}</span>
             <div

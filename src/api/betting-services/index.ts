@@ -24,3 +24,11 @@ export const getAllBettings = async () => {
 
   return res.data;
 };
+
+export const getHighestBettings = async () => {
+  const res = await axios.get<Betting[]>(
+    "https://api-gateway-nyxm4.ondigitalocean.app/betting-service/bettings/most"
+  );
+
+  return res.data;
+};

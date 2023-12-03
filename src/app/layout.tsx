@@ -32,7 +32,7 @@ export default function RootLayout({
         ></Script>
       </head>
       <body className=" bg-backgrond text-white">
-        <NextTopLoader color="#f0e9c2" />
+        <NextTopLoader color="#f0e9c2" showSpinner={false} />
         <main className={raleway.className}>
           <div className="min-h-screen flex flex-col">
             <Navbar />

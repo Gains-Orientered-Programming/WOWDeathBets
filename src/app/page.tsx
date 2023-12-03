@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { getAllBettings, getHighestBettings } from "src/api/betting-services";
 import { getCharacterProfile } from "src/api/blizzard-service/characterProfile";
 import { Betting } from "src/types/betting-service.t";
+import { wowClassColors } from "src/utils/wowClassColors";
 
 export default function Home() {
   return (
@@ -71,7 +73,7 @@ const DeathBetsBountySection = async () => {
     <div className="w-full">
       <div className="flex flex-col w-full items-center gap-5">
         <h1 className="text-6xl font-bold">HIGHEST BOUNTIES</h1>
-        <div className="w-1/2 flex mt-5 flex-row justify-between">
+        <div className="w-2/3 flex mt-5 flex-row justify-between">
           {bettings.map((betting) => (
             <BountyPanel key={betting.userId} betting={betting} />
           ))}
@@ -89,23 +91,44 @@ const BountyPanel = async ({ betting }: { betting: Betting }) => {
   });
 
   return (
-    <div className="w-[220px] h-[220px] bg-neutral-800 border border-neutral-900 flex flex-col p-2 rounded-t">
-      <div>
-        <Image
-          src={`/races/race_${characterProfile.race.name}_${characterProfile.gender.name}.jpeg`}
-          className="rounded"
-          alt="character image"
-          width={50}
-          height={50}
-        />
+    <div className="w-[320px] h-auto bg-neutral-800 border border-neutral-900 flex flex-col p-2 rounded">
+      <Link
+        href={`/characters/${betting.region}/${betting.realm}/${betting.characterName}`}
+      >
+        <div className="flex flex-row items-center gap-2">
+          <Image
+            src={`/races/race_${characterProfile.race.name}_${characterProfile.gender.name}.jpeg`}
+            className="rounded"
+            alt="character image"
+            width={50}
+            height={50}
+          />
+          <h3
+            style={{
+              color: wowClassColors(characterProfile.character_class.name),
+            }}
+            className="font-bold text-xl"
+          >
+            {betting.characterName}
+          </h3>
+        </div>
         <hr className="mt-2" />
-        <div className="flex flex-col">
-          <h3>{betting.characterName}</h3>
-          <span>Class: {characterProfile.character_class.name}</span>
-          <span>Lvl: {characterProfile.level}</span>
-          <span>Total Bounty: {betting.amount}</span>
+        <div className="flex flex-col text-lg p-1 gap-2">
+          <span>
+            <span className="font-medium">Class:</span>{" "}
+            {characterProfile.character_class.name}
+          </span>
+          <span>
+            <span className="font-medium">Level:</span> {characterProfile.level}
+          </span>
+          <span>
+            <span className="font-medium">Total Bounty:</span> {betting.amount}
+          </span>
           <div className="flex flex-row items-center gap-1">
-            <span>Status: {characterProfile.is_ghost ? "Dead" : "Alive"}</span>
+            <span>
+              <span className="font-medium">Status:</span>{" "}
+              {characterProfile.is_ghost ? "Dead" : "Alive"}
+            </span>
             <div
               className={
                 "rounded-full w-3 h-3 " +
@@ -121,7 +144,7 @@ const BountyPanel = async ({ betting }: { betting: Betting }) => {
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };
@@ -133,13 +156,42 @@ const DeathBetesReadAboutSection = () => {
         <h1 className="text-6xl font-bold">READ ABOUT DEATHBETS</h1>
         <div className="flex flex-row gap-3 mt-5">
           <ReadAboutPanel title="Betting Rules">
-            Read here about the betting rules
+            <div className="text-left p-2 leading-8">
+              Discover the Betting Rules and Guidelines.
+              <br />
+              <span className="text-blue-200 underline"> Click here</span> to
+              delve into the comprehensive rules guiding our Deathbets. Learn
+              how to participate, understand the criteria for placing bets, and
+              ensure fair play in our exciting World of Warcraft Hardcore Mode.
+              Explore the specifics of our betting system and get ready to
+              engage in this thrilling challenge!
+            </div>
           </ReadAboutPanel>
           <ReadAboutPanel title="How does it work">
-            Read here about using the website
+            <div className="text-left p-2 leading-8">
+              Unveiling the Mechanics of Deathbets Curious about how our system
+              operates?
+              <br />
+              <span className="text-blue-200 underline">Click here</span> to
+              discover the inner workings of Deathbets. Learn the step-by-step
+              process from placing bets to tracking progress, understanding the
+              stakes, and what happens upon a character's demise. Get a
+              comprehensive overview of the exhilarating journey and mechanics
+              behind our World of Warcraft Hardcore Mode betting platform.
+            </div>
           </ReadAboutPanel>
           <ReadAboutPanel title="Betting Cancellation">
-            Read here about cancellation of a betting
+            <div className="text-left p-2 leading-8">
+              Understanding Betting Cancellation Policy Explore our guidelines
+              on Betting Cancellation by
+              <br />
+              <span className="text-blue-200 underline">clicking here</span>.
+              Learn about the circumstances under which bets can be canceled,
+              the process involved, and how we ensure fairness and transparency
+              in such instances. Familiarize yourself with our policies to
+              better navigate your participation in Deathbets and make informed
+              decisions.
+            </div>
           </ReadAboutPanel>
         </div>
       </div>
@@ -155,11 +207,11 @@ const ReadAboutPanel = ({
   children: React.ReactNode;
 }) => {
   return (
-    <div className="w-[400px] h-[400px] bg-neutral-800 rounded">
-      <div className="py-4 border-b-2">
+    <div className="w-[400px] h-[400px] bg-neutral-800 border border-neutral-900 rounded">
+      <div className="py-4 border-b-2 border-neutral-900">
         <h1 className="font-medium text-3xl">{title}</h1>
       </div>
-      <div>{children}</div>
+      {children}
     </div>
   );
 };
@@ -169,7 +221,7 @@ const DeathBetsToturialSection = () => {
     <div className="w-full flex justify-center mt-10">
       <div className="flex flex-col gap-2 items-center">
         <h1 className="text-6xl font-bold">HOW TO USE DEATHBETS?</h1>
-        <div className="w-[700px] h-auto bg-neutral-800 p-5 flex flex-col gap-5">
+        <div className="w-[700px] h-auto bg-neutral-800 rounded border border-neutral-900 p-5 flex flex-col gap-5">
           <TutorialStep stepNumber={1} title="Create a bounty">
             <span className="text-lg">
               Create a bet by going to the make a bet page and fill out the

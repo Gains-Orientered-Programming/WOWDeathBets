@@ -48,9 +48,11 @@ export const TabElement = ({
               </TabList>
             </div>
             <div className=" w-auto mb-2">
-              <button className="bg-zinc-950 w-28 h-10 rounded-sm text-zinc-400 hover:text-white">
-                <Link href={currentPath + "/bet"}>Make bet</Link>
-              </button>
+              <Link href={currentPath + "/bet"}>
+                <button className="bg-zinc-950 w-28 h-10 rounded-sm text-zinc-400 hover:text-white">
+                  Make bet
+                </button>
+              </Link>
             </div>
           </div>
           <hr className="border border-neutral-300" />

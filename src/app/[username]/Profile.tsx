@@ -34,7 +34,6 @@ const ProfileForm: React.FC = ({ }) => {
 
         {/* Section for Bets */}
         <div className="flex flex-col w-full items-start">
-        <MyBetsForm/>
         </div>
 
         {/* Add any additional profile sections as needed */}

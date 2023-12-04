@@ -2,13 +2,21 @@
 import React from 'react';
 import MyBetsForm from './MyBetsForm';
 import Image from 'next/image';
+import { getBettingsByUserId } from "src/api/betting-services";
+import { useUserStore } from 'src/store/user.store';
+import { getUserByUsername } from 'src/api/user-service';
 
-const MyBetsPage: React.FC = () => {
+
+const MyBetsPage = async ({params,}: {params: {username:string}}) => {
+const user = await getUserByUsername(params.username);
+const bettings = await getBettingsByUserId(user._id);
+
+
   return (
     <div>
           <div className="flex flex-col gap-5 w-96">
         <div className='flex flex-col items-center w-full'>
-          <h1 className="text-4xl font-medium">Johnny's Profile</h1>
+          <h1 className="text-4xl font-medium">{user.username}</h1>
           <div className='mt-12'>
             <div className=''>
               <Image src={"/pepe.webp"} width="100" height="100" alt='Picture of Pasha' />
@@ -19,7 +27,12 @@ const MyBetsPage: React.FC = () => {
         <div className='my-5'>
         <h1>My Bets:</h1>
         </div>
-      <MyBetsForm />
+        {bettings?.map((bet)=>
+        (
+            <MyBetsForm betData={bet}/>
+        ))}       
+         
+      
     </div>
   );
 };

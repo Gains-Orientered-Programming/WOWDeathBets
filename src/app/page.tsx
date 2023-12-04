@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { getAllBettings, getHighestBettings } from "src/api/betting-services";
+import { getHighestBettings } from "src/api/betting-services";
 import { getCharacterProfile } from "src/api/blizzard-service/characterProfile";
 import { Betting } from "src/types/betting-service.t";
 import { wowClassColors } from "src/utils/wowClassColors";

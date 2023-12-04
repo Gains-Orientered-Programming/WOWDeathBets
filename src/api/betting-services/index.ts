@@ -10,8 +10,8 @@ export const createBetting = async (bettingData: Betting) => {
 };
 
 export const getBettingsByUserId = async (userId: string) => {
-  const res = await axios.get<Betting>(
-    `https://api-gateway-nyxm4.ondigitalocean.app/betting-service/bettings/${userId}`
+  const res = await axios.get<Betting[]>(
+    `https://api-gateway-nyxm4.ondigitalocean.app/betting-service/bettings/userId/${userId}`
   );
 
   return res.data;

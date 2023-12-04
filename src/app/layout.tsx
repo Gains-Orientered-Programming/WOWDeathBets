@@ -4,6 +4,7 @@ import Footer from "src/components/main-footer";
 import Script from "next/script";
 import Navbar from "src/components/main-nav-tsx/main-nav";
 import { Raleway } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 
 const raleway = Raleway({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
         ></Script>
       </head>
       <body className=" bg-backgrond text-white">
+        <NextTopLoader color="#f0e9c2" showSpinner={false} />
         <main className={raleway.className}>
           <div className="min-h-screen flex flex-col">
             <Navbar />

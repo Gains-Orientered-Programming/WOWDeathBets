@@ -2,7 +2,7 @@ import axios from "axios";
 import { Betting } from "src/types/betting-service.t";
 
 export const createBetting = async (bettingData: Betting) => {
-  await axios.post(
+  return await axios.post(
     "https://api-gateway-nyxm4.ondigitalocean.app/betting-service/bettings",
 
     bettingData

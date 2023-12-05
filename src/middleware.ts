@@ -15,5 +15,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: "/characters/:region/:realm/:character/bet",
+  matcher: ["/characters/:region/:realm/:character/bet", "/profile/:path*"],
 };

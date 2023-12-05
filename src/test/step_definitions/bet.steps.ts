@@ -48,13 +48,11 @@ defineFeature(feature, (test) => {
     );
 
     then("the user should create a bet", async () => {
-      const element = By.xpath(
-        "/html/body/main/div[1]/div[2]/div/div/div[1]/h1"
-      );
+      const element = By.xpath("/html/body/div/ol/li/div/div[1]");
       await driver.wait(until.elementLocated(element));
-      const h1 = await driver.findElement(element);
-      await driver.wait(until.elementIsVisible(h1), 5000);
-      expect(await h1.isDisplayed()).toBe(true);
+      const toast = await driver.findElement(element);
+      await driver.wait(until.elementIsVisible(toast), 5000);
+      expect(await toast.isDisplayed()).toBe(true);
     });
   }, 20000); // Increase overall test timeout here
 });

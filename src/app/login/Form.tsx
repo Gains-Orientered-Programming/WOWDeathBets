@@ -8,6 +8,7 @@ import { loginUser } from 'src/api/user-service/login';
 import { useUserStore } from 'src/store/user.store';
 import { UserJWT } from 'src/types/user';
 import { useRouter } from 'next/navigation';
+import { toast } from 'src/components/ui/Toast/use-toast';
 
 type Inputs = {
 	email: string;
@@ -34,8 +35,11 @@ const LoginForm = () => {
 					email: decodedToken.email,
 					currency: decodedToken.currency,
 				});
+				toast({
+					title: 'Logged in',
+					description: `Welcome back ${decodedToken.username}`,
+				});
 			}
-			console.log(user);
 		} catch (error) {
 			console.log(error);
 		}

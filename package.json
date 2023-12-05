@@ -17,6 +17,7 @@
 		"autoprefixer": "10.4.15",
 		"axios": "^1.5.1",
 		"clsx": "^2.0.0",
+		"jsonwebtoken": "^9.0.2",
 		"jwt-decode": "^4.0.0",
 		"next": "latest",
 		"nextjs-toploader": "^1.6.4",

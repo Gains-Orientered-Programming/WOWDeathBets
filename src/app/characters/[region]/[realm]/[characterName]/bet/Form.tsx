@@ -1,9 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createBetting } from "src/api/betting-services";
-import { useRouter } from "next/navigation";
 import { useUserStore } from "src/store/user.store";
 type Inputs = {
   characterName: string;
@@ -19,8 +19,61 @@ const Form = ({
   characterData: { characterName: string; realm: string; region: string };
   payout: number;
 }) => {
-  const router = useRouter();
   const [loading, setLoading] = React.useState(false);
+  const [submittedBet, setSubmittedBet] = React.useState<Inputs | null>(null);
+  const user = useUserStore((state) => state.user);
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setLoading(true);
+    await createBetting({ userId: user?.userId ?? "0", ...data });
+    setLoading(false);
+    setSubmittedBet(data);
+  };
+
+  return (
+    <>
+      {submittedBet ? (
+        <SuccessPage />
+      ) : (
+        <BetPage
+          characterData={characterData}
+          payout={payout}
+          onSubmit={onSubmit}
+        />
+      )}
+    </>
+  );
+};
+
+const SuccessPage = () => {
+  return (
+    <div className="w-full h-full flex items-center justify-center flex-col">
+      <div>
+        <h1 className="text-3xl">Success!</h1>
+      </div>
+      <div>
+        <span>Betting was created</span>
+        <div className="flex justify-center">
+          <Link href={"/"}>
+            <button className="bg-zinc-950 w-28 h-10 rounded-sm text-zinc-400 hover:text-white">
+              Continue
+            </button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const BetPage = ({
+  characterData,
+  payout,
+  onSubmit,
+}: {
+  characterData: { characterName: string; realm: string; region: string };
+  payout: number;
+  onSubmit: SubmitHandler<Inputs>;
+}) => {
   const { register, handleSubmit, watch } = useForm<Inputs>({
     defaultValues: {
       characterName: characterData.characterName,
@@ -28,14 +81,6 @@ const Form = ({
       region: characterData.region,
     },
   });
-  const user = useUserStore((state) => state.user);
-
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    setLoading(true);
-    await createBetting({ userId: user?.userId ?? "0", ...data });
-    setLoading(false);
-    router.push("/");
-  };
 
   return (
     <div className="w-full h-full flex justify-center mt-20">
@@ -85,11 +130,9 @@ const Form = ({
             {(watch("amount") * payout).toFixed(2)}
           </div>
         </div>
-        <div>
-          <button className="bg-neutral-600 p-2 w-full hover:bg-neutral-500 rounded text-white h-10">
-            {loading ? "Loading..." : "Create"}
-          </button>
-        </div>
+        <button className="bg-neutral-600 p-2 w-full hover:bg-neutral-500 rounded text-white h-10">
+          Create
+        </button>
       </form>
     </div>
   );

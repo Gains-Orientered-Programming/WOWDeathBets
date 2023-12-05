@@ -16,11 +16,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-            <div className="flex flex-row">
-            <div>
-               <Nav></Nav> 
-            </div>
-            <div>{children}</div>
+            <div className="flex justify-center w-full">
+                <div className="flex flex-row gap-24 mt-24">
+                    <div>
+                        <Nav/>
+                    </div>
+                    <div>
+                        {children}
+                    </div>
+                </div>
             </div>
   );
 }

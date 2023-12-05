@@ -60,6 +60,7 @@ defineFeature(feature, (test) => {
 			const username = await driver.findElement(element);
 			await driver.wait(until.elementIsVisible(username), 5000);
 			expect(await username.getText()).toBe('PROXY-digital-ocean-postman_per');
+			//TODO: CHECK OM JWT ER TILFØJET TIL LOCALSTORAGE
 		});
 	}, 20000);
 });

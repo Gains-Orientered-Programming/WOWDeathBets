@@ -15,22 +15,24 @@ const NavbarButton = () => {
 				<ListElement href={'/login'}>Login</ListElement>
 			) : (
 				<div className="flex">
-					<button
-						onClick={() => {
-							try {
-								logout();
-							} catch (error) {
-								console.error();
-							}
-							toast({
-								title: 'Logged out',
-								description: 'You have been logged out',
-								variant: 'destructive',
-							});
-						}}
-					>
-						Logout
-					</button>
+					<ListElement href={'/'}>
+						<button
+							onClick={() => {
+								try {
+									logout();
+								} catch (error) {
+									console.error();
+								}
+								toast({
+									title: 'Logged out',
+									description: 'You have been logged out',
+									variant: 'destructive',
+								});
+							}}
+						>
+							Logout
+						</button>
+					</ListElement>
 					<ListElement href={'/profile'}>{user.username}</ListElement>
 				</div>
 			)}

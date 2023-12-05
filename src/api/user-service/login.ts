@@ -1,9 +1,5 @@
 import axios from 'axios';
 
-import { UserJWT } from 'src/types/user';
-import { useUserStore } from 'src/store/user.store';
-import { jwtDecode } from 'jwt-decode';
-
 export const loginUser = async (email: string, password: string) => {
 	try {
 		const response = await axios.post(

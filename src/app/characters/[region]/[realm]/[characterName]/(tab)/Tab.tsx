@@ -7,6 +7,7 @@ import TabTrigger from "src/components/ui/Tab/TabTrigger";
 import TabPanel from "src/components/ui/Tab/TabPanel";
 import { TabData } from "./type";
 import Link from "next/link";
+import { useUserStore } from "src/store/user.store";
 
 export const TabElement = ({
   params,
@@ -19,6 +20,7 @@ export const TabElement = ({
   const currentPath = usePathname();
   const router = useRouter();
   const currentTab = searchParams.get("tab");
+  const user = useUserStore((state) => state.user);
 
   return (
     <div className="w-full flex items-center">

@@ -25,7 +25,7 @@ const Form = ({
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading(true);
-    await createBetting({ userId: user?.userId ?? "0", ...data });
+    await createBetting({ userId: user?._id ?? "0", ...data });
     setLoading(false);
     setSubmittedBet(data);
   };

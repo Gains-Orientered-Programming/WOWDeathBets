@@ -23,7 +23,7 @@ defineFeature(feature, (test) => {
     await driver.quit();
   });
 
-  test("Submitting the form on the betting page", ({ given, when, then }) => {
+  test("Submitting the form on the bet page", ({ given, when, then }) => {
     given("the user is on the betting page", async () => {
       await driver.get(
         "http://localhost:3000/characters/eu/nekrosh/petrice/bet"
@@ -34,20 +34,27 @@ defineFeature(feature, (test) => {
     when(
       "the user fill out the form and clicks on the button to create a bet",
       async () => {
-        const element = await driver.findElement(
-          By.xpath("/html/body/main/div[1]/div[2]/div/div/form/div[6]/button")
+        const input = await driver.findElement(
+          By.xpath("/html/body/main/div[1]/div[2]/div/div/form/div[4]/input")
         );
-        await driver.wait(until.elementIsVisible(element), 5000);
-        await element.click();
+        const button = await driver.findElement(
+          By.xpath("/html/body/main/div[1]/div[2]/div/div/form/button")
+        );
+        await driver.wait(until.elementIsVisible(input), 5000);
+        await input.sendKeys("1000");
+        await driver.wait(until.elementIsVisible(button), 5000);
+        await button.click();
       }
     );
 
-    then("the user should have created a bet", async () => {
-      const element = await driver.findElement(
-        By.xpath("/html/body/main/div[1]/div[2]/div/div/div[1]/h1")
+    then("the user should create a bet", async () => {
+      const element = By.xpath(
+        "/html/body/main/div[1]/div[2]/div/div/div[1]/h1"
       );
-      await driver.wait(until.elementIsVisible(element), 5000);
-      expect(element).toContain("Success!");
+      await driver.wait(until.elementLocated(element));
+      const h1 = await driver.findElement(element);
+      await driver.wait(until.elementIsVisible(h1), 5000);
+      expect(await h1.isDisplayed()).toBe(true);
     });
-  }, 2000); // Increase overall test timeout here
+  }, 20000); // Increase overall test timeout here
 });

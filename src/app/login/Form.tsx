@@ -20,22 +20,14 @@ const LoginForm = () => {
 	const { register, handleSubmit } = useForm<Inputs>();
 	const [loading, setLoading] = React.useState(false);
 	const [error, showError] = React.useState(false);
-	const user = useUserStore((state) => state.user);
-	const setUser = useUserStore((state) => state.setUser);
 
 	const onSubmit = async (data: Inputs) => {
-		//TODO if password is wrong we should display something
+		//TODO: Add loading spinner
 		setLoading(true);
 		try {
 			const token = await loginUser(data.email, data.password);
 			if (token) {
 				const decodedToken: UserJWT = jwtDecode(token);
-				setUser({
-					_id: decodedToken.userId,
-					username: decodedToken.username,
-					email: decodedToken.email,
-					currency: decodedToken.currency,
-				});
 				toast({
 					title: 'Logged in',
 					description: `Welcome back ${decodedToken.username}`,

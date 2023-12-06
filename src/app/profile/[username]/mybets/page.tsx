@@ -1,6 +1,6 @@
 // src/app/profile/mybets/page.tsx
 import React from 'react';
-import MyBetsForm from './MyBetsForm';
+import MyBetsForm from './Mybets';
 import Image from 'next/image';
 import { getBettingsByUserId } from "src/api/betting-services";
 import { useUserStore } from 'src/store/user.store';

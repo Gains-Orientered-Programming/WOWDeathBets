@@ -1,18 +1,15 @@
-import React from 'react';
+import ProfileForm from "./Profile";
+import Nav from "./Nav";
+import { getUserByUsername } from "src/api/user-service";
 import Image from 'next/image';
-import MyBetsForm from './mybets/MyBetsForm';
-// import User from '../types/User';
 
-/* type ProfileFormProps = {
-  user: User;
-};
- */
-const ProfileForm: React.FC = ({ }) => {
+const pathPage = async ({params,}: {params: {username:string}}) => {
+  const user = await getUserByUsername(params.username);
   return (
     <div className="w-full flex justify-center">
       <div className="flex flex-col gap-5 w-96">
         <div className='flex flex-col items-center w-full'>
-            <h1 className="text-4xl font-medium">Johnny's Profile</h1>
+            <h1 className="text-4xl font-medium">{user.username}</h1>
             <div className='mt-12'>
             <div className=''>
                 <Image src={"/pepe.webp"} width="100" height="100" alt='Picture of Pasha'/>
@@ -49,4 +46,4 @@ const ProfileForm: React.FC = ({ }) => {
   );
 };
 
-export default ProfileForm;
+export default pathPage;

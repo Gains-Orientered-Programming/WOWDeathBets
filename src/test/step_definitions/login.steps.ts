@@ -32,13 +32,13 @@ defineFeature(feature, (test) => {
 
 		when('the user fills in their email and password', async () => {
 			const emailInput = driver.findElement(
-				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[1]/input')
+				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[1]/div/input')
 			);
 			await driver.wait(until.elementIsVisible(emailInput), 5000);
 			await emailInput.sendKeys('proxy-post_man_DO@example.com');
 
 			const passwordInput = driver.findElement(
-				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[2]/input')
+				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[2]/div/input')
 			);
 			await driver.wait(until.elementIsVisible(passwordInput), 5000);
 			await passwordInput.sendKeys('post-proxy-PassDO');

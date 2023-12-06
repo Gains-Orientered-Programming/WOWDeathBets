@@ -80,11 +80,14 @@ const LoginForm = () => {
 						Login
 					</button>
 				</div>
-				{error && (
-					<div className="text-red-500 w-full flex justify-center items-center">
-						Wrong password or email
-					</div>
-				)}
+				<div>
+					{/* Den her div bliver nød til at være her for at failed login test kan køre */}
+					{error && (
+						<div className="text-red-500 w-full flex justify-center items-center">
+							Wrong password or email
+						</div>
+					)}
+				</div>
 				<div>
 					<div className="flex flex-row items-center">
 						<hr className="w-full bg-white" />

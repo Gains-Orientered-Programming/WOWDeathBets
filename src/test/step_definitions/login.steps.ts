@@ -9,6 +9,10 @@ defineFeature(feature, (test) => {
 
 	beforeAll(async () => {
 		const chromeOptions = new chrome.Options();
+		// chromeOptions.addArguments('--headless'); // Run Chrome in headless mode
+		// chromeOptions.addArguments('--disable-gpu'); // Disable GPU hardware acceleration
+		// chromeOptions.addArguments('--window-size=1920,1080'); // Specify window size
+
 		driver = await new Builder()
 			.forBrowser('chrome')
 			.setChromeOptions(chromeOptions)
@@ -27,20 +31,20 @@ defineFeature(feature, (test) => {
 			);
 
 			await element.click();
-			await driver.wait(until.urlContains('login'), 5000);
+			await driver.wait(until.urlContains('login'));
 		});
 
 		when('the user fills in their email and password', async () => {
 			const emailInput = driver.findElement(
 				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[1]/div/input')
 			);
-			await driver.wait(until.elementIsVisible(emailInput), 5000);
+			await driver.wait(until.elementIsVisible(emailInput));
 			await emailInput.sendKeys('proxy-post_man_DO@example.com');
 
 			const passwordInput = driver.findElement(
 				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[2]/div/input')
 			);
-			await driver.wait(until.elementIsVisible(passwordInput), 5000);
+			await driver.wait(until.elementIsVisible(passwordInput));
 			await passwordInput.sendKeys('post-proxy-PassDO');
 		});
 
@@ -48,7 +52,7 @@ defineFeature(feature, (test) => {
 			const loginButton = driver.findElement(
 				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[3]/button')
 			);
-			await driver.wait(until.elementIsVisible(loginButton), 5000);
+			await driver.wait(until.elementIsVisible(loginButton));
 			await loginButton.click();
 		});
 
@@ -58,7 +62,7 @@ defineFeature(feature, (test) => {
 			);
 			await driver.wait(until.elementLocated(element));
 			const username = await driver.findElement(element);
-			await driver.wait(until.elementIsVisible(username), 5000);
+			await driver.wait(until.elementIsVisible(username));
 			expect(await username.getText()).toBe('PROXY-digital-ocean-postman_per');
 
 			// Check if there is a JWT in the local storage

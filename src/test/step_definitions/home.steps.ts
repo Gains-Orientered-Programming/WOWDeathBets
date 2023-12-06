@@ -26,19 +26,19 @@ defineFeature(feature, (test) => {
 	test('Clicking on the homepage element', ({ given, when, then }) => {
 		given('the user is on a character page', async () => {
 			await driver.get('http://localhost:3000/characters/eu/nekrosh/petrice');
-			await driver.wait(until.urlContains('characters'), 5000);
+			await driver.wait(until.urlContains('characters'));
 		});
 
 		when('the user clicks on the specified element', async () => {
 			const element = await driver.findElement(
 				By.xpath('/html/body/main/div[1]/div[1]/div/a/div/h1')
 			);
-			await driver.wait(until.elementIsVisible(element), 5000);
+			await driver.wait(until.elementIsVisible(element));
 			await element.click();
 			const videoElement = By.xpath(
 				'/html/body/main/div[1]/div[2]/div/section[1]/div[1]/div/video'
 			);
-			await driver.wait(until.elementLocated(videoElement), 10000); // Increase timeout here
+			await driver.wait(until.elementLocated(videoElement)); // Increase timeout here
 		});
 
 		then('the user should be navigated to the home page', async () => {

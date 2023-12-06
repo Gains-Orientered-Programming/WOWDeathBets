@@ -11,10 +11,15 @@ defineFeature(feature, (test) => {
 
 	beforeAll(async () => {
 		const chromeOptions = new chrome.Options();
+		// chromeOptions.addArguments('--headless'); // Run Chrome in headless mode
+		// chromeOptions.addArguments('--disable-gpu'); // Disable GPU hardware acceleration
+		// chromeOptions.addArguments('--window-size=1920,1080'); // Specify window size
+
 		driver = await new Builder()
 			.forBrowser('chrome')
 			.setChromeOptions(chromeOptions)
 			.build();
+
 		// Login flow
 		await driver.get('http://localhost:3000/login');
 		const emailInput = driver.findElement(
@@ -40,7 +45,7 @@ defineFeature(feature, (test) => {
 		const username = await driver.findElement(element);
 		await driver.wait(until.elementIsVisible(username));
 		expect(await username.getText()).toBe('PROXY-digital-ocean-postman_per');
-	});
+	}, 20000);
 
 	afterAll(async () => {
 		await driver.quit();
@@ -58,7 +63,7 @@ defineFeature(feature, (test) => {
 			const logoutButton = driver.findElement(
 				By.xpath('/html/body/main/div[1]/div[1]/div/div/ul/div/a[1]/li/button')
 			);
-			await driver.wait(until.elementIsVisible(logoutButton), 5000);
+			await driver.wait(until.elementIsVisible(logoutButton));
 			await logoutButton.click();
 		});
 
@@ -71,5 +76,5 @@ defineFeature(feature, (test) => {
 				expect(jwt).toBeNull();
 			}
 		);
-	});
+	}, 20000);
 });

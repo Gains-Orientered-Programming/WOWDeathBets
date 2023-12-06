@@ -19,6 +19,7 @@ const LoginForm = () => {
 	const router = useRouter();
 	const { register, handleSubmit } = useForm<Inputs>();
 	const [loading, setLoading] = React.useState(false);
+	const [error, showError] = React.useState(false);
 	const user = useUserStore((state) => state.user);
 	const setUser = useUserStore((state) => state.setUser);
 
@@ -40,11 +41,12 @@ const LoginForm = () => {
 					description: `Welcome back ${decodedToken.username}`,
 				});
 			}
+			setLoading(false);
+			router.push('/');
 		} catch (error) {
 			console.log(error);
+			showError(true);
 		}
-		setLoading(false);
-		router.push('/');
 	};
 
 	return (
@@ -56,24 +58,41 @@ const LoginForm = () => {
 				<h1 className="text-4xl font-medium">Login</h1>
 				<div className="flex flex-col">
 					<label>E-mail</label>
-					<input
-						className="h-10 rounded text-black indent-2"
-						{...register('email')}
-					/>
+					<div
+						className={`flex flex-col ${
+							error ? 'rounded border-2 border-rose-500' : ''
+						}`}
+					>
+						<input
+							className="h-10 rounded text-black indent-2"
+							{...register('email')}
+						/>
+					</div>
 				</div>
 				<div className="flex flex-col">
 					<label>Password</label>
-					<input
-						type="password"
-						className="h-10 rounded text-black indent-2"
-						{...register('password')}
-					/>
+					<div
+						className={`flex flex-col ${
+							error ? 'rounded border-2 border-rose-500' : ''
+						}`}
+					>
+						<input
+							type="password"
+							className="h-10 rounded text-black indent-2"
+							{...register('password')}
+						/>
+					</div>
 				</div>
 				<div>
 					<button className="bg-neutral-600 p-2 w-full hover:bg-neutral-500 rounded text-white h-10">
 						Login
 					</button>
 				</div>
+				{error && (
+					<div className="text-red-500 w-full flex justify-center items-center">
+						Wrong password or email
+					</div>
+				)}
 				<div>
 					<div className="flex flex-row items-center">
 						<hr className="w-full bg-white" />

@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import Link from 'next/link';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { loginUser } from 'src/api/user-service/login';
+import loginUser from 'src/api/user-service/login';
 import { useUserStore } from 'src/store/user.store';
 import { UserJWT } from 'src/types/user';
 import { useRouter } from 'next/navigation';

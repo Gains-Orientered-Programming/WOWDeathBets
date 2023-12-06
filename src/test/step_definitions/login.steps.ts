@@ -54,13 +54,18 @@ defineFeature(feature, (test) => {
 
 		then('the user should be successfully logged in', async () => {
 			const element = By.xpath(
-				'/html/body/main/div[1]/div[1]/div/div/ul/div/a/li'
+				'/html/body/main/div[1]/div[1]/div/div/ul/div/a[2]/li'
 			);
 			await driver.wait(until.elementLocated(element));
 			const username = await driver.findElement(element);
 			await driver.wait(until.elementIsVisible(username), 5000);
 			expect(await username.getText()).toBe('PROXY-digital-ocean-postman_per');
-			//TODO: CHECK OM JWT ER TILFØJET TIL LOCALSTORAGE
+
+			// Check if there is a JWT in the local storage
+			const jwt = await driver.executeScript(
+				'return localStorage.getItem("jwt");'
+			);
+			expect(jwt).not.toBeNull();
 		});
 	}, 20000);
 });

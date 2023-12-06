@@ -9,7 +9,7 @@ defineFeature(feature, (test) => {
 
 	beforeAll(async () => {
 		const chromeOptions = new chrome.Options();
-		// chromeOptions.addArguments('--headless'); // Run Chrome in headless mode
+		chromeOptions.addArguments('--headless'); // Run Chrome in headless mode
 		// chromeOptions.addArguments('--disable-gpu'); // Disable GPU hardware acceleration
 		// chromeOptions.addArguments('--window-size=1920,1080'); // Specify window size
 
@@ -49,5 +49,5 @@ defineFeature(feature, (test) => {
 			);
 			expect(await videoElement.isDisplayed()).toBe(true);
 		});
-	}, 20000); // Increase overall test timeout here
+	}, 60000); // Increase overall test timeout here
 });

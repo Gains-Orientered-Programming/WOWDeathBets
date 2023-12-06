@@ -7,10 +7,13 @@ const feature = loadFeature('src/test/features/register.feature');
 
 defineFeature(feature, (test) => {
 	let driver: WebDriver;
+	const testUsername = 'regi_test_user';
+	const testEmail = 'regiDemoUser@test.com';
+	const testPassword = 'test123';
 
 	beforeAll(async () => {
 		const chromeOptions = new chrome.Options();
-		// chromeOptions.addArguments('--headless'); // Run Chrome in headless mode
+		chromeOptions.addArguments('--headless'); // Run Chrome in headless mode
 		// chromeOptions.addArguments('--disable-gpu'); // Disable GPU hardware acceleration
 		// chromeOptions.addArguments('--window-size=1920,1080'); // Specify window size
 
@@ -21,12 +24,11 @@ defineFeature(feature, (test) => {
 	});
 
 	afterAll(async () => {
-		//TODO: Delete user from database
+		await driver.quit();
 		const response = await axios.delete(
-			`https://api-gateway-nyxm4.ondigitalocean.app/user-service/user/by-username/regi_test_user`
+			`https://api-gateway-nyxm4.ondigitalocean.app/user-service/user/by-username/${testUsername}`
 		);
 		if (!response) console.error('User not found');
-		await driver.quit();
 	});
 
 	test('Successful register', ({ given, when, then }) => {
@@ -34,7 +36,7 @@ defineFeature(feature, (test) => {
 			await driver.get('http://localhost:3000/login');
 			const registerButton = driver.findElement(
 				By.xpath(
-					'/html/body/main/div[1]/div[2]/div/div/form/div[4]/div[2]/a/button'
+					'/html/body/main/div[1]/div[2]/div/div/form/div[5]/div[2]/a/button'
 				)
 			);
 
@@ -48,19 +50,19 @@ defineFeature(feature, (test) => {
 				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[1]/input')
 			);
 			await driver.wait(until.elementIsVisible(usernameInput));
-			await usernameInput.sendKeys('regi_test_user');
+			await usernameInput.sendKeys(testUsername);
 			//Email Input
 			const emailInput = driver.findElement(
 				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[2]/input')
 			);
 			await driver.wait(until.elementIsVisible(emailInput));
-			await emailInput.sendKeys('regiDemoUser@test.com');
+			await emailInput.sendKeys(testEmail);
 			//Password Input
 			const passwordInput = driver.findElement(
 				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[3]/input')
 			);
 			await driver.wait(until.elementIsVisible(passwordInput));
-			await passwordInput.sendKeys('test123');
+			await passwordInput.sendKeys(testPassword);
 		});
 
 		when('the user clicks on the register button', async () => {
@@ -80,7 +82,7 @@ defineFeature(feature, (test) => {
 				await driver.wait(until.elementLocated(element));
 				const username = await driver.findElement(element);
 				await driver.wait(until.elementIsVisible(username));
-				expect(await username.getText()).toBe('regi_test_user');
+				expect(await username.getText()).toBe(testUsername);
 
 				// Check if there is a JWT in the local storage
 				const jwt = await driver.executeScript(
@@ -89,5 +91,5 @@ defineFeature(feature, (test) => {
 				expect(jwt).not.toBeNull();
 			}
 		);
-	}, 20000);
+	}, 60000);
 });

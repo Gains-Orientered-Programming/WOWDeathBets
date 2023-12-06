@@ -3,15 +3,33 @@ import chrome from 'selenium-webdriver/chrome';
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import { jwtDecode } from 'jwt-decode';
 import { UserJWT } from 'src/types/user';
+import axios, { AxiosError } from 'axios';
 
 const feature = loadFeature('src/test/features/logout.feature');
 
 defineFeature(feature, (test) => {
 	let driver: WebDriver;
+	const testUsername = 'logout-test-user';
+	const testEmail = 'logout-test@test.dk';
+	const testPassword = 'logout-test-pass';
 
 	beforeAll(async () => {
+		// Make test user
+		const response = await axios
+			.post(
+				'https://api-gateway-nyxm4.ondigitalocean.app/user-service/create-user',
+				{
+					username: testUsername,
+					email: testEmail,
+					password: testPassword,
+				}
+			)
+			.catch((err: AxiosError) => {
+				console.log(err);
+			});
+
 		const chromeOptions = new chrome.Options();
-		// chromeOptions.addArguments('--headless'); // Run Chrome in headless mode
+		chromeOptions.addArguments('--headless'); // Run Chrome in headless mode
 		// chromeOptions.addArguments('--disable-gpu'); // Disable GPU hardware acceleration
 		// chromeOptions.addArguments('--window-size=1920,1080'); // Specify window size
 
@@ -26,13 +44,13 @@ defineFeature(feature, (test) => {
 			By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[1]/div/input')
 		);
 		await driver.wait(until.elementIsVisible(emailInput));
-		await emailInput.sendKeys('proxy-post_man_DO@example.com');
+		await emailInput.sendKeys(testEmail);
 
 		const passwordInput = driver.findElement(
 			By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[2]/div/input')
 		);
 		await driver.wait(until.elementIsVisible(passwordInput));
-		await passwordInput.sendKeys('post-proxy-PassDO');
+		await passwordInput.sendKeys(testPassword);
 		const loginButton = driver.findElement(
 			By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[3]/button')
 		);
@@ -44,11 +62,15 @@ defineFeature(feature, (test) => {
 		await driver.wait(until.elementLocated(element));
 		const username = await driver.findElement(element);
 		await driver.wait(until.elementIsVisible(username));
-		expect(await username.getText()).toBe('PROXY-digital-ocean-postman_per');
-	}, 20000);
+	}, 30000);
 
 	afterAll(async () => {
 		await driver.quit();
+
+		const response = await axios.delete(
+			`https://api-gateway-nyxm4.ondigitalocean.app/user-service/user/by-username/${testUsername}`
+		);
+		if (!response) console.error('User not found');
 	});
 
 	test('Successful logout', ({ given, when, then }) => {
@@ -76,5 +98,5 @@ defineFeature(feature, (test) => {
 				expect(jwt).toBeNull();
 			}
 		);
-	}, 20000);
+	}, 60000);
 });

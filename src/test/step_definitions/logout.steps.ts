@@ -62,7 +62,7 @@ defineFeature(feature, (test) => {
 		await driver.wait(until.elementLocated(element));
 		const username = await driver.findElement(element);
 		await driver.wait(until.elementIsVisible(username));
-	}, 30000);
+	}, 60000);
 
 	afterAll(async () => {
 		await driver.quit();

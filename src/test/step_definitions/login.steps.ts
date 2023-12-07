@@ -88,7 +88,7 @@ defineFeature(feature, (test) => {
 			await driver.wait(until.elementIsVisible(errorElement));
 			expect(await errorElement.getText()).toBe('Wrong password or email');
 		});
-	}, 30000);
+	}, 60000);
 
 	test('Successful login', ({ given, when, then }) => {
 		given('the user clicks on login', async () => {

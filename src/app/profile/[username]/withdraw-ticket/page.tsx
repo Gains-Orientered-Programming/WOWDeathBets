@@ -1,10 +1,9 @@
 import TicketForm from './Form';
 
-const WithdrawPage = () => {
+const WithdrawPage = ({ params }: { params: { username: string } }) => {
 	return (
 		<div className="w-full">
-			<TicketForm username={''} />{' '}
-			{/* lavede en tom username prop fordi ellers breaker build */}
+			<TicketForm username={params.username} />
 		</div>
 	);
 };

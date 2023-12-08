@@ -23,7 +23,7 @@ const TicketForm = ({username} : {username: string}) => {
     setLoading(true);
     await ticket(data).then(function(responds){
       if(responds.status === 201){
-        toast({title:"Pasha monkey succes", description:"Ticket was created"})
+        toast({title:"Deposit ticket succes", description:"Ticket was created"})
       }else{
         toast({title:"error", description:"Error happend"})
       }

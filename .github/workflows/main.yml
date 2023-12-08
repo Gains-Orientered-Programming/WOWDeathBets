@@ -25,10 +25,6 @@ jobs:
         run: npm run build
       - name: Start server
         run: npm start &
-      - name: Wait for server
-        uses: jakepartusch/wait-for-netlify-action@v1
-        with:
-          site_name: 'http://localhost:3000'
 
   run-tests:
     name: Run tests

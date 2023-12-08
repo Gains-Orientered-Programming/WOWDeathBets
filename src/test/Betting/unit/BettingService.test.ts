@@ -3,7 +3,7 @@ import {
   getBettingsByUserId,
   getHighestBettings,
   createBetting,
-} from "../../api/betting-services";
+} from "../../../api/betting-services";
 import axios from "axios";
 
 jest.mock("axios");
@@ -33,7 +33,7 @@ describe("Betting Service Tests", () => {
       },
     };
 
-    mockedAxios.post.mockResolvedValueOnce(mockResponse);
+    mockedAxios.post.mockResolvedValueOnce(mockResponse.data);
 
     const result = await createBetting(mockBettingData);
 

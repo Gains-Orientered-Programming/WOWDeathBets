@@ -2,14 +2,16 @@ import { loadFeature, defineFeature } from "jest-cucumber";
 import { Builder, By, until, WebDriver } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome";
 
-const feature = loadFeature("src/test/features/bettingform.feature");
+const feature = loadFeature(
+  "src/test/Betting/e2e/features/bettingform.feature"
+);
 
 defineFeature(feature, (test) => {
   let driver: WebDriver;
 
   beforeAll(async () => {
     const chromeOptions = new chrome.Options();
-    // chromeOptions.addArguments('--headless'); // Run Chrome in headless mode
+    chromeOptions.addArguments("--headless"); // Run Chrome in headless mode
     // chromeOptions.addArguments('--disable-gpu'); // Disable GPU hardware acceleration
     // chromeOptions.addArguments('--window-size=1920,1080'); // Specify window size
 

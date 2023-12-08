@@ -21,7 +21,7 @@ defineFeature(feature, (test) => {
 			.forBrowser('chrome')
 			.setChromeOptions(chromeOptions)
 			.build();
-	}, 60000);
+	});
 
 	afterAll(async () => {
 		await driver.quit();

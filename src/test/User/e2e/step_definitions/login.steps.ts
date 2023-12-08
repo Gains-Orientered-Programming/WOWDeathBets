@@ -1,30 +1,18 @@
+import { deleteSeededUsers, seedUsers } from '../../../utils/seedUsers';
 import { Builder, By, until, WebDriver } from 'selenium-webdriver';
-import chrome from 'selenium-webdriver/chrome';
 import { loadFeature, defineFeature } from 'jest-cucumber';
-import axios, { AxiosError } from 'axios';
+import chrome from 'selenium-webdriver/chrome';
+import { User } from '../../../../types/user';
 
 const feature = loadFeature('src/test/User/e2e/features/login.feature');
 
 defineFeature(feature, (test) => {
 	let driver: WebDriver;
-	const testUsername = 'login-test-user';
-	const testEmail = 'login-test@test.dk';
-	const testPassword = 'login-test-pass';
+	let testUser: User;
 
 	beforeAll(async () => {
 		// Make test user
-		const response = await axios
-			.post(
-				'https://api-gateway-nyxm4.ondigitalocean.app/user-service/create-user',
-				{
-					username: testUsername,
-					email: testEmail,
-					password: testPassword,
-				}
-			)
-			.catch((err: AxiosError) => {
-				console.log(err);
-			});
+		testUser = await seedUsers();
 
 		const chromeOptions = new chrome.Options();
 		chromeOptions.addArguments('--headless'); // Run Chrome in headless mode
@@ -40,10 +28,7 @@ defineFeature(feature, (test) => {
 	afterAll(async () => {
 		await driver.quit();
 		// Delete test user
-		const response = await axios.delete(
-			`https://api-gateway-nyxm4.ondigitalocean.app/user-service/user/by-username/${testUsername}`
-		);
-		if (!response) console.error('User not found');
+		await deleteSeededUsers(testUser);
 	});
 
 	test('Failed login', ({ given, when, then }) => {
@@ -106,13 +91,19 @@ defineFeature(feature, (test) => {
 				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[1]/div/input')
 			);
 			await driver.wait(until.elementIsVisible(emailInput));
-			await emailInput.sendKeys(testEmail);
+			await emailInput.sendKeys(testUser.email);
 
 			const passwordInput = driver.findElement(
 				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[2]/div/input')
 			);
 			await driver.wait(until.elementIsVisible(passwordInput));
-			await passwordInput.sendKeys(testPassword);
+
+			if (!testUser.password) {
+				console.log('password is null');
+				throw new Error('Password is null');
+			}
+
+			await passwordInput.sendKeys(testUser.password);
 		});
 
 		when('the user clicks on the login button', async () => {
@@ -130,7 +121,7 @@ defineFeature(feature, (test) => {
 			await driver.wait(until.elementLocated(element));
 			const username = await driver.findElement(element);
 			await driver.wait(until.elementIsVisible(username));
-			expect(await username.getText()).toBe(testUsername);
+			expect(await username.getText()).toBe(testUser.username);
 
 			// Check if there is a JWT in the local storage
 			const jwt = await driver.executeScript(

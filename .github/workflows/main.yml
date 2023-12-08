@@ -1,39 +1,46 @@
 on:
-  push:
-    branches:
-      - main
-      - dev
-
   pull_request:
     branches:
       - main
       - dev
 
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
+  push:
+    branches:
+      - main
+      - dev
 
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-
       - name: Install dependencies
         run: npm ci
-
       - name: Build
         run: npm run build
-
       - name: Start server
         run: npm start &
-
       - name: Wait for server
         uses: jakepartusch/wait-for-netlify-action@v1
         with:
           site_name: 'localhost:3000'
 
+  run-tests:
+    name: Run tests
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm ci
       - name: Run tests
         run: npm test

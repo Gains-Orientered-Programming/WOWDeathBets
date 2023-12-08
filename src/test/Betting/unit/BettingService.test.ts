@@ -74,7 +74,7 @@ describe("Betting Service Tests", () => {
     expect(mockedAxios.get).toHaveBeenCalledWith(
       `https://api-gateway-nyxm4.ondigitalocean.app/betting-service/bettings/userId/${mockUserId}`
     );
-    expect(result).toEqual(mockResponse.data);
+    expect(result.data).toEqual(mockResponse.data);
   });
 
   it("should get all bettings", async () => {
@@ -106,7 +106,7 @@ describe("Betting Service Tests", () => {
     expect(mockedAxios.get).toHaveBeenCalledWith(
       "https://api-gateway-nyxm4.ondigitalocean.app/betting-service/bettings"
     );
-    expect(result).toEqual(mockResponse.data);
+    expect(result.data).toEqual(mockResponse.data);
   });
 
   it("should get highest bettings", async () => {
@@ -138,6 +138,6 @@ describe("Betting Service Tests", () => {
     expect(mockedAxios.get).toHaveBeenCalledWith(
       "https://api-gateway-nyxm4.ondigitalocean.app/betting-service/bettings/most"
     );
-    expect(result).toEqual(mockResponse.data);
+    expect(result.data).toEqual(mockResponse.data);
   });
 });

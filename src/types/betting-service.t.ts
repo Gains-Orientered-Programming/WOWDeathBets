@@ -1,4 +1,5 @@
 export interface Betting {
+  _id?: string;
   userId: string;
   characterName: string;
   region: string;

@@ -3,7 +3,7 @@ import chrome from 'selenium-webdriver/chrome';
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import axios from 'axios';
 
-const feature = loadFeature('src/test/features/register.feature');
+const feature = loadFeature('src/test/User/e2e/features/register.feature');
 
 defineFeature(feature, (test) => {
 	let driver: WebDriver;

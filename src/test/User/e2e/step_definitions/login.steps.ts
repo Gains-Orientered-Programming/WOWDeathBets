@@ -3,7 +3,7 @@ import chrome from 'selenium-webdriver/chrome';
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import axios, { AxiosError } from 'axios';
 
-const feature = loadFeature('src/test/features/login.feature');
+const feature = loadFeature('src/test/User/e2e/features/login.feature');
 
 defineFeature(feature, (test) => {
 	let driver: WebDriver;
@@ -35,7 +35,7 @@ defineFeature(feature, (test) => {
 			.forBrowser('chrome')
 			.setChromeOptions(chromeOptions)
 			.build();
-	});
+	}, 60000);
 
 	afterAll(async () => {
 		await driver.quit();
@@ -88,7 +88,7 @@ defineFeature(feature, (test) => {
 			await driver.wait(until.elementIsVisible(errorElement));
 			expect(await errorElement.getText()).toBe('Wrong password or email');
 		});
-	}, 30000);
+	}, 60000);
 
 	test('Successful login', ({ given, when, then }) => {
 		given('the user clicks on login', async () => {

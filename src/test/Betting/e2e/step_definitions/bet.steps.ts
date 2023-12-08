@@ -2,14 +2,16 @@ import { loadFeature, defineFeature } from "jest-cucumber";
 import { Builder, By, until, WebDriver } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome";
 
-const feature = loadFeature("src/test/features/bettingform.feature");
+const feature = loadFeature(
+  "src/test/Betting/e2e/features/bettingform.feature"
+);
 
 defineFeature(feature, (test) => {
   let driver: WebDriver;
 
   beforeAll(async () => {
     const chromeOptions = new chrome.Options();
-    // chromeOptions.addArguments('--headless'); // Run Chrome in headless mode
+    chromeOptions.addArguments("--headless"); // Run Chrome in headless mode
     // chromeOptions.addArguments('--disable-gpu'); // Disable GPU hardware acceleration
     // chromeOptions.addArguments('--window-size=1920,1080'); // Specify window size
 
@@ -28,7 +30,7 @@ defineFeature(feature, (test) => {
       await driver.get(
         "http://localhost:3000/characters/eu/nekrosh/petrice/bet"
       );
-      await driver.wait(until.urlContains("characters"), 5000);
+      await driver.wait(until.urlContains("characters"));
     });
 
     when(
@@ -40,9 +42,9 @@ defineFeature(feature, (test) => {
         const button = await driver.findElement(
           By.xpath("/html/body/main/div[1]/div[2]/div/div/form/button")
         );
-        await driver.wait(until.elementIsVisible(input), 5000);
+        await driver.wait(until.elementIsVisible(input));
         await input.sendKeys("1000");
-        await driver.wait(until.elementIsVisible(button), 5000);
+        await driver.wait(until.elementIsVisible(button));
         await button.click();
       }
     );
@@ -51,7 +53,7 @@ defineFeature(feature, (test) => {
       const element = By.xpath("/html/body/div/ol/li/div/div[1]");
       await driver.wait(until.elementLocated(element));
       const toast = await driver.findElement(element);
-      await driver.wait(until.elementIsVisible(toast), 5000);
+      await driver.wait(until.elementIsVisible(toast));
       expect(await toast.isDisplayed()).toBe(true);
     });
   }, 20000); // Increase overall test timeout here

@@ -3,7 +3,7 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"test": "jest",
+		"test": "jest --runInBand",
 		"generate:types": "ts-node --esm app/types/generate-types.ts"
 	},
 	"dependencies": {

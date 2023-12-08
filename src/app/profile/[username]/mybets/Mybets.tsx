@@ -16,7 +16,7 @@ interface Bet {
   amount: number;
 }
 
-    const MyBetsForm = ({
+    const MyBets = ({
         betData,
       }: {
         betData: Betting;
@@ -42,4 +42,4 @@ interface Bet {
   );
 };
 
-export default MyBetsForm;
+export default MyBets;

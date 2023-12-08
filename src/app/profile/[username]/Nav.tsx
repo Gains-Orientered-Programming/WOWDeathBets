@@ -7,28 +7,28 @@ import { usePathname } from 'next/navigation';
 
 // Images
 
-const Nav: React.FC = () => {
+const Nav  = ({username} : {username:string}) => {
   const pathname = usePathname();
   const navItems = [
     {
       iconIndex: 0,
       linkTxt: 'Account overview',
-      link: pathname,
+      link: `/profile/${username}`,
     },
     {
       iconIndex: 1,
       linkTxt: 'My bets',
-      link: pathname + '/mybets',
+      link: `/profile/${username}/mybets`,
     },
     {
       iconIndex: 2,
       linkTxt: 'New deposit ticket',
-      link: pathname + 'depositticket',
+      link: `/profile/${username}/deposit-ticket`,
     },
     {
       iconIndex: 3,
       linkTxt: 'New withdraw ticket',
-      link: pathname + '/withdrawticket',
+      link: `/profile/${username}/withdraw-ticket`,
     },
   ];
   
@@ -54,4 +54,3 @@ const Nav: React.FC = () => {
 };
 
 export default Nav;
-

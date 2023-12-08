@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import Link from 'next/link';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { loginUser } from 'src/api/user-service/login';
+import loginUser from 'src/api/user-service/login';
 import { useUserStore } from 'src/store/user.store';
 import { UserJWT } from 'src/types/user';
 import { useRouter } from 'next/navigation';
@@ -19,32 +19,26 @@ const LoginForm = () => {
 	const router = useRouter();
 	const { register, handleSubmit } = useForm<Inputs>();
 	const [loading, setLoading] = React.useState(false);
-	const user = useUserStore((state) => state.user);
-	const setUser = useUserStore((state) => state.setUser);
+	const [error, showError] = React.useState(false);
 
 	const onSubmit = async (data: Inputs) => {
-		//TODO if password is wrong we should display something
+		//TODO: Add loading spinner
 		setLoading(true);
 		try {
 			const token = await loginUser(data.email, data.password);
 			if (token) {
 				const decodedToken: UserJWT = jwtDecode(token);
-				setUser({
-					_id: decodedToken.userId,
-					username: decodedToken.username,
-					email: decodedToken.email,
-					currency: decodedToken.currency,
-				});
 				toast({
 					title: 'Logged in',
 					description: `Welcome back ${decodedToken.username}`,
 				});
 			}
+			setLoading(false);
+			router.push('/');
 		} catch (error) {
 			console.log(error);
+			showError(true);
 		}
-		setLoading(false);
-		router.push('/');
 	};
 
 	return (
@@ -56,23 +50,43 @@ const LoginForm = () => {
 				<h1 className="text-4xl font-medium">Login</h1>
 				<div className="flex flex-col">
 					<label>E-mail</label>
-					<input
-						className="h-10 rounded text-black indent-2"
-						{...register('email')}
-					/>
+					<div
+						className={`flex flex-col ${
+							error ? 'rounded border-2 border-rose-500' : ''
+						}`}
+					>
+						<input
+							className="h-10 rounded text-black indent-2"
+							{...register('email')}
+						/>
+					</div>
 				</div>
 				<div className="flex flex-col">
 					<label>Password</label>
-					<input
-						type="password"
-						className="h-10 rounded text-black indent-2"
-						{...register('password')}
-					/>
+					<div
+						className={`flex flex-col ${
+							error ? 'rounded border-2 border-rose-500' : ''
+						}`}
+					>
+						<input
+							type="password"
+							className="h-10 rounded text-black indent-2"
+							{...register('password')}
+						/>
+					</div>
 				</div>
 				<div>
 					<button className="bg-neutral-600 p-2 w-full hover:bg-neutral-500 rounded text-white h-10">
 						Login
 					</button>
+				</div>
+				<div>
+					{/* Den her div bliver nød til at være her for at failed login test kan køre */}
+					{error && (
+						<div className="text-red-500 w-full flex justify-center items-center">
+							Wrong password or email
+						</div>
+					)}
 				</div>
 				<div>
 					<div className="flex flex-row items-center">

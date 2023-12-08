@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createBetting } from "src/api/betting-services";
+import { useToast } from "src/components/ui/Toast/use-toast";
 import { useUserStore } from "src/store/user.store";
 type Inputs = {
   characterName: string;
@@ -21,19 +22,28 @@ const Form = ({
 }) => {
   const [loading, setLoading] = React.useState(false);
   const [submittedBet, setSubmittedBet] = React.useState<Inputs | null>(null);
+  const { toast } = useToast();
   const user = useUserStore((state) => state.user);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading(true);
-    await createBetting({ userId: user?._id ?? "0", ...data });
+    await createBetting({ userId: user?._id ?? "0", ...data }).then(function (
+      response
+    ) {
+      if (response.status === 201) {
+        toast({ title: "Success", description: "Bet was created" });
+        setSubmittedBet(data);
+      } else {
+        toast({ title: "Error", description: "Something went wrong" });
+      }
+    });
     setLoading(false);
-    setSubmittedBet(data);
   };
 
   return (
     <>
       {submittedBet ? (
-        <SuccessPage />
+        <SuccessPage submittedBet={submittedBet} />
       ) : (
         <BetPage
           characterData={characterData}
@@ -45,15 +55,33 @@ const Form = ({
   );
 };
 
-const SuccessPage = () => {
+const SuccessPage = ({ submittedBet }: { submittedBet: Inputs }) => {
   return (
     <div className="w-full h-full flex items-center justify-center flex-col">
       <div>
         <h1 className="text-3xl">Success!</h1>
       </div>
       <div>
-        <span>Betting was created</span>
-        <div className="flex justify-center">
+        <span className="font-medium text-lg">Recipt</span>
+        <div className="bg-neutral-800 rounded w-96 h-96 p-10 flex flex-col gap-5">
+          <div>
+            <span>Character Name: </span>
+            <span>{submittedBet.characterName}</span>
+          </div>
+          <div>
+            <span>Realm: </span>
+            <span>{submittedBet.realm}</span>
+          </div>
+          <div>
+            <span>Region: </span>
+            <span>{submittedBet.region}</span>
+          </div>
+          <div>
+            <span>Amount: </span>
+            <span>{submittedBet.amount}</span>
+          </div>
+        </div>
+        <div className="flex justify-center mt-5">
           <Link href={"/"}>
             <button className="bg-zinc-950 w-28 h-10 rounded-sm text-zinc-400 hover:text-white">
               Continue

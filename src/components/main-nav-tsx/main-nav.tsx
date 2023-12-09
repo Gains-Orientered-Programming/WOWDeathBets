@@ -2,9 +2,8 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import { getServers } from "src/api/blizzard-service/servers";
-import NavbarInput from "./Input";
-import { useUserStore } from "src/store/user.store";
 import NavbarButton from "./Button";
+import SearchBar from "../ui/Combobox";
 
 const Navbar = async () => {
   const euServers = await getServers({ region: "eu" });
@@ -27,7 +26,7 @@ const Navbar = async () => {
         <div className="h-full">
           <ul className="flex flex-row gap-5 h-full items-center">
             <NavbarButton />
-            <NavbarInput realms={allServers} />
+            <SearchBar />
           </ul>
         </div>
       </div>

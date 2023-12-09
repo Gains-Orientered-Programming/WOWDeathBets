@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ticket } from "src/api/ticket-services/ticket";
+import { ticket } from "@/src/api/ticket-services";
 import { useRouter } from "next/navigation";
 import { toast, useToast } from "src/components/ui/Toast/use-toast";
 

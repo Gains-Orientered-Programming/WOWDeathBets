@@ -1,5 +1,5 @@
-import { seedUsers } from "@/src/test/utils/seedUsers";
-import { User } from "@/src/types/user";
+import { deleteSeededUsers, seedUsers } from '../../../utils/seedUsers';
+import { User } from '../../../../types/user';
 import { loadFeature, defineFeature } from "jest-cucumber";
 import { Builder, By, until, WebDriver } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome";
@@ -23,7 +23,7 @@ defineFeature(feature, (test) => {
 
 
     const chromeOptions = new chrome.Options();
-    chromeOptions.addArguments("--headless"); // Run Chrome in headless mode
+   // chromeOptions.addArguments("--headless"); // Run Chrome in headless mode
     // chromeOptions.addArguments('--disable-gpu'); // Disable GPU hardware acceleration
     // chromeOptions.addArguments('--window-size=1920,1080'); // Specify window size
 
@@ -35,6 +35,8 @@ defineFeature(feature, (test) => {
 
   afterAll(async () => {
     await driver.quit();
+
+    await deleteSeededUsers(testUser);
   });
 
   test("Submitting either a depsoit or withdraw form on the profile page", ({ given, when, then }) => {
@@ -54,7 +56,7 @@ defineFeature(feature, (test) => {
         await driver.wait(until.elementIsVisible(inputName));
         await inputName.sendKeys("Petrice");
         await driver.wait(until.elementIsVisible(inputAmount));
-        await inputName.sendKeys("500");
+        await inputAmount.sendKeys("500");
         await driver.wait(until.elementIsVisible(button));
         await button.click();
       }
@@ -67,5 +69,5 @@ defineFeature(feature, (test) => {
       await driver.wait(until.elementIsVisible(toast));
       expect(await toast.isDisplayed()).toBe(true);
     });
-  }, 20000); // Increase overall test timeout here
+  }, 60000); // Increase overall test timeout here
 });

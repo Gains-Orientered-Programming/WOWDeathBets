@@ -1,3 +1,5 @@
+import { seedUsers } from "@/src/test/utils/seedUsers";
+import { User } from "@/src/types/user";
 import { loadFeature, defineFeature } from "jest-cucumber";
 import { Builder, By, until, WebDriver } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome";
@@ -8,8 +10,18 @@ const feature = loadFeature(
 
 defineFeature(feature, (test) => {
   let driver: WebDriver;
+  let testUser: User;
+
 
   beforeAll(async () => {
+    testUser = await seedUsers();
+
+		// Check if testUser is properly seeded
+		if (!testUser.email || !testUser.password) {
+			throw new Error('Failed to seed test user');
+		}
+
+
     const chromeOptions = new chrome.Options();
     chromeOptions.addArguments("--headless"); // Run Chrome in headless mode
     // chromeOptions.addArguments('--disable-gpu'); // Disable GPU hardware acceleration
@@ -28,9 +40,9 @@ defineFeature(feature, (test) => {
   test("Submitting either a depsoit or withdraw form on the profile page", ({ given, when, then }) => {
     given("the user is on the profile page", async () => {
       await driver.get(
-        "http://localhost:3000/profile/demo/deposit-ticket"
+        "http://localhost:3000/profile/testUser/deposit-ticket"
       );
-      await driver.wait(until.urlContains("demo"));
+      await driver.wait(until.urlContains("testUser"));
     });
 
     when(

@@ -17,11 +17,12 @@ import axios, { AxiosError } from 'axios';
 }; 
 
 export const createTicket = async (ticketData: Ticket) => {
-	const res = await axios.get<Ticket[]>(
-	  `https://api-gateway-nyxm4.ondigitalocean.app/ticket-service/tickets`
-	);
+	return await axios.post<Ticket>(
+	  `https://api-gateway-nyxm4.ondigitalocean.app/ticket-service/tickets`,
+
   
 	ticketData
+	);
   };
 
 export const getTicketsByUserId = async (userId: string) => {

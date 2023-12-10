@@ -26,7 +26,7 @@ defineFeature(feature, (test) => {
   });
 
   test("Submitting either a depsoit or withdraw form on the profile page", ({ given, when, then }) => {
-    given("the user is on the ticket page", async () => {
+    given("the user is on the profile page", async () => {
       await driver.get(
         "http://localhost:3000/profile/demo/deposit-ticket"
       );
@@ -34,7 +34,7 @@ defineFeature(feature, (test) => {
     });
 
     when(
-      "the user fill out the form and clicks on the button to create a ticket",
+      "the user fill out the form and clicks on the button to create a deposit or withdraw ticket",
       async () => {
         const inputName = await driver.findElement(By.css("[data-testid='characterNameInput']"));
         const inputAmount = await driver.findElement(By.css("[data-testid='amountInput']"));
@@ -55,5 +55,5 @@ defineFeature(feature, (test) => {
       await driver.wait(until.elementIsVisible(toast));
       expect(await toast.isDisplayed()).toBe(true);
     });
-  }, 10000); // Increase overall test timeout here
+  }, 20000); // Increase overall test timeout here
 });

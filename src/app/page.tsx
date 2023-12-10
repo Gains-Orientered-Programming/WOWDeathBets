@@ -1,10 +1,11 @@
+import { gql } from "@apollo/client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { getHighestBettings } from "src/api/betting-services";
 import { getCharacterProfile } from "src/api/blizzard-service/characterProfile";
 import { Betting } from "src/types/betting-service.t";
 import { wowClassColors } from "src/utils/wowClassColors";
+import { getClient } from "../lib/client";
 
 export default function Home() {
   return (
@@ -66,15 +67,38 @@ export default function Home() {
   );
 }
 
+interface BettingData {
+  getMostBetted: {
+    id: string;
+    userId: string;
+    characterName: string;
+    realm: string;
+    region: string;
+    amount: number;
+  }[];
+}
+
 const DeathBetsBountySection = async () => {
-  const bettings = await getHighestBettings();
+  const query = gql`
+    query GetMostBetted {
+      getMostBetted {
+        id
+        userId
+        characterName
+        realm
+        region
+        amount
+      }
+    }
+  `;
+  const { data } = await getClient().query<BettingData>({ query: query });
 
   return (
     <div className="w-full">
       <div className="flex flex-col w-full items-center gap-5">
         <h1 className="text-6xl font-bold">HIGHEST BOUNTIES</h1>
         <div className="w-2/3 flex mt-5 flex-row justify-between">
-          {bettings.data.map((betting) => (
+          {data.getMostBetted.map((betting) => (
             <BountyPanel key={betting.userId} betting={betting} />
           ))}
         </div>
@@ -85,7 +109,7 @@ const DeathBetsBountySection = async () => {
 
 const BountyPanel = async ({ betting }: { betting: Betting }) => {
   const characterProfile = await getCharacterProfile({
-    characterName: betting.characterName,
+    characterName: betting.characterName.toLowerCase(),
     realm: betting.realm,
     region: betting.region,
   });

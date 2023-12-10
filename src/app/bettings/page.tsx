@@ -15,22 +15,24 @@ const querry = gql`
   }
 `;
 
-interface Shit {
-  id: string;
-  userId: string;
-  characterName: string;
-  realm: string;
-  region: string;
-  amount: number;
+interface BettingData {
+  bettings: {
+    id: string;
+    userId: string;
+    characterName: string;
+    realm: string;
+    region: string;
+    amount: number;
+  }[];
 }
 
 const AllBettings = async () => {
-  const { data } = await getClient().query({ query: querry });
+  const { data } = await getClient().query<BettingData>({ query: querry });
   return (
     <div>
       <h1>allBettings</h1>
       {data
-        ? data.bettings.map((betting: any) => (
+        ? data.bettings.map((betting) => (
             <div key={betting.id}>
               <h1>{betting.userId}</h1>
               <h1>{betting.characterName}</h1>

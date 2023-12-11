@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ticket } from "src/api/ticket-services/ticket";
+import { ticket } from "@/src/api/ticket-services";
 import { useRouter } from "next/navigation";
 import { useToast } from "src/components/ui/Toast/use-toast";
 
@@ -42,7 +42,7 @@ const TicketForm = ({username} : {username: string}) => {
         <h3 className="text-center">Write your ingame character name and amount of gold you wish to exchange into betting currency</h3>
         <div className="flex flex-col">
           <label>Character name:</label>
-          <input
+          <input data-testid="characterNameInput"
             className="h-10 rounded text-black indent-2"
             {...register("charactername", {
               required: true,
@@ -51,7 +51,7 @@ const TicketForm = ({username} : {username: string}) => {
         </div>
         <div className="flex flex-col">
           <label>Amount:</label>
-          <input
+          <input data-testid="amountInput"
             className="h-10 rounded text-black indent-2"
             {...register("amount", {
                 required: true,
@@ -59,7 +59,7 @@ const TicketForm = ({username} : {username: string}) => {
           />
         </div>
         <div>
-          <button className="bg-neutral-600 p-2 w-full hover:bg-neutral-500 rounded text-white h-10">
+          <button data-testid="button" className="bg-neutral-600 p-2 w-full hover:bg-neutral-500 rounded text-white h-10">
             Submit deposit ticket
           </button>
         </div>

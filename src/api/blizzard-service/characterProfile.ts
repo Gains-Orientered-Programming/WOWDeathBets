@@ -1,5 +1,5 @@
-import { getDataFromApi } from "src/services/oAuth";
-import { CharacterProfileSummary } from "src/types/blizzard/characterProfileSummary.t";
+import { getDataFromApi } from "../../services/oAuth";
+import { CharacterProfileSummary } from "../../types/blizzard/characterProfileSummary.t";
 
 export const getCharacterProfile = async ({
   region,

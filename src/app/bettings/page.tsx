@@ -3,7 +3,7 @@ import { getClient } from "../../lib/client";
 import { Betting } from "../../types/betting-service.t";
 
 const querry = gql`
-  query {
+  query GetBettings {
     bettings {
       id
       userId

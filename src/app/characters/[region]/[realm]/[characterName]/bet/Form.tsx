@@ -6,12 +6,53 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { createBetting } from "src/api/betting-services";
 import { useToast } from "src/components/ui/Toast/use-toast";
 import { useUserStore } from "src/store/user.store";
+import { MutationFunctionOptions, gql, useMutation } from "@apollo/client";
+
 type Inputs = {
   characterName: string;
   region: string;
   realm: string;
   amount: number;
 };
+
+interface CreateBettingInput extends Inputs {
+  userId: string;
+}
+
+interface CreateBettingResponse {
+  createBetting: {
+    id: string;
+    userId: string;
+    characterName: string;
+    realm: string;
+    region: string;
+    amount: number;
+  };
+}
+
+const CREATE_BETTING_MUTATION = gql`
+  mutation CreateBetting(
+    $userId: String
+    $characterName: String
+    $realm: String
+    $region: String
+    $amount: Int
+  ) {
+    createBetting(
+      userId: $userId
+      characterName: $characterName
+      realm: $realm
+      region: $region
+      amount: $amount
+    ) {
+      id
+      characterName
+      realm
+      region
+      amount
+    }
+  }
+`;
 
 const Form = ({
   characterData,
@@ -20,30 +61,45 @@ const Form = ({
   characterData: { characterName: string; realm: string; region: string };
   payout: number;
 }) => {
-  const [loading, setLoading] = React.useState(false);
-  const [submittedBet, setSubmittedBet] = React.useState<Inputs | null>(null);
   const { toast } = useToast();
   const user = useUserStore((state) => state.user);
+  const [createBetting, { data, loading, error }] = useMutation<
+    CreateBettingResponse,
+    CreateBettingInput
+  >(CREATE_BETTING_MUTATION);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    setLoading(true);
-    await createBetting({ userId: user?._id ?? "0", ...data }).then(function (
-      response
-    ) {
-      if (response.status === 201) {
-        toast({ title: "Success", description: "Bet was created" });
-        setSubmittedBet(data);
-      } else {
-        toast({ title: "Error", description: "Something went wrong" });
-      }
-    });
-    setLoading(false);
+    try {
+      const bettingInput: MutationFunctionOptions<
+        CreateBettingResponse,
+        CreateBettingInput
+      > = {
+        variables: {
+          userId: user?._id ?? "null",
+          characterName: data.characterName,
+          realm: data.realm,
+          region: data.region,
+          amount: Math.floor(data.amount),
+        },
+      };
+      await createBetting(bettingInput);
+      toast({
+        title: "Success",
+        description: "Bet created",
+      });
+    } catch (error) {
+      console.log("Error creating betting", error);
+      toast({
+        title: "Error",
+        description: "Error creating betting",
+      });
+    }
   };
 
   return (
     <>
-      {submittedBet ? (
-        <SuccessPage submittedBet={submittedBet} />
+      {data ? (
+        <SuccessPage submittedBet={data} />
       ) : (
         <BetPage
           characterData={characterData}
@@ -55,7 +111,11 @@ const Form = ({
   );
 };
 
-const SuccessPage = ({ submittedBet }: { submittedBet: Inputs }) => {
+const SuccessPage = ({
+  submittedBet,
+}: {
+  submittedBet: CreateBettingResponse;
+}) => {
   return (
     <div className="w-full h-full flex items-center justify-center flex-col">
       <div>
@@ -65,20 +125,24 @@ const SuccessPage = ({ submittedBet }: { submittedBet: Inputs }) => {
         <span className="font-medium text-lg">Recipt</span>
         <div className="bg-neutral-800 rounded w-96 h-96 p-10 flex flex-col gap-5">
           <div>
+            <span>ID: </span>
+            <span>{submittedBet.createBetting.id}</span>
+          </div>
+          <div>
             <span>Character Name: </span>
-            <span>{submittedBet.characterName}</span>
+            <span>{submittedBet.createBetting.characterName}</span>
           </div>
           <div>
             <span>Realm: </span>
-            <span>{submittedBet.realm}</span>
+            <span>{submittedBet.createBetting.realm}</span>
           </div>
           <div>
             <span>Region: </span>
-            <span>{submittedBet.region}</span>
+            <span>{submittedBet.createBetting.region}</span>
           </div>
           <div>
             <span>Amount: </span>
-            <span>{submittedBet.amount}</span>
+            <span>{submittedBet.createBetting.amount}</span>
           </div>
         </div>
         <div className="flex justify-center mt-5">

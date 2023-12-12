@@ -7,9 +7,11 @@ const feature = loadFeature('src/test/User/e2e/features/register.feature');
 
 defineFeature(feature, (test) => {
 	let driver: WebDriver;
-	const testUsername = 'regi_test_user';
-	const testEmail = 'regiDemoUser@test.com';
-	const testPassword = 'test123';
+	const testUser = {
+		username: 'regi_test_user',
+		email: 'regiDemoUser@test.com',
+		password: 'test123',
+	};
 
 	beforeAll(async () => {
 		const chromeOptions = new chrome.Options();
@@ -26,7 +28,7 @@ defineFeature(feature, (test) => {
 	afterAll(async () => {
 		await driver.quit();
 		const response = await axios.delete(
-			`https://api-gateway-nyxm4.ondigitalocean.app/user-service/user/by-username/${testUsername}`
+			`https://api-gateway-nyxm4.ondigitalocean.app/user-service/user/by-username/${testUser.username}`
 		);
 		if (!response) console.error('User not found');
 	});
@@ -50,19 +52,19 @@ defineFeature(feature, (test) => {
 				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[1]/input')
 			);
 			await driver.wait(until.elementIsVisible(usernameInput));
-			await usernameInput.sendKeys(testUsername);
+			await usernameInput.sendKeys(testUser.username);
 			//Email Input
 			const emailInput = driver.findElement(
 				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[2]/input')
 			);
 			await driver.wait(until.elementIsVisible(emailInput));
-			await emailInput.sendKeys(testEmail);
+			await emailInput.sendKeys(testUser.email);
 			//Password Input
 			const passwordInput = driver.findElement(
 				By.xpath('/html/body/main/div[1]/div[2]/div/div/form/div[3]/input')
 			);
 			await driver.wait(until.elementIsVisible(passwordInput));
-			await passwordInput.sendKeys(testPassword);
+			await passwordInput.sendKeys(testUser.password);
 		});
 
 		when('the user clicks on the register button', async () => {
@@ -82,7 +84,7 @@ defineFeature(feature, (test) => {
 				await driver.wait(until.elementLocated(element));
 				const username = await driver.findElement(element);
 				await driver.wait(until.elementIsVisible(username));
-				expect(await username.getText()).toBe(testUsername);
+				expect(await username.getText()).toBe(testUser.username);
 
 				// Check if there is a JWT in the local storage
 				const jwt = await driver.executeScript(

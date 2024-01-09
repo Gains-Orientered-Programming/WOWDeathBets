@@ -97,7 +97,7 @@ const DeathBetsBountySection = async () => {
     <div className="w-full">
       <div className="flex flex-col w-full items-center gap-5">
         <h1 className="text-6xl font-bold">HIGHEST BOUNTIES</h1>
-        <div className="w-2/3 flex mt-5 flex-row justify-between">
+        <div className="w-2/3 gap-5 flex mt-5 flex-row justify-between">
           {data.getMostBetted.map((betting) => (
             <BountyPanel key={betting.userId} betting={betting} />
           ))}
